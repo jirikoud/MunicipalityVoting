@@ -73,7 +73,7 @@ namespace TableGenerator
             model.NextPageIndex = (nextIndex <= maxPage && nextIndex != model.PageIndex ? (int?)nextIndex : null);
 
             model.PageList = new List<PageModel>();
-            for (int index = model.PageIndex - 2; index < model.PageIndex + 2; index++)
+            for (int index = model.PageIndex - 2; index < model.PageIndex + 3; index++)
             {
                 var pageModel = new PageModel() { PageIndex = index, Title = (index + 1).ToString(), IsCurrent = index == model.PageIndex };
                 if (index >= 0 && index <= maxPage)

@@ -6,3 +6,6 @@ h1{
 h2.group, h3.group {
     margin-top: 5px;
 }
+.btn {
+    margin: 1px;
+}

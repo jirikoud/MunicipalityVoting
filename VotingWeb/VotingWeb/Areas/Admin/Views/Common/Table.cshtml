@@ -3,11 +3,11 @@
 @model TableModel
 
 <div id="content">
-    @if (Model.BackController != null)
-    {
-        @Html.ActionLink(AdminRes.BUTTON_BACK, "Index", Model.BackController, new { id = Model.BackId }, new { @class = "btn btn-info" })
-    }
     <div class="float-right">
+        @if (Model.BackController != null)
+        {
+            @Html.ActionLink(AdminRes.BUTTON_BACK, "Index", Model.BackController, new { id = Model.BackId }, new { @class = "btn btn-info" })
+        }
         @Html.ActionLink(Model.ButtonCreateText, "Create", Model.ControllerName, new { id = Model.ButtonCreateId }, new { @class = "btn btn-success" })
     </div>
     <h1>@Model.Title</h1>
@@ -61,31 +61,31 @@
     <div class="row">
         @if (Model.FirstPageIndex.HasValue)
         {
-            @Html.ActionLink(AdminRes.PAGE_FIRST, "Index", Model.ControllerName, new { page = Model.FirstPageIndex.Value, id = Model.ButtonCreateId }, null)
+            @Html.ActionLink(AdminRes.PAGE_FIRST, "Index", Model.ControllerName, new { page = Model.FirstPageIndex.Value, id = Model.ButtonCreateId }, new { @class = "btn btn-light" })
         }
         @if (Model.PrevPageIndex.HasValue)
         {
-            @Html.ActionLink(AdminRes.PAGE_PREV, "Index", Model.ControllerName, new { page = Model.PrevPageIndex.Value, id = Model.ButtonCreateId }, null)
+            @Html.ActionLink(AdminRes.PAGE_PREV, "Index", Model.ControllerName, new { page = Model.PrevPageIndex.Value, id = Model.ButtonCreateId }, new { @class = "btn btn-light" })
         }
         @foreach (var page in Model.PageList)
         {
             if (page.IsCurrent)
             {
-                @page.Title
+                <button type="button" class="btn btn-info" disabled>@page.Title</button>
             }
             else
             {
-                @Html.ActionLink(page.Title, "Index", Model.ControllerName, new { page = page.PageIndex, id = Model.ButtonCreateId }, null)
+                @Html.ActionLink(page.Title, "Index", Model.ControllerName, new { page = page.PageIndex, id = Model.ButtonCreateId }, new { @class = "btn btn-light" })
             }
         }
 
         @if (Model.NextPageIndex.HasValue)
         {
-            @Html.ActionLink(AdminRes.PAGE_NEXT, "Index", Model.ControllerName, new { page = Model.NextPageIndex.Value, id = Model.ButtonCreateId }, null)
+            @Html.ActionLink(AdminRes.PAGE_NEXT, "Index", Model.ControllerName, new { page = Model.NextPageIndex.Value, id = Model.ButtonCreateId }, new { @class = "btn btn-light" })
         }
         @if (Model.LastPageIndex.HasValue)
         {
-            @Html.ActionLink(AdminRes.PAGE_LAST, "Index", Model.ControllerName, new { page = Model.LastPageIndex.Value, id = Model.ButtonCreateId }, null)
+            @Html.ActionLink(AdminRes.PAGE_LAST, "Index", Model.ControllerName, new { page = Model.LastPageIndex.Value, id = Model.ButtonCreateId }, new { @class = "btn btn-light" })
         }
     </div>
 </div>
