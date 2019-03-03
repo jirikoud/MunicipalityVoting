@@ -136,7 +136,7 @@
     <value>Žádný zastupitel</value>
   </data>
   <data name="VOTING_TAB_PARTY" xml:space="preserve">
-    <value>Dle strany</value>
+    <value>Dle klubu</value>
   </data>
   <data name="VOTING_TAB_VOTE" xml:space="preserve">
     <value>Dle volby</value>

@@ -115,7 +115,7 @@ namespace VotingWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dle strany.
+        ///   Looks up a localized string similar to Dle klubu.
         /// </summary>
         public static string VOTING_TAB_PARTY {
             get {
