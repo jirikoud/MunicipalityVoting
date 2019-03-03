@@ -1,0 +1,23 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Areas.Admin.Models.Municipalities
+@model UpdateModel
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.IsCreate)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="submit" class="btn btn-info" name="action" value="@MunicipalityAdminRes.BUTTON_SESSIONS">@MunicipalityAdminRes.BUTTON_SESSIONS</button>
+        <button type="submit" class="btn btn-primary" name="action" value="@AdminRes.BUTTON_SAVE">@AdminRes.BUTTON_SAVE</button>
+    </div>
+}

@@ -1,0 +1,72 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Infrastructure
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title | @CommonRes.APPLICATION_NAME</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/voting.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink(CommonRes.APPLICATION_NAME, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item @(ViewBag.MenuItem == CommonRes.MENU_ITEM_HOME ? "active" : "")">
+                        @Html.ActionLink(CommonRes.MENU_ITEM_HOME, "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @CommonRes.MENU_ITEM_ADMIN
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (User.IsInRole(Constants.ROLE_ADMIN))
+                                {
+                                    @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY, "Index", "Municipality", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY ? " active" : "") })
+                                    @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_USER, "Index", "User", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_USER ? " active" : "") })
+                                }
+                                @if (((System.Security.Claims.ClaimsPrincipal)User).Claims.FirstOrDefault(item => item.Type == Constants.CLAIM_MUNICIPALITY) != null)
+                                {
+                                    if (User.IsInRole(Constants.ROLE_ADMIN))
+                                    {
+                                        <div class="dropdown-divider"></div>
+                                    }
+                                    @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_SESSIONS, "Index", "Session", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_SESSIONS ? " active" : "") })
+                                    @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_PARTY, "Index", "Party", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_PARTY ? " active" : "") })
+                                    @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_DEPUTY, "Index", "Deputy", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_DEPUTY ? " active" : "") })
+                                    @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_IMPORT, "Index", "Import", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_IMPORT ? " active" : "") })
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @Html.Action("Index", "FlashAlert", new { area = "" })
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Jiří Koudelka</p>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

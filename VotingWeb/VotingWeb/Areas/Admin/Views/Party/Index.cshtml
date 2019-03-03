@@ -1,0 +1,8 @@
+﻿@using VotingWeb.Properties
+@{
+    ViewBag.Title = PartyAdminRes.PAGE_TITLE;
+    ViewBag.MenuItem = CommonRes.MENU_ITEM_ADMIN_PARTY;
+}
+
+@Html.Action("Table", "Common", new { model = Model })
+

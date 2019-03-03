@@ -1,0 +1,18 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Areas.Admin.Models.Parties
+@model UpdateModel
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.IsCreate)
+    @Html.HiddenFor(model => model.MunicipalityId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="submit" class="btn btn-primary">@AdminRes.BUTTON_SAVE</button>
+    </div>
+}

@@ -1,0 +1,40 @@
+﻿@using VotingWeb.Properties
+@model VotingWeb.Models.Topics.TopicListModel
+@{
+    ViewBag.Title = Model.SessionName;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">@VotingRes.TITLE_HOME</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Municipality", new { id = Model.MunicipalityId })">@Model.MunicipalityName</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.SessionName</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col">
+        <h1>@Model.SessionName</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h3>@VotingRes.HEADER_TOPIC_LIST</h3>
+        <div class="list-group">
+            @foreach (var topic in Model.TopicList)
+            {
+                <a href="@Url.Action("Index", "Topic", new { id = topic.Id })" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" data-placement="top" title="@topic.Name">
+                    <h3 class="text-truncate">@topic.Order. @topic.Name</h3>
+                    <p>@topic.Comment</p>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+}

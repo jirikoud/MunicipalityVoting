@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VotingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Deputies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MunicipalityId" Type="int" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TitlePre" Type="nvarchar(max)" />
+          <Property Name="TitlePost" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Receiver" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="IsSent" Type="bit" Nullable="false" />
+          <Property Name="ErrorCount" Type="int" Nullable="false" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Municipalities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parties">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MunicipalityId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Chairman" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="MunicipalityId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shortcuts">
+          <Key>
+            <PropertyRef Name="Hash" />
+          </Key>
+          <Property Name="Hash" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Total" Type="int" />
+          <Property Name="IsProcedural" Type="bit" Nullable="false" />
+          <Property Name="IsSecret" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Votings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+          <Property Name="DeputyId" Type="int" Nullable="false" />
+          <Property Name="PartyId" Type="int" />
+          <Property Name="Vote" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Deputies_Municipalities">
+          <End Role="Municipalities" Type="Self.Municipalities" Multiplicity="1" />
+          <End Role="Deputies" Type="Self.Deputies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Deputies">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parties_Municipalities">
+          <End Role="Municipalities" Type="Self.Municipalities" Multiplicity="1" />
+          <End Role="Parties" Type="Self.Parties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parties">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Municipalities">
+          <End Role="Municipalities" Type="Self.Municipalities" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shortcuts_Topics">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+          <End Role="Shortcuts" Type="Self.Shortcuts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shortcuts">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Sessions">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="SessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votings_Deputies">
+          <End Role="Deputies" Type="Self.Deputies" Multiplicity="1" />
+          <End Role="Votings" Type="Self.Votings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deputies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Votings">
+              <PropertyRef Name="DeputyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votings_Parties">
+          <End Role="Parties" Type="Self.Parties" Multiplicity="0..1" />
+          <End Role="Votings" Type="Self.Votings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parties">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Votings">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votings_Topics">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+          <End Role="Votings" Type="Self.Votings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Votings">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VotingModelStoreContainer">
+          <EntitySet Name="Deputies" EntityType="Self.Deputies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Municipalities" EntityType="Self.Municipalities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parties" EntityType="Self.Parties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shortcuts" EntityType="Self.Shortcuts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Votings" EntityType="Self.Votings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Deputies_Municipalities" Association="Self.FK_Deputies_Municipalities">
+            <End Role="Municipalities" EntitySet="Municipalities" />
+            <End Role="Deputies" EntitySet="Deputies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parties_Municipalities" Association="Self.FK_Parties_Municipalities">
+            <End Role="Municipalities" EntitySet="Municipalities" />
+            <End Role="Parties" EntitySet="Parties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Municipalities" Association="Self.FK_Sessions_Municipalities">
+            <End Role="Municipalities" EntitySet="Municipalities" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shortcuts_Topics" Association="Self.FK_Shortcuts_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Shortcuts" EntitySet="Shortcuts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Sessions" Association="Self.FK_Topics_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votings_Deputies" Association="Self.FK_Votings_Deputies">
+            <End Role="Deputies" EntitySet="Deputies" />
+            <End Role="Votings" EntitySet="Votings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votings_Parties" Association="Self.FK_Votings_Parties">
+            <End Role="Parties" EntitySet="Parties" />
+            <End Role="Votings" EntitySet="Votings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votings_Topics" Association="Self.FK_Votings_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="Votings" EntitySet="Votings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VotingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Deputy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Municipality" Relationship="Self.FK_Deputies_Municipalities" FromRole="Deputies" ToRole="Municipalities" />
+          <Property Name="TitlePre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitlePost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Votings" Relationship="VotingModel.FK_Votings_Deputies" FromRole="Deputy" ToRole="Voting" />
+        </EntityType>
+        <EntityType Name="Municipality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Deputies" Relationship="Self.FK_Deputies_Municipalities" FromRole="Municipalities" ToRole="Deputies" />
+          <NavigationProperty Name="Parties" Relationship="Self.FK_Parties_Municipalities" FromRole="Municipalities" ToRole="Parties" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Sessions_Municipalities" FromRole="Municipalities" ToRole="Sessions" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Municipality" Relationship="Self.FK_Parties_Municipalities" FromRole="Parties" ToRole="Municipalities" />
+          <NavigationProperty Name="Votings" Relationship="VotingModel.FK_Votings_Parties" FromRole="Party" ToRole="Voting" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Chairman" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="MunicipalityId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Municipality" Relationship="Self.FK_Sessions_Municipalities" FromRole="Sessions" ToRole="Municipalities" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK_Topics_Sessions" FromRole="Sessions" ToRole="Topics" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="IsProcedural" Type="Boolean" Nullable="false" />
+          <Property Name="IsSecret" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Topics_Sessions" FromRole="Topics" ToRole="Sessions" />
+          <NavigationProperty Name="Shortcuts" Relationship="VotingModel.FK_Shortcuts_Topics" FromRole="Topic" ToRole="Shortcut" />
+          <NavigationProperty Name="Votings" Relationship="VotingModel.FK_Votings_Topics" FromRole="Topic" ToRole="Voting" />
+        </EntityType>
+        <Association Name="FK_Deputies_Municipalities">
+          <End Role="Municipalities" Type="Self.Municipality" Multiplicity="1" />
+          <End Role="Deputies" Type="Self.Deputy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Deputies">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parties_Municipalities">
+          <End Role="Municipalities" Type="Self.Municipality" Multiplicity="1" />
+          <End Role="Parties" Type="Self.Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parties">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sessions_Municipalities">
+          <End Role="Municipalities" Type="Self.Municipality" Multiplicity="1" />
+          <End Role="Sessions" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Municipalities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sessions">
+              <PropertyRef Name="MunicipalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Sessions">
+          <End Role="Sessions" Type="Self.Session" Multiplicity="1" />
+          <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="SessionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VotingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Deputies" EntityType="Self.Deputy" />
+          <EntitySet Name="Municipalities" EntityType="Self.Municipality" />
+          <EntitySet Name="Parties" EntityType="Self.Party" />
+          <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <AssociationSet Name="FK_Deputies_Municipalities" Association="Self.FK_Deputies_Municipalities">
+            <End Role="Municipalities" EntitySet="Municipalities" />
+            <End Role="Deputies" EntitySet="Deputies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parties_Municipalities" Association="Self.FK_Parties_Municipalities">
+            <End Role="Municipalities" EntitySet="Municipalities" />
+            <End Role="Parties" EntitySet="Parties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sessions_Municipalities" Association="Self.FK_Sessions_Municipalities">
+            <End Role="Municipalities" EntitySet="Municipalities" />
+            <End Role="Sessions" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Sessions" Association="Self.FK_Topics_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <EntitySet Name="Shortcuts" EntityType="VotingModel.Shortcut" />
+          <AssociationSet Name="FK_Shortcuts_Topics" Association="VotingModel.FK_Shortcuts_Topics">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Shortcut" EntitySet="Shortcuts" />
+          </AssociationSet>
+          <EntitySet Name="Emails" EntityType="VotingModel.Email" />
+          <EntitySet Name="Votings" EntityType="VotingModel.Voting" />
+          <AssociationSet Name="FK_Votings_Deputies" Association="VotingModel.FK_Votings_Deputies">
+            <End Role="Deputy" EntitySet="Deputies" />
+            <End Role="Voting" EntitySet="Votings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votings_Parties" Association="VotingModel.FK_Votings_Parties">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Voting" EntitySet="Votings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Votings_Topics" Association="VotingModel.FK_Votings_Topics">
+            <End Role="Topic" EntitySet="Topics" />
+            <End Role="Voting" EntitySet="Votings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Shortcut">
+          <Key>
+            <PropertyRef Name="Hash" />
+          </Key>
+          <Property Name="Hash" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TopicId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Topic" Relationship="VotingModel.FK_Shortcuts_Topics" FromRole="Shortcut" ToRole="Topic" />
+        </EntityType>
+        <Association Name="FK_Shortcuts_Topics">
+          <End Type="VotingModel.Topic" Role="Topic" Multiplicity="1" />
+          <End Type="VotingModel.Shortcut" Role="Shortcut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shortcut">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Receiver" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSent" Type="Boolean" Nullable="false" />
+          <Property Name="ErrorCount" Type="Int32" Nullable="false" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Voting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TopicId" Type="Int32" Nullable="false" />
+          <Property Name="DeputyId" Type="Int32" Nullable="false" />
+          <Property Name="PartyId" Type="Int32" />
+          <Property Name="Vote" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Deputy" Relationship="VotingModel.FK_Votings_Deputies" FromRole="Voting" ToRole="Deputy" />
+          <NavigationProperty Name="Party" Relationship="VotingModel.FK_Votings_Parties" FromRole="Voting" ToRole="Party" />
+          <NavigationProperty Name="Topic" Relationship="VotingModel.FK_Votings_Topics" FromRole="Voting" ToRole="Topic" />
+        </EntityType>
+        <Association Name="FK_Votings_Deputies">
+          <End Type="VotingModel.Deputy" Role="Deputy" Multiplicity="1" />
+          <End Type="VotingModel.Voting" Role="Voting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deputy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voting">
+              <PropertyRef Name="DeputyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votings_Parties">
+          <End Type="VotingModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="VotingModel.Voting" Role="Voting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voting">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Votings_Topics">
+          <End Type="VotingModel.Topic" Role="Topic" Multiplicity="1" />
+          <End Type="VotingModel.Voting" Role="Voting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voting">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VotingModelStoreContainer" CdmEntityContainer="VotingEntities">
+          <EntitySetMapping Name="Deputies">
+            <EntityTypeMapping TypeName="VotingModel.Deputy">
+              <MappingFragment StoreEntitySet="Deputies">
+                <ScalarProperty Name="TitlePost" ColumnName="TitlePost" />
+                <ScalarProperty Name="TitlePre" ColumnName="TitlePre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Municipalities">
+            <EntityTypeMapping TypeName="VotingModel.Municipality">
+              <MappingFragment StoreEntitySet="Municipalities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parties">
+            <EntityTypeMapping TypeName="VotingModel.Party">
+              <MappingFragment StoreEntitySet="Parties">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="VotingModel.Session">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Chairman" ColumnName="Chairman" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="MunicipalityId" ColumnName="MunicipalityId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="VotingModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsProcedural" ColumnName="IsProcedural" />
+                <ScalarProperty Name="IsSecret" ColumnName="IsSecret" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shortcuts">
+            <EntityTypeMapping TypeName="VotingModel.Shortcut">
+              <MappingFragment StoreEntitySet="Shortcuts">
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="VotingModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorCount" ColumnName="ErrorCount" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Receiver" ColumnName="Receiver" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Votings">
+            <EntityTypeMapping TypeName="VotingModel.Voting">
+              <MappingFragment StoreEntitySet="Votings">
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="DeputyId" ColumnName="DeputyId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Areas.Admin.Models.Topics
+@model UpdateModel
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.IsCreate)
+    @Html.HiddenFor(model => model.SessionId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comment)
+        @Html.TextBoxFor(model => model.Comment, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Comment)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Order)
+        @Html.TextBoxFor(model => model.Order, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Order)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsProcedural)
+        @Html.CheckBoxFor(model => model.IsProcedural, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.IsProcedural)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsSecret)
+        @Html.CheckBoxFor(model => model.IsSecret, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.IsSecret)
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="submit" class="btn btn-info" name="action" value="@TopicAdminRes.BUTTON_VOTING">@TopicAdminRes.BUTTON_VOTING</button>
+        <button type="submit" class="btn btn-primary" name="action" value="@AdminRes.BUTTON_SAVE">@AdminRes.BUTTON_SAVE</button>
+    </div>
+}

@@ -1,0 +1,34 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Areas.Admin.Models.Sessions
+@model UpdateModel
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.IsCreate)
+    @Html.HiddenFor(model => model.MunicipalityId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Chairman)
+        @Html.TextBoxFor(model => model.Chairman, new { @class = "form-control form-control-lg" })
+        @Html.ValidationMessageFor(model => model.Chairman)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateStart)
+        <input name="DateStart" type="date" class="form-control form-control-lg" min="1990-01-01" max="2099-12-31" value="@Model.DateStartFormat" />
+        @Html.ValidationMessageFor(model => model.DateStart)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateEnd)
+        <input name="DateEnd" type="date" class="form-control form-control-lg" min="1990-01-01" max="2099-12-31" value="@Model.DateEndFormat" />
+        @Html.ValidationMessageFor(model => model.DateEnd)
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="submit" class="btn btn-info" name="action" value="@SessionAdminRes.BUTTON_TOPICS">@SessionAdminRes.BUTTON_TOPICS</button>
+        <button type="submit" class="btn btn-primary" name="action" value="@AdminRes.BUTTON_SAVE">@AdminRes.BUTTON_SAVE</button>
+    </div>
+}

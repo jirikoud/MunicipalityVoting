@@ -1,0 +1,14 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Areas.Admin.Models.Votings
+@model UpdateModel
+@{
+    ViewBag.Title = VotingAdminRes.PAGE_TITLE;
+}
+
+<div id="content">
+    <div class="float-right">
+        @Html.ActionLink(AdminRes.BUTTON_LIST, "Index", "Voting", new { id = Model.TopicId }, new { @class = "btn btn-info" })
+    </div>
+    <h1>@VotingAdminRes.PAGE_TITLE_CREATE</h1>
+    @Html.Partial("~/Areas/Admin/Views/Voting/PartialUpdate.cshtml", Model)
+</div>

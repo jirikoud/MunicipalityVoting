@@ -1,0 +1,8 @@
+﻿@using VotingWeb.Properties
+@{
+    ViewBag.Title = TopicAdminRes.PAGE_TITLE;
+    ViewBag.MenuItem = CommonRes.MENU_ITEM_ADMIN_TOPICS;
+}
+
+@Html.Action("Table", "Common", new { model = Model })
+

@@ -1,0 +1,29 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Models
+@using VotingWeb.Areas.Admin.Models.Imports
+@model ImportModel
+@{
+    ViewBag.Title = ImportAdminRes.PAGE_TITLE;
+    ViewBag.MenuItem = CommonRes.MENU_ITEM_ADMIN_IMPORT;
+}
+
+<div id="content">
+    <h1>@ImportAdminRes.PAGE_TITLE_FILE</h1>
+
+    @using (Html.BeginForm("Index", "Import", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.MunicipalityId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Importer)
+            @Html.DropDownListFor(model => model.Importer, Model.ImporterList, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessageFor(model => model.Importer)
+        </div>
+        <div class="form-group">
+            <label for="file">Vyberte soubor</label>
+            <input type="file" name="file" class="form-control form-control-lg" />
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary">@ImportAdminRes.BUTTON_LOAD</button>
+        </div>
+    }
+</div>

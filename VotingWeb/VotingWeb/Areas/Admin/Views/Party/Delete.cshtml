@@ -1,0 +1,26 @@
+﻿@using VotingWeb.Properties
+@using VotingWeb.Areas.Admin.Models.Parties
+@model DeleteModel
+@{
+    ViewBag.Title = PartyAdminRes.PAGE_TITLE;
+}
+
+<div id="content">
+    <div class="float-right">
+        @Html.ActionLink(AdminRes.BUTTON_LIST, "Index", "Party", new { id = Model.MunicipalityId }, new { @class = "btn btn-info" })
+    </div>
+    <h1>@PartyAdminRes.PAGE_TITLE_DELETE</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.MunicipalityId)
+        @Html.HiddenFor(model => model.Name)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <div class="form-control">@Model.Name</div>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-warning">@AdminRes.BUTTON_DELETE</button>
+        </div>
+    }
+</div>
