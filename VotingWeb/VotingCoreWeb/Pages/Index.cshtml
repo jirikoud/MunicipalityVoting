@@ -4,7 +4,21 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col">
+        <h1>@VotingRes.TITLE_HOME</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="list-group">
+            @foreach (var municipality in Model.MunicipalityList)
+            {
+                <a href="@Url.Action("Index", "Municipality", new { id = municipality.Id })" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <h3>@municipality.Name</h3>
+                    <p>@municipality.Description</p>
+                </a>
+            }
+        </div>
+    </div>
 </div>

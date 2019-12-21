@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using VotingCoreData.Models;
 
 namespace VotingCoreData
@@ -25,5 +27,40 @@ namespace VotingCoreData
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Voting> Votings { get; set; }
 
+        #region Shortcut
+
+        public async Task<Shortcut> FindShortcutByHashAsync(string hash)
+        {
+            try
+            {
+                var entity = await this.Shortcuts.FirstOrDefaultAsync(item => item.Hash == hash && !item.Topic.IsDeleted);
+                return entity;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindShortcutByHash({hash})");
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Municipality
+
+        public async Task<List<Municipality>> LoadMunicipalitiesAsync()
+        {
+            try
+            {
+                var list = await this.Municipalities.Where(item => !item.IsDeleted).OrderBy(item => item.Name).ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, "LoadMunicipalities");
+                return null;
+            }
+        }
+
+        #endregion
     }
 }
