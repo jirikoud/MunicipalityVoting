@@ -14,7 +14,7 @@
         <div class="list-group">
             @foreach (var municipality in Model.MunicipalityList)
             {
-                <a href="@Url.Action("Index", "Municipality", new { id = municipality.Id })" class="list-group-item list-group-item-action flex-column align-items-start">
+                <a asp-page="/Municipality" asp-route-id="@municipality.Id" class="list-group-item list-group-item-action flex-column align-items-start">
                     <h3>@municipality.Name</h3>
                     <p>@municipality.Description</p>
                 </a>

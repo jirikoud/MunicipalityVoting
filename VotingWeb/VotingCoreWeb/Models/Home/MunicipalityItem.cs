@@ -6,13 +6,13 @@ using VotingCoreData.Models;
 
 namespace VotingCoreWeb.Models.Home
 {
-    public class MunicipalityModel
+    public class MunicipalityItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public MunicipalityModel(Municipality entity)
+        public MunicipalityItem(VotingCoreData.Models.Municipality entity)
         {
             this.Id = entity.Id;
             this.Name = entity.Name;

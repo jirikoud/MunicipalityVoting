@@ -56,11 +56,44 @@ namespace VotingCoreData
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, "LoadMunicipalities");
+                _logger.LogError(exception, $"LoadMunicipalities()");
+                return null;
+            }
+        }
+
+        public async Task<Municipality> FindMunicipalityById(int id)
+        {
+            try
+            {
+                var municipality = await this.Municipalities.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return municipality;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindMunicipalityById({id})");
                 return null;
             }
         }
 
         #endregion
+
+        #region Session
+
+        public async Task<List<Session>> LoadSessionsAsync(int municipalityId)
+        {
+            try
+            {
+                var list = await this.Sessions.Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId).OrderByDescending(item => item.StartDate).ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadSessions({municipalityId})");
+                return null;
+            }
+        }
+
+        #endregion
+
     }
 }

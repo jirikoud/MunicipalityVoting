@@ -20,10 +20,66 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VotingCoreData\VotingCoreData.csproj" />
+    <ProjectReference Include="..\VotingImporter\VotingImporter.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <Compile Update="Properties\AccountRes.Designer.cs">
+      <DependentUpon>AccountRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\AdminRes.Designer.cs">
+      <DependentUpon>AdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\CommonRes.Designer.cs">
+      <DependentUpon>CommonRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\DeputyAdminRes.Designer.cs">
+      <DependentUpon>DeputyAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\ImportAdminRes.Designer.cs">
+      <DependentUpon>ImportAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\MunicipalityAdminRes.Designer.cs">
+      <DependentUpon>MunicipalityAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\PartyAdminRes.Designer.cs">
+      <DependentUpon>PartyAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\SessionAdminRes.Designer.cs">
+      <DependentUpon>SessionAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\TopicAdminRes.Designer.cs">
+      <DependentUpon>TopicAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\UserAdminRes.Designer.cs">
+      <DependentUpon>UserAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\VotingAdminRes.Designer.cs">
+      <DependentUpon>VotingAdminRes.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Properties\VotingRes.Designer.cs">
       <DependentUpon>VotingRes.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -33,6 +89,50 @@
 
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\AccountRes.resx">
+      <LastGenOutput>AccountRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\AdminRes.resx">
+      <LastGenOutput>AdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\CommonRes.resx">
+      <LastGenOutput>CommonRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\DeputyAdminRes.resx">
+      <LastGenOutput>DeputyAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\ImportAdminRes.resx">
+      <LastGenOutput>ImportAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\MunicipalityAdminRes.resx">
+      <LastGenOutput>MunicipalityAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\PartyAdminRes.resx">
+      <LastGenOutput>PartyAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\SessionAdminRes.resx">
+      <LastGenOutput>SessionAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\TopicAdminRes.resx">
+      <LastGenOutput>TopicAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\UserAdminRes.resx">
+      <LastGenOutput>UserAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\VotingAdminRes.resx">
+      <LastGenOutput>VotingAdminRes.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\VotingRes.resx">
       <LastGenOutput>VotingRes.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>

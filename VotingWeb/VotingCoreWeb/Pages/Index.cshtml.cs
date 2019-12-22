@@ -15,7 +15,7 @@ namespace VotingCoreWeb.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly VotingDbContext _dbContext;
 
-        public List<MunicipalityModel> MunicipalityList;
+        public List<MunicipalityItem> MunicipalityList;
 
         public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext)
         {
@@ -36,7 +36,7 @@ namespace VotingCoreWeb.Pages
                     }
                 }
                 var municipalityList = await _dbContext.LoadMunicipalitiesAsync();
-                this.MunicipalityList = municipalityList.ConvertAll(item => new MunicipalityModel(item));
+                this.MunicipalityList = municipalityList.ConvertAll(item => new MunicipalityItem(item));
             }
             catch (Exception exception)
             {

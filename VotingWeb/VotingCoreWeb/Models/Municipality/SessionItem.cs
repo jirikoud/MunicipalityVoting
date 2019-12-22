@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using VotingData;
+using System.Threading.Tasks;
+using VotingCoreData.Models;
 
-namespace VotingWeb.Models.Municipalities
+namespace VotingCoreWeb.Models.Municipality
 {
-    public class SessionModel
+    public class SessionItem
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
 
-        public SessionModel(Session entity)
+        public SessionItem(Session entity)
         {
             this.Id = entity.Id;
             this.Name = entity.Name;
