@@ -1,0 +1,37 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.Municipality.UpdateModel
+@{
+    ViewData["Title"] = MunicipalityAdminRes.PAGE_TITLE;
+}
+
+@await Component.InvokeAsync("Alert", new { alert = Model.Alert })
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/Municipality/Index" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@MunicipalityAdminRes.PAGE_TITLE_CREATE</h1>
+    <form method="post">
+        <input type="hidden" name="Id" value="@Model.Id"/>
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control form-control-lg" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control form-control-lg" />
+            <span asp-validation-for="Description"></span>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-info" name="action" asp-page-handler="Sessions">@MunicipalityAdminRes.BUTTON_SESSIONS</button>
+            <button type="submit" class="btn btn-primary" name="action" asp-page-handler="Save">@AdminRes.BUTTON_SAVE</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

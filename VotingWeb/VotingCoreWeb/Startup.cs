@@ -18,9 +18,12 @@ namespace VotingCoreWeb
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IWebHostEnvironment Env { get; set; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -40,7 +43,14 @@ namespace VotingCoreWeb
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
+            var razorBuilder = services.AddRazorPages();
+
+            #if DEBUG
+                if (Env.IsDevelopment())
+                {
+                    razorBuilder.AddRazorRuntimeCompilation();
+                }
+            #endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

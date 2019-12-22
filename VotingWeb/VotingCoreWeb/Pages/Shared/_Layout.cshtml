@@ -34,8 +34,10 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     @if (User.IsInRole(Constants.ROLE_ADMIN))
                                     {
-                                        @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY, "Index", "Municipality", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY ? " active" : "") })
-                                        @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_USER, "Index", "User", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_USER ? " active" : "") })
+                                        <a asp-area="Admin" asp-page="/Municipality/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY</a>
+                                        <a asp-area="Admin" asp-page="/User/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_USER ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_USER</a>
+                                        @*@Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY, "Index", "Municipality", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY ? " active" : "") })*@
+                                        @*@Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_USER, "Index", "User", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_USER ? " active" : "") })*@
                                     }
                                     @if (((System.Security.Claims.ClaimsPrincipal)User).Claims.FirstOrDefault(item => item.Type == Constants.CLAIM_MUNICIPALITY) != null)
                                     {
@@ -58,6 +60,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @await Component.InvokeAsync("Alert", new { alert = (AlertModel)null })
             @RenderBody()
         </main>
     </div>

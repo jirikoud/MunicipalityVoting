@@ -1,4 +1,37 @@
 ﻿@page
 @model VotingCoreWeb.Areas.Admin.Pages.Municipality.IndexModel
 @{
+    ViewData["Title"] = MunicipalityAdminRes.PAGE_TITLE;
+    ViewData["MenuItem"] = CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY;
 }
+
+<div id="content">
+    <div class="float-right">
+        <a asp-area="Admin" asp-page="/Municipality/Create" class="btn btn-success">@MunicipalityAdminRes.BUTTON_CREATE</a>
+    </div>
+    <h1>@MunicipalityAdminRes.TABLE_TITLE</h1>
+    <div class="grid-view">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">@MunicipalityAdminRes.COLUMN_NAME</th>
+                    <th scope="col"></th>
+                    <th scope="col">@CommonRes.COLUMN_ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ItemList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td><a asp-page="/Session/Index" asp-route-id="@item.Id" class="btn btn-info">@MunicipalityAdminRes.BUTTON_SESSIONS</a></td>
+                        <td>
+                            <a asp-page="/Municipality/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>
+                            <a asp-page="/Municipality/Delete" asp-route-id="@item.Id" class="btn btn-danger">@AdminRes.BUTTON_DELETE</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

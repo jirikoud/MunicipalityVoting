@@ -27,6 +27,20 @@ namespace VotingCoreData
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Voting> Votings { get; set; }
 
+        public async Task<bool> UpdateAsync()
+        {
+            try
+            {
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"Update()");
+                return false;
+            }
+        }
+
         #region Shortcut
 
         public async Task<Shortcut> FindShortcutByHashAsync(string hash)
@@ -72,6 +86,40 @@ namespace VotingCoreData
             {
                 _logger.LogError(exception, $"FindMunicipalityById({id})");
                 return null;
+            }
+        }
+
+        public async Task<int?> CreateMunicipalityAsync(Municipality municipality)
+        {
+            try
+            {
+                this.Municipalities.Add(municipality);
+                await SaveChangesAsync();
+                return municipality.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"CreateMunicipality()");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteMunicipalityAsync(int id)
+        {
+            try
+            {
+                var municipality = await this.Municipalities.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (municipality != null)
+                {
+                    municipality.IsDeleted = true;
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteMunicipality({id})");
+                return false;
             }
         }
 

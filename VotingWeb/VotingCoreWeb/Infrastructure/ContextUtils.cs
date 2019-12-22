@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,13 +49,15 @@ namespace VotingCoreWeb.Infrastructure
             return text;
         }
 
-        //public void CreateActionStateCookie(HttpResponseBase response, AlertTypeEnum actionType, string message)
-        //{
-        //    var cookie = new HttpCookie(ALERT_STATE_COOKIE);
-        //    cookie.Values.Add(COOKIE_VALUE_ACTION_TYPE, actionType.ToString());
-        //    cookie.Values.Add(COOKIE_VALUE_MESSAGE, EncodeForCookie(message));
-        //    response.Cookies.Add(cookie);
-        //}
+        public void CreateActionStateCookie(ITempDataDictionary tempData, AlertTypeEnum actionType, string message)
+        {
+            tempData["alertType"] = actionType;
+            tempData["alertMessage"] = message;
+            //var cookie = new HttpCookie(ALERT_STATE_COOKIE);
+            //cookie.Values.Add(COOKIE_VALUE_ACTION_TYPE, actionType.ToString());
+            //cookie.Values.Add(COOKIE_VALUE_MESSAGE, EncodeForCookie(message));
+            //response.Cookies.Add(cookie);
+        }
 
         //public AlertModel ReadActionStateCookie(HttpRequestBase request, HttpResponseBase response)
         //{
