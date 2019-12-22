@@ -16,5 +16,20 @@ namespace VotingCoreData.Models
 
         public Municipality Municipality { get; set; }
         public List<Voting> Votings { get; set; }
+
+        public string GetFullName()
+        {
+            var fullname = this.Firstname + " " + this.Lastname;
+            if (!string.IsNullOrWhiteSpace(this.TitlePre))
+            {
+                fullname = this.TitlePre + " " + fullname;
+            }
+            if (!string.IsNullOrWhiteSpace(this.TitlePost))
+            {
+                fullname = fullname + " " + this.TitlePost;
+            }
+            return fullname;
+        }
+
     }
 }

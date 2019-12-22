@@ -1,0 +1,40 @@
+﻿@page
+@model VotingCoreWeb.SessionModel
+@{
+    ViewData["Title"] = Model.SessionName;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">@VotingRes.TITLE_HOME</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Municipality" asp-route-id="@Model.MunicipalityId">@Model.MunicipalityName</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.SessionName</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col">
+        <h1>@Model.SessionName</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h3>@VotingRes.HEADER_TOPIC_LIST</h3>
+        <div class="list-group">
+            @foreach (var topic in Model.TopicList)
+            {
+                <a asp-page="/Topic" asp-route-id="@topic.Id" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" data-placement="top" title="@topic.Name">
+                    <h3 class="text-truncate">@topic.Order. @topic.Name</h3>
+                    <p>@topic.Comment</p>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+}

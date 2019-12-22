@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingImporter", "VotingImp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingCommon", "VotingCommon\VotingCommon.csproj", "{AE86DF2A-B8A7-431D-95AA-EC10A44EA5EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingCoreWeb", "VotingCoreWeb\VotingCoreWeb.csproj", "{A3F194D6-2FA5-42D2-A283-CB2FE1DCDE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingCoreWeb", "VotingCoreWeb\VotingCoreWeb.csproj", "{A3F194D6-2FA5-42D2-A283-CB2FE1DCDE42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingCoreData", "VotingCoreData\VotingCoreData.csproj", "{4DCC7DB2-9DEA-42F4-A15F-ABCBEA62054A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingCoreData", "VotingCoreData\VotingCoreData.csproj", "{4DCC7DB2-9DEA-42F4-A15F-ABCBEA62054A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

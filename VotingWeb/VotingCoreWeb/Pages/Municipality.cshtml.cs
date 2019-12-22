@@ -29,7 +29,7 @@ namespace VotingCoreWeb
         {
             try
             {
-                var municipality = await _dbContext.FindMunicipalityById(id);
+                var municipality = await _dbContext.FindMunicipalityByIdAsync(id);
                 var sessionList = await _dbContext.LoadSessionsAsync(id);
                 this.MunicipalityName = municipality.Name;
                 this.SessionList = sessionList.ConvertAll(item => new SessionItem(item));
@@ -37,7 +37,7 @@ namespace VotingCoreWeb
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, "Municipality failed");
+                _logger.LogError(exception, $"Municipality({id}) failed");
                 return RedirectToPage("Index");
             }
         }

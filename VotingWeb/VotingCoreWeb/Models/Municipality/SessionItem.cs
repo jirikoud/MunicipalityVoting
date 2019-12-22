@@ -13,7 +13,7 @@ namespace VotingCoreWeb.Models.Municipality
         public string StartDate { get; set; }
         public string EndDate { get; set; }
 
-        public SessionItem(Session entity)
+        public SessionItem(VotingCoreData.Models.Session entity)
         {
             this.Id = entity.Id;
             this.Name = entity.Name;

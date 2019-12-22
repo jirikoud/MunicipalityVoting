@@ -61,7 +61,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Municipality> FindMunicipalityById(int id)
+        public async Task<Municipality> FindMunicipalityByIdAsync(int id)
         {
             try
             {
@@ -89,6 +89,70 @@ namespace VotingCoreData
             catch (Exception exception)
             {
                 _logger.LogError(exception, $"LoadSessions({municipalityId})");
+                return null;
+            }
+        }
+
+        public async Task<Session> FindSessionByIdAsync(int id)
+        {
+            try
+            {
+                var municipality = await this.Sessions.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return municipality;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindSessionById({id})");
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Topic
+
+        public async Task<List<Topic>> LoadTopicsAsync(int sessionId)
+        {
+            try
+            {
+                var list = await this.Topics.Where(item => !item.IsDeleted && item.SessionId == sessionId).OrderBy(item => item.Order).ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadTopics({sessionId})");
+                return null;
+            }
+        }
+
+        public async Task<Topic> FindTopicByIdAsync(int id)
+        {
+            try
+            {
+                var municipality = await this.Topics.Include(item => item.Session.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return municipality;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindTopicById({id})");
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Voting
+
+        public async Task<List<Voting>> LoadVotingsAsync(int topicId)
+        {
+            try
+            {
+                var list = await this.Votings.Include(item => item.Deputy).Include(item => item.Party).Where(item => item.TopicId == topicId).ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadVotings({topicId})");
                 return null;
             }
         }
