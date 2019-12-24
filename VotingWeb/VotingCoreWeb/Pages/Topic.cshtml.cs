@@ -17,6 +17,7 @@ namespace VotingCoreWeb
     {
         private readonly ILogger<TopicModel> _logger;
         private readonly VotingDbContext _dbContext;
+        private readonly ContextUtils _contextUtils;
 
         private const int NO_PARTY = -1;
 
@@ -34,12 +35,12 @@ namespace VotingCoreWeb
 
         public List<PartyModel> PartyList { get; set; }
 
-        public TopicModel(ILogger<TopicModel> logger, VotingDbContext dbContext)
+        public TopicModel(ILogger<TopicModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _contextUtils = contextUtils;
         }
-
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -55,7 +56,7 @@ namespace VotingCoreWeb
                 this.TopicId = topic.Id;
                 this.TopicOrder = topic.Order;
                 this.TopicName = topic.Name;
-                this.TopicShortname = ContextUtils.Instance.ShortenString(topic.Name, 40);
+                this.TopicShortname = _contextUtils.ShortenString(topic.Name, 40);
                 this.TopicComment = topic.Comment;
 
                 var voteOptionDictionary = new Dictionary<VoteEnum, List<Voting>>();

@@ -151,6 +151,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vybraný záznam neexistuje.
+        /// </summary>
+        public static string ERROR_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("ERROR_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;&lt;.
         /// </summary>
         public static string PAGE_FIRST {

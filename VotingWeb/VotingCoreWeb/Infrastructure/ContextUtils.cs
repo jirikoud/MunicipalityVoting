@@ -3,37 +3,20 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
+using VotingCoreData;
 using VotingCoreWeb.Models;
+using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Infrastructure
 {
     public class ContextUtils
     {
-        public const string ALERT_STATE_COOKIE = "alert-state";
-        public const string COOKIE_VALUE_ACTION_TYPE = "type";
-        public const string COOKIE_VALUE_MESSAGE = "message";
-
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        #region --- Singleton ---
-
-        private static ContextUtils instance;
-
-        public static ContextUtils Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new ContextUtils();
-                }
-                return instance;
-            }
-        }
-
-        #endregion
+        public const string TEMPDATA_ALERT_TYPE = "alertType";
+        public const string TEMPDATA_ALERT_MESSAGE = "alertMessage";
 
         private string EncodeForCookie(string text)
         {
@@ -51,33 +34,10 @@ namespace VotingCoreWeb.Infrastructure
 
         public void CreateActionStateCookie(ITempDataDictionary tempData, AlertTypeEnum actionType, string message)
         {
-            tempData["alertType"] = actionType;
-            tempData["alertMessage"] = message;
-            //var cookie = new HttpCookie(ALERT_STATE_COOKIE);
-            //cookie.Values.Add(COOKIE_VALUE_ACTION_TYPE, actionType.ToString());
-            //cookie.Values.Add(COOKIE_VALUE_MESSAGE, EncodeForCookie(message));
-            //response.Cookies.Add(cookie);
+            tempData[TEMPDATA_ALERT_TYPE] = actionType;
+            tempData[TEMPDATA_ALERT_MESSAGE] = message;
         }
 
-        //public AlertModel ReadActionStateCookie(HttpRequestBase request, HttpResponseBase response)
-        //{
-        //    if (request.Cookies.AllKeys.Contains(ALERT_STATE_COOKIE))
-        //    {
-        //        var cookie = request.Cookies[ALERT_STATE_COOKIE];
-        //        cookie.Expires = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-        //        response.Cookies.Add(cookie);
-        //        if (Enum.TryParse(cookie.Values[COOKIE_VALUE_ACTION_TYPE], out AlertTypeEnum actionType))
-        //        {
-        //            return new AlertModel()
-        //            {
-        //                Class = AlertTypeConvertor.GetClass(actionType),
-        //                Title = AlertTypeConvertor.GetTitle(actionType),
-        //                Message = DecodeFromCookie(cookie.Values[COOKIE_VALUE_MESSAGE])
-        //            };
-        //        }
-        //    }
-        //    return null;
-        //}
 
         public string ShortenString(string fullString, int maxLength)
         {
@@ -86,6 +46,69 @@ namespace VotingCoreWeb.Infrastructure
                 return fullString;
             }
             return fullString.Substring(0, maxLength - 1) + "…";
+        }
+
+        private async Task<bool> CheckMunicipalityRightAsync(ClaimsPrincipal user, VotingDbContext dbContext, int municipalityId)
+        {
+            var municipalityClaim = user.Claims.FirstOrDefault(item => item.Type == Constants.CLAIM_MUNICIPALITY);
+            if (municipalityClaim != null)
+            {
+                int claimId = int.Parse(municipalityClaim.Value);
+                if (claimId == municipalityId)
+                {
+                    var municipality = await dbContext.FindMunicipalityByIdAsync(municipalityId);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private async Task<int?> GetAllowedMunicipalityAsync(ClaimsPrincipal user, VotingDbContext dbContext)
+        {
+            var municipalityClaim = user.Claims.FirstOrDefault(item => item.Type == Constants.CLAIM_MUNICIPALITY);
+            if (municipalityClaim == null)
+            {
+                return null;
+            }
+            int claimId = int.Parse(municipalityClaim.Value);
+            var municipality = await dbContext.FindMunicipalityByIdAsync(claimId);
+            return municipality?.Id;
+        }
+
+        public async Task<int?> CheckMunicipalityRightsAsync(int? id, ClaimsPrincipal user, VotingDbContext dbContext, ITempDataDictionary tempData)
+        {
+            if (id.HasValue)
+            {
+                if (user.IsInRole(Constants.ROLE_ADMIN))
+                {
+                    var municipality = dbContext.FindMunicipalityByIdAsync(id.Value);
+                    if (municipality == null)
+                    {
+                        CreateActionStateCookie(tempData, AlertTypeEnum.Danger, AdminRes.ERROR_NOT_EXIST);
+                        return null;
+                    }
+                }
+                else
+                {
+                    var hasClaim = await CheckMunicipalityRightAsync(user, dbContext, id.Value);
+                    if (!hasClaim)
+                    {
+                        CreateActionStateCookie(tempData, AlertTypeEnum.Danger, AdminRes.ERROR_NO_RIGHT);
+                        return null;
+                    }
+                }
+                return id.Value;
+            }
+            else
+            {
+                var claimId = await GetAllowedMunicipalityAsync(user, dbContext);
+                if (claimId == null)
+                {
+                    CreateActionStateCookie(tempData, AlertTypeEnum.Danger, AdminRes.ERROR_NO_RIGHT);
+                    return null;
+                }
+                return claimId.Value;
+            }
         }
     }
 }

@@ -1,4 +1,39 @@
 ﻿@page
 @model VotingCoreWeb.Areas.Admin.Pages.Session.IndexModel
 @{
+    ViewData["Title"] = SessionAdminRes.PAGE_TITLE;
+    ViewData["MenuItem"] = CommonRes.MENU_ITEM_ADMIN_SESSIONS;
 }
+
+<div id="content">
+    <div class="float-right">
+        <a asp-area="Admin" asp-page="/Session/Create" asp-route-municipality-id="@Model.MunicipalityId" class="btn btn-success">@SessionAdminRes.BUTTON_CREATE</a>
+    </div>
+    <h1>@SessionAdminRes.TABLE_TITLE</h1>
+    <div class="grid-view">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">@SessionAdminRes.COLUMN_NAME</th>
+                    <th scope="col">@SessionAdminRes.COLUMN_DATE_START</th>
+                    <th scope="col"></th>
+                    <th scope="col">@CommonRes.COLUMN_ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ItemList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Name</td>
+                        <td><a asp-page="/Topic/Index" asp-route-id="@item.Id" class="btn btn-info">@SessionAdminRes.BUTTON_TOPICS</a></td>
+                        <td>
+                            <a asp-page="/Session/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>
+                            <a asp-page="/Session/Delete" asp-route-id="@item.Id" class="btn btn-danger">@AdminRes.BUTTON_DELETE</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

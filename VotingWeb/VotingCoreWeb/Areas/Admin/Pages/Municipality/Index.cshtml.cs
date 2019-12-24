@@ -17,13 +17,15 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly VotingDbContext _dbContext;
+        private readonly ContextUtils _contextUtils;
 
         public List<VotingCoreData.Models.Municipality> ItemList { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext)
+        public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _contextUtils = contextUtils;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -36,7 +38,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Index failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Index", new { area = "" });
             }
         }

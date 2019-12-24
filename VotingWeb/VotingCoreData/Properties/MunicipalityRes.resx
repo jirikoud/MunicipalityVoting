@@ -117,70 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_BACK" xml:space="preserve">
-    <value>Zpět</value>
+  <data name="DETAIL_DESCRIPTION" xml:space="preserve">
+    <value>Popis</value>
   </data>
-  <data name="BUTTON_DELETE" xml:space="preserve">
-    <value>Odstranit</value>
-  </data>
-  <data name="BUTTON_LIST" xml:space="preserve">
-    <value>Zpět na seznam</value>
-  </data>
-  <data name="BUTTON_SAVE" xml:space="preserve">
-    <value>Uložit</value>
-  </data>
-  <data name="BUTTON_UPDATE" xml:space="preserve">
-    <value>Upravit</value>
-  </data>
-  <data name="ERROR_EXCEPTION" xml:space="preserve">
-    <value>Došlo k chybě během zpracování</value>
-  </data>
-  <data name="ERROR_FAILED_CREATE" xml:space="preserve">
-    <value>Během zakládání záznamu došlo k chybě</value>
-  </data>
-  <data name="ERROR_FAILED_DELETE" xml:space="preserve">
-    <value>Během mazání záznamu došlo k chybě</value>
-  </data>
-  <data name="ERROR_FAILED_UPDATE" xml:space="preserve">
-    <value>Během ukládání změn došlo k chybě</value>
-  </data>
-  <data name="ERROR_NOT_EXIST" xml:space="preserve">
-    <value>Vybraný záznam neexistuje</value>
-  </data>
-  <data name="ERROR_NO_RIGHT" xml:space="preserve">
-    <value>Nemáte právo upravovat informace o obci</value>
-  </data>
-  <data name="PAGE_FIRST" xml:space="preserve">
-    <value>&lt;&lt;</value>
-  </data>
-  <data name="PAGE_LAST" xml:space="preserve">
-    <value>&gt;&gt;</value>
-  </data>
-  <data name="PAGE_NEXT" xml:space="preserve">
-    <value>&gt;</value>
-  </data>
-  <data name="PAGE_PREV" xml:space="preserve">
-    <value>&lt;</value>
-  </data>
-  <data name="ROLE_ADMIN" xml:space="preserve">
-    <value>Administrátor</value>
-  </data>
-  <data name="ROLE_EDITOR" xml:space="preserve">
-    <value>Editor</value>
-  </data>
-  <data name="SUCCESS_CREATE" xml:space="preserve">
-    <value>Záznam byl úspěšně uložen</value>
-  </data>
-  <data name="SUCCESS_DELETE" xml:space="preserve">
-    <value>Mazání záznamu úspěšně proběhlo</value>
-  </data>
-  <data name="SUCCESS_UPDATE" xml:space="preserve">
-    <value>Změny byly uloženy</value>
-  </data>
-  <data name="VALIDATION_EMPTY" xml:space="preserve">
-    <value>Toto pole nemůže zůstat prázdné</value>
-  </data>
-  <data name="VALIDATION_LENGTH" xml:space="preserve">
-    <value>Text může být dlouhý nejvýše {1} znaků</value>
+  <data name="DETAIL_NAME" xml:space="preserve">
+    <value>Jméno obce</value>
   </data>
 </root>

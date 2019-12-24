@@ -15,6 +15,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
     {
         private readonly ILogger<DeleteModel> _logger;
         private readonly VotingDbContext _dbContext;
+        private readonly ContextUtils _contextUtils;
 
         [BindProperty]
         public int Id { get; set; }
@@ -24,10 +25,11 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
 
         public AlertModel Alert { get; set; }
 
-        public DeleteModel(ILogger<DeleteModel> logger, VotingDbContext dbContext)
+        public DeleteModel(ILogger<DeleteModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _contextUtils = contextUtils;
         }
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -42,7 +44,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Delete failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Municipality/Index", new { area = "Admin" });
             }
         }
@@ -56,7 +58,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
                     var isSuccess = await _dbContext.DeleteMunicipalityAsync(this.Id);
                     if (isSuccess)
                     {
-                        ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_DELETE);
+                        _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_DELETE);
                         return RedirectToPage("/Municipality/Index", new { area = "Admin" });
                     }
                     else
@@ -69,7 +71,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             catch (Exception exception)
             {
                 _logger.LogError(exception, $"Delete({this.Id}) failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Municipality/Index", new { area = "Admin" });
             }
         }

@@ -18,65 +18,55 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
     {
         private readonly ILogger<UpdateModel> _logger;
         private readonly VotingDbContext _dbContext;
+        private readonly ContextUtils _contextUtils;
 
         [BindProperty]
-        public int Id { get; set; }
-
-        [BindProperty]
-        [Display(Name = "DETAIL_NAME", ResourceType = typeof(MunicipalityAdminRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(AdminRes))]
-        public string Name { get; set; }
-
-        [BindProperty]
-        [Display(Name = "DETAIL_DESCRIPTION", ResourceType = typeof(MunicipalityAdminRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(AdminRes))]
-        public string Description { get; set; }
+        [Required]
+        public VotingCoreData.Models.Municipality Item { get; set; }
 
         public AlertModel Alert { get; set; }
 
-        public UpdateModel(ILogger<UpdateModel> logger, VotingDbContext dbContext)
+        public UpdateModel(ILogger<UpdateModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
             _logger = logger;
             _dbContext = dbContext;
-        }
-
-        private async Task<bool> TryUpdateAsync()
-        {
-            var municipality = await _dbContext.FindMunicipalityByIdAsync(this.Id);
-            municipality.Name = this.Name;
-            municipality.Description = this.Description;
-            return await _dbContext.UpdateAsync();
+            _contextUtils = contextUtils;
         }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
             try
             {
-                var item = await _dbContext.FindMunicipalityByIdAsync(id);
-                this.Id = id;
-                this.Name = item.Name;
-                this.Description = item.Description;
+                this.Item = await _dbContext.FindMunicipalityByIdAsync(id);
+                if (this.Item == null)
+                {
+                    _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                    return RedirectToPage("/Municipality/Index", new { area = "Admin" });
+                }
                 return Page();
             }
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Create failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Municipality/Index", new { area = "Admin" });
             }
         }
 
-        public async Task<IActionResult> OnPostSaveAsync()
+        public async Task<IActionResult> OnPostAsync(string handler)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var isSuccess = await TryUpdateAsync();
-                    if (isSuccess)
+                    var itemId = await _dbContext.UpdateMunicipalityAsync(this.Item.Id, this.Item);
+                    if (itemId.HasValue)
                     {
-                        ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
+                        _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
+                        if (handler == "Sessions")
+                        {
+                            return RedirectToPage("/Session/Index", new { area = "Admin", id = itemId.Value });
+                        }
                         return RedirectToPage("/Municipality/Index", new { area = "Admin" });
                     }
                     else
@@ -89,34 +79,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Update failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Municipality/Index", new { area = "Admin" });
-            }
-        }
-
-        public async Task<IActionResult> OnPostSessionsAsync()
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var isSuccess = await TryUpdateAsync();
-                    if (isSuccess)
-                    {
-                        ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
-                        return RedirectToPage("/Session/Index", new { id = this.Id });
-                    }
-                    else
-                    {
-                        Alert = new AlertModel(AlertTypeEnum.Danger, AdminRes.ERROR_FAILED_CREATE);
-                    }
-                }
-                return Page();
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(exception, "Update failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Municipality/Index", new { area = "Admin" });
             }
         }

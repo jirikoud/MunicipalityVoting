@@ -18,34 +18,19 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
     {
         private readonly ILogger<CreateModel> _logger;
         private readonly VotingDbContext _dbContext;
+        private readonly ContextUtils _contextUtils;
 
         [BindProperty]
-        [Display(Name = "DETAIL_NAME", ResourceType = typeof(MunicipalityAdminRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(AdminRes))]
-        public string Name { get; set; }
-
-        [BindProperty]
-        [Display(Name = "DETAIL_DESCRIPTION", ResourceType = typeof(MunicipalityAdminRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(AdminRes))]
-        public string Description { get; set; }
+        [Required]
+        public VotingCoreData.Models.Municipality Item { get; set; }
 
         public AlertModel Alert { get; set; }
 
-        public CreateModel(ILogger<CreateModel> logger, VotingDbContext dbContext)
+        public CreateModel(ILogger<CreateModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
             _logger = logger;
             _dbContext = dbContext;
-        }
-
-        private async Task<int?> TryCreateAsync()
-        {
-            var municipality = new VotingCoreData.Models.Municipality()
-            {
-                Name = this.Name,
-                Description = this.Description,
-            };
-            return await _dbContext.CreateMunicipalityAsync(municipality);
+            _contextUtils = contextUtils;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -57,21 +42,25 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Create failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Municipality/Index", new { area = "Admin" });
             }
         }
 
-        public async Task<IActionResult> OnPostSaveAsync()
+        public async Task<IActionResult> OnPostAsync(string handler)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var itemId = await TryCreateAsync();
+                    var itemId = await _dbContext.UpdateMunicipalityAsync(null, this.Item);
                     if (itemId.HasValue)
                     {
-                        ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_CREATE);
+                        _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_CREATE);
+                        if (handler == "Sessions")
+                        {
+                            return RedirectToPage("/Session/Index", new { area = "Admin", id = itemId.Value });
+                        }
                         return RedirectToPage("Index");
                     }
                     else
@@ -84,34 +73,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Create failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Municipality/Index", new { area = "Admin" });
-            }
-        }
-
-        public async Task<IActionResult> OnPostSessionsAsync()
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var itemId = await TryCreateAsync();
-                    if (itemId.HasValue)
-                    {
-                        ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_CREATE);
-                        return RedirectToPage("/Session/Index", new { id = itemId.Value });
-                    }
-                    else
-                    {
-                        Alert = new AlertModel(AlertTypeEnum.Danger, AdminRes.ERROR_FAILED_CREATE);
-                    }
-                }
-                return Page();
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(exception, "Create failed");
-                ContextUtils.Instance.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                 return RedirectToPage("/Municipality/Index", new { area = "Admin" });
             }
         }

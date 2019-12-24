@@ -12,16 +12,16 @@
     </div>
     <h1>@MunicipalityAdminRes.PAGE_TITLE_CREATE</h1>
     <form method="post">
-        <input type="hidden" name="Id" value="@Model.Id"/>
+        <input type="hidden" name="Item.Id" value="@Model.Item.Id"/>
         <div class="form-group">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control form-control-lg" />
-            <span asp-validation-for="Name"></span>
+            <label asp-for="Item.Name"></label>
+            <input asp-for="Item.Name" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Name"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Description"></label>
-            <input asp-for="Description" class="form-control form-control-lg" />
-            <span asp-validation-for="Description"></span>
+            <label asp-for="Item.Description"></label>
+            <input asp-for="Item.Description" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Description"></span>
         </div>
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit" class="btn btn-info" name="action" asp-page-handler="Sessions">@MunicipalityAdminRes.BUTTON_SESSIONS</button>
