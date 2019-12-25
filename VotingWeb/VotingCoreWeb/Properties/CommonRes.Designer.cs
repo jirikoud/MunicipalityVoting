@@ -257,50 +257,5 @@ namespace VotingCoreWeb.Properties {
                 return ResourceManager.GetString("TABLE_VALUE_TRUE", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zdržel/a se.
-        /// </summary>
-        public static string VOTE_ABSTAIN {
-            get {
-                return ResourceManager.GetString("VOTE_ABSTAIN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nepřítomný/á.
-        /// </summary>
-        public static string VOTE_MISSING {
-            get {
-                return ResourceManager.GetString("VOTE_MISSING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Proti návrhu.
-        /// </summary>
-        public static string VOTE_NO {
-            get {
-                return ResourceManager.GetString("VOTE_NO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nevolil/a.
-        /// </summary>
-        public static string VOTE_NOT_VOTING {
-            get {
-                return ResourceManager.GetString("VOTE_NOT_VOTING", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pro návrh.
-        /// </summary>
-        public static string VOTE_YES {
-            get {
-                return ResourceManager.GetString("VOTE_YES", resourceCulture);
-            }
-        }
     }
 }

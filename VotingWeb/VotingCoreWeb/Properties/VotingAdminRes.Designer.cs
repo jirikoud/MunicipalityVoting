@@ -97,33 +97,6 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zastupitel.
-        /// </summary>
-        public static string DETAIL_DEPUTY {
-            get {
-                return ResourceManager.GetString("DETAIL_DEPUTY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zastupitelský klub.
-        /// </summary>
-        public static string DETAIL_PARTY {
-            get {
-                return ResourceManager.GetString("DETAIL_PARTY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Volba.
-        /// </summary>
-        public static string DETAIL_VOTE {
-            get {
-                return ResourceManager.GetString("DETAIL_VOTE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;Žádný&gt;.
         /// </summary>
         public static string ITEM_NO_PARTY {

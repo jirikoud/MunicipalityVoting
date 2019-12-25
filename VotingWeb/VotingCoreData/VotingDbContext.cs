@@ -324,6 +324,72 @@ namespace VotingCoreData
             }
         }
 
+        public async Task<Voting> FindVotingByIdAsync(int id)
+        {
+            try
+            {
+                var party = await this.Votings.Include(item => item.Topic.Session).Include(item => item.Deputy).FirstOrDefaultAsync(item => item.Id == id);
+                return party;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindVotingById({id})");
+                return null;
+            }
+        }
+
+        public async Task<int?> UpdateVotingAsync(int? id, Voting changes)
+        {
+            try
+            {
+                Voting model;
+                if (id.HasValue)
+                {
+                    model = await this.Votings.FirstOrDefaultAsync(item => item.Id == id);
+                    if (model == null)
+                    {
+                        return null;
+                    }
+                    model.UpdateFrom(changes);
+                }
+                else
+                {
+                    model = new Voting()
+                    {
+                        TopicId = changes.TopicId,
+                    };
+                    model.UpdateFrom(changes);
+                    this.Votings.Add(model);
+                }
+                await SaveChangesAsync();
+                return model.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"UpdateVoting({id})");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteVotingAsync(int id)
+        {
+            try
+            {
+                var deleteItem = await this.Votings.FirstOrDefaultAsync(item => item.Id == id);
+                if (deleteItem != null)
+                {
+                    this.Votings.Remove(deleteItem);
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteVoting({id})");
+                return false;
+            }
+        }
+
         #endregion
 
         #region Party

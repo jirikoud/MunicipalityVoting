@@ -63,19 +63,19 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
+                var session = await _dbContext.FindSessionByIdAsync(this.Item.Id);
+                if (session == null)
+                {
+                    _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
+                    return RedirectToPage("/Index", new { area = "" });
+                }
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(session.MunicipalityId, User, _dbContext, TempData);
+                if (!checkId.HasValue)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
                 if (ModelState.IsValid)
                 {
-                    var session = await _dbContext.FindSessionByIdAsync(this.Item.Id);
-                    if (session == null)
-                    {
-                        _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                        return RedirectToPage("/Index", new { area = "" });
-                    }
-                    var checkId = await _contextUtils.CheckMunicipalityRightsAsync(session.MunicipalityId, User, _dbContext, TempData);
-                    if (!checkId.HasValue)
-                    {
-                        return RedirectToPage("/Index", new { area = "" });
-                    }
                     var itemId = await _dbContext.UpdateSessionAsync(session.Id, this.Item);
                     if (itemId.HasValue)
                     {

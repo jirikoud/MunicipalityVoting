@@ -60,13 +60,13 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Party
         {
             try
             {
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(this.Item.MunicipalityId, User, _dbContext, TempData);
+                if (!checkId.HasValue)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
                 if (ModelState.IsValid)
                 {
-                    var checkId = await _contextUtils.CheckMunicipalityRightsAsync(this.Item.MunicipalityId, User, _dbContext, TempData);
-                    if (!checkId.HasValue)
-                    {
-                        return RedirectToPage("/Index", new { area = "" });
-                    }
                     var itemId = await _dbContext.UpdatePartyAsync(null, this.Item);
                     if (itemId.HasValue)
                     {

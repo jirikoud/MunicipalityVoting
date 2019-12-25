@@ -5,7 +5,6 @@ using System.Web;
 using VotingCommon.Enumerations;
 using VotingData;
 using VotingWeb.Infrastructure;
-using VotingWeb.Properties;
 
 namespace VotingWeb.Models.Votings
 {

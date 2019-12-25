@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using VotingCommon.Enumerations;
-using VotingCoreWeb.Properties;
+using VotingCommon.Properties;
 
-namespace VotingCoreWeb.Infrastructure
+namespace VotingCommon.Converts
 {
     public class VoteConvert
     {
         private static readonly List<Tuple<int, string>> voteList = new List<Tuple<int, string>>() {
-            new Tuple<int, string>((int)VoteEnum.Yes, CommonRes.VOTE_YES),
-            new Tuple<int, string>((int)VoteEnum.No, CommonRes.VOTE_NO),
-            new Tuple<int, string>((int)VoteEnum.Abstain, CommonRes.VOTE_ABSTAIN),
-            new Tuple<int, string>((int)VoteEnum.Missing, CommonRes.VOTE_MISSING),
-            new Tuple<int, string>((int)VoteEnum.NotVoting, CommonRes.VOTE_NOT_VOTING),
+            new Tuple<int, string>((int)VoteEnum.Yes, Resources.VOTE_YES),
+            new Tuple<int, string>((int)VoteEnum.No, Resources.VOTE_NO),
+            new Tuple<int, string>((int)VoteEnum.Abstain, Resources.VOTE_ABSTAIN),
+            new Tuple<int, string>((int)VoteEnum.Missing, Resources.VOTE_MISSING),
+            new Tuple<int, string>((int)VoteEnum.NotVoting, Resources.VOTE_NOT_VOTING),
         };
 
         public static List<Tuple<int, string>> GetVoteList()
@@ -27,15 +28,15 @@ namespace VotingCoreWeb.Infrastructure
             switch (vote)
             {
                 case VoteEnum.Yes:
-                    return CommonRes.VOTE_YES;
+                    return Resources.VOTE_YES;
                 case VoteEnum.No:
-                    return CommonRes.VOTE_NO;
+                    return Resources.VOTE_NO;
                 case VoteEnum.Abstain:
-                    return CommonRes.VOTE_ABSTAIN;
+                    return Resources.VOTE_ABSTAIN;
                 case VoteEnum.Missing:
-                    return CommonRes.VOTE_MISSING;
+                    return Resources.VOTE_MISSING;
                 case VoteEnum.NotVoting:
-                    return CommonRes.VOTE_NOT_VOTING;
+                    return Resources.VOTE_NOT_VOTING;
             }
             return null;
         }

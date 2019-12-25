@@ -117,70 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ALERT_DANGER" xml:space="preserve">
-    <value>Chyba</value>
+  <data name="VOTE_ABSTAIN" xml:space="preserve">
+    <value>Zdržel/a se</value>
   </data>
-  <data name="ALERT_INFO" xml:space="preserve">
-    <value>Upozornění</value>
+  <data name="VOTE_MISSING" xml:space="preserve">
+    <value>Nepřítomný/á</value>
   </data>
-  <data name="ALERT_SUCCESS" xml:space="preserve">
-    <value>Úspěch</value>
+  <data name="VOTE_NO" xml:space="preserve">
+    <value>Proti návrhu</value>
   </data>
-  <data name="ALERT_WARNING" xml:space="preserve">
-    <value>Varování</value>
+  <data name="VOTE_NOT_VOTING" xml:space="preserve">
+    <value>Nevolil/a</value>
   </data>
-  <data name="APPLICATION_NAME" xml:space="preserve">
-    <value>Hlasování zastupitelstva</value>
-  </data>
-  <data name="COLUMN_ACTION" xml:space="preserve">
-    <value>Akce</value>
-  </data>
-  <data name="IMPORTER_BITEST" xml:space="preserve">
-    <value>BitEST</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN" xml:space="preserve">
-    <value>Administrace</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_DEPUTY" xml:space="preserve">
-    <value>Správa zastupitelů</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_IMPORT" xml:space="preserve">
-    <value>Import ze souboru</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_MUNICIPALITY" xml:space="preserve">
-    <value>Správa obcí</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_PARTY" xml:space="preserve">
-    <value>Správa klubů</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_SESSIONS" xml:space="preserve">
-    <value>Zasedání zastupitelstva</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_TOPICS" xml:space="preserve">
-    <value>Body jednání</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_USER" xml:space="preserve">
-    <value>Správa účtů</value>
-  </data>
-  <data name="MENU_ITEM_ADMIN_VOTINGS" xml:space="preserve">
-    <value>Hlasování</value>
-  </data>
-  <data name="MENU_ITEM_HOME" xml:space="preserve">
-    <value>Seznam obcí</value>
-  </data>
-  <data name="MENU_ITEM_LOGIN" xml:space="preserve">
-    <value>Přihlásit se</value>
-  </data>
-  <data name="MENU_ITEM_LOGOUT" xml:space="preserve">
-    <value>Odhlásit se</value>
-  </data>
-  <data name="MENU_ITEM_USER" xml:space="preserve">
-    <value>Správa účtu</value>
-  </data>
-  <data name="TABLE_VALUE_FALSE" xml:space="preserve">
-    <value>Ne</value>
-  </data>
-  <data name="TABLE_VALUE_TRUE" xml:space="preserve">
-    <value>Ano</value>
+  <data name="VOTE_YES" xml:space="preserve">
+    <value>Pro návrh</value>
   </data>
 </root>

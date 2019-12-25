@@ -129,15 +129,6 @@
   <data name="COLUMN_VOTE" xml:space="preserve">
     <value>Hlas</value>
   </data>
-  <data name="DETAIL_DEPUTY" xml:space="preserve">
-    <value>Zastupitel</value>
-  </data>
-  <data name="DETAIL_PARTY" xml:space="preserve">
-    <value>Zastupitelský klub</value>
-  </data>
-  <data name="DETAIL_VOTE" xml:space="preserve">
-    <value>Volba</value>
-  </data>
   <data name="ITEM_NO_PARTY" xml:space="preserve">
     <value>&lt;Žádný&gt;</value>
   </data>

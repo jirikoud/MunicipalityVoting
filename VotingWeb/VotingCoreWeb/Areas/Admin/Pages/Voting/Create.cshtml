@@ -1,0 +1,42 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.Voting.CreateModel
+@{
+    ViewData["Title"] = VotingAdminRes.PAGE_TITLE;
+}
+
+@await Component.InvokeAsync("Alert", new { alert = Model.Alert })
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/Voting/Index" asp-route-id="@Model.Item.TopicId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@VotingAdminRes.PAGE_TITLE_CREATE</h1>
+    <form method="post">
+        <input type="hidden" name="Item.TopicId" value="@Model.Item.TopicId" />
+        <div class="form-group">
+            <label asp-for="Item.DeputyId"></label>
+            <select asp-for="Item.DeputyId" asp-items="Model.DeputyList" class="form-control form-control-lg"></select>
+            <span asp-validation-for="Item.DeputyId"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.PartyId"></label>
+            <select asp-for="Item.PartyId" asp-items="Model.PartyList" class="form-control form-control-lg"></select>
+            <span asp-validation-for="Item.PartyId"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.Vote"></label>
+            <select asp-for="Item.Vote" asp-items="Model.VoteList" class="form-control form-control-lg"></select>
+            <span asp-validation-for="Item.Vote"></span>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary" name="action" asp-page-handler="Save">@AdminRes.BUTTON_SAVE</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
