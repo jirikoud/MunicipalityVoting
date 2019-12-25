@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using VotingCommon;
 using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;

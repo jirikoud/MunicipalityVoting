@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using VotingCommon;
 using VotingCoreData;
+using VotingCoreWeb.Data;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
-namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
+namespace VotingCoreWeb.Areas.Admin.Pages.User
 {
     [Authorize(Roles = Constants.ROLE_ADMIN)]
     public class IndexModel : PageModel
@@ -19,13 +20,17 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
         private readonly ILogger<IndexModel> _logger;
         private readonly VotingDbContext _dbContext;
         private readonly ContextUtils _contextUtils;
+        private readonly ApplicationDbContext _appDbContext;
 
-        public List<VotingCoreData.Models.Municipality> ItemList { get; set; }
+        public List<VotingCoreData.Models.User> ItemList { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
+        public List<VotingCoreData.Models.Municipality> Municipalities { get; set; }
+
+        public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ApplicationDbContext appDbContext, ContextUtils contextUtils)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _appDbContext = appDbContext;
             _contextUtils = contextUtils;
         }
 
@@ -33,7 +38,9 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
         {
             try
             {
-                this.ItemList = await _dbContext.LoadMunicipalitiesAsync();
+                this.Municipalities = await _dbContext.LoadMunicipalitiesAsync();
+                var users = await _dbContext.LoadUsersAsync();
+                this.ItemList = users;
                 return Page();
             }
             catch (Exception exception)

@@ -1,0 +1,23 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.User.DeleteModel
+@{
+    ViewData["Title"] = UserAdminRes.PAGE_TITLE;
+}
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/User/Index" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@UserAdminRes.PAGE_TITLE_DELETE</h1>
+    <form method="post">
+        <input type="hidden" name="Item.Id" value="@Model.Item.Id" />
+        <input type="hidden" name="Item.UserName" value="@Model.Item.UserName" />
+        <div class="form-group">
+            <label asp-for="Item.UserName"></label>
+            <div class="form-control">@Model.Item.UserName</div>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-warning">@AdminRes.BUTTON_DELETE</button>
+        </div>
+    </form>
+</div>

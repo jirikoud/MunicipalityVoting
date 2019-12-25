@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Converts\RoleConvert.cs" />
     <Compile Include="Converts\VoteConvert.cs" />
     <Compile Include="Enumerations\VoteEnum.cs" />
     <Compile Include="Models\DeputyModel.cs" />

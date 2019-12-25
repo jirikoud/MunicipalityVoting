@@ -1,0 +1,45 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.User.CreateModel
+@{
+    ViewData["Title"] = UserAdminRes.PAGE_TITLE;
+}
+
+@await Component.InvokeAsync("Alert", new { alert = Model.Alert })
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/User/Index" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@UserAdminRes.PAGE_TITLE_CREATE</h1>
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Item.UserName"></label>
+            <input asp-for="Item.UserName" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.UserName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.Role"></label>
+            <select asp-for="Item.Role" asp-items="Model.RoleList" class="form-control form-control-lg"></select>
+            <span asp-validation-for="Item.Role"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.MunicipalityId"></label>
+            <select asp-for="Item.MunicipalityId" asp-items="Model.MunicipalityList" class="form-control form-control-lg"></select>
+            <span asp-validation-for="Item.MunicipalityId"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.Password"></label>
+            <input asp-for="Item.Password" type="password" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Password"></span>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary" name="action" asp-page-handler="Save">@AdminRes.BUTTON_SAVE</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

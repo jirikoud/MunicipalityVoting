@@ -196,24 +196,6 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Administrátor.
-        /// </summary>
-        public static string ROLE_ADMIN {
-            get {
-                return ResourceManager.GetString("ROLE_ADMIN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Editor.
-        /// </summary>
-        public static string ROLE_EDITOR {
-            get {
-                return ResourceManager.GetString("ROLE_EDITOR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Záznam byl úspěšně uložen.
         /// </summary>
         public static string SUCCESS_CREATE {

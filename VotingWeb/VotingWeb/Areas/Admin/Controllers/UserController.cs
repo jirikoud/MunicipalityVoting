@@ -126,10 +126,12 @@ namespace VotingWeb.Areas.Admin.Controllers
                     if (ModelState.IsValid)
                     {
                         var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                        var user = new ApplicationUser();
-                        user.UserName = model.UserName;
-                        user.Email = model.UserName;
-                        user.EmailConfirmed = true;
+                        var user = new ApplicationUser
+                        {
+                            UserName = model.UserName,
+                            Email = model.UserName,
+                            EmailConfirmed = true
+                        };
                         var result = await userManager.CreateAsync(user);
                         if (result.Succeeded)
                         {

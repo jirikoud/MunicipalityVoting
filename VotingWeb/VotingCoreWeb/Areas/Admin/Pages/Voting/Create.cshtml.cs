@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using VotingCommon;
 using VotingCommon.Converts;
 using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
@@ -15,7 +16,7 @@ using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Admin.Pages.Voting
 {
-    [Authorize]
+    [Authorize(Roles = Constants.ROLE_ADMIN)]
     public class CreateModel : PageModel
     {
         private readonly ILogger<CreateModel> _logger;

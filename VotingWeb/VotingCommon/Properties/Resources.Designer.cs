@@ -61,6 +61,24 @@ namespace VotingCommon.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrátor.
+        /// </summary>
+        internal static string ROLE_ADMIN {
+            get {
+                return ResourceManager.GetString("ROLE_ADMIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editor.
+        /// </summary>
+        internal static string ROLE_EDITOR {
+            get {
+                return ResourceManager.GetString("ROLE_EDITOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zdržel/a se.
         /// </summary>
         internal static string VOTE_ABSTAIN {

@@ -26,6 +26,15 @@ namespace VotingCoreData
         public DbSet<Shortcut> Shortcuts { get; set; }
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Voting> Votings { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserRole>()
+                .HasKey(user => new { user.RoleId, user.UserId});
+        }
 
         #region Shortcut
 
@@ -558,6 +567,28 @@ namespace VotingCoreData
             {
                 _logger.LogError(exception, $"DeleteDeputy({id})");
                 return false;
+            }
+        }
+
+        #endregion
+
+        #region User
+
+        public async Task<List<User>> LoadUsersAsync()
+        {
+            try
+            {
+                var list = await this.Users
+                    .Include(item => item.UserRoles).ThenInclude(item => item.Role)
+                    .Include(item => item.Claims)
+                    .OrderBy(item => item.UserName)
+                    .ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadUsers()");
+                return null;
             }
         }
 

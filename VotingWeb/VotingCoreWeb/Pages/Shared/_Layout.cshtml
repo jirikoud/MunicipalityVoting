@@ -32,14 +32,14 @@
                                     @CommonRes.MENU_ITEM_ADMIN
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    @if (User.IsInRole(Constants.ROLE_ADMIN))
+                                    @if (User.IsInRole(VotingCommon.Constants.ROLE_ADMIN))
                                     {
                                         <a asp-area="Admin" asp-page="/Municipality/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_MUNICIPALITY</a>
                                         <a asp-area="Admin" asp-page="/User/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_USER ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_USER</a>
                                     }
-                                    @if (((System.Security.Claims.ClaimsPrincipal)User).Claims.FirstOrDefault(item => item.Type == Constants.CLAIM_MUNICIPALITY) != null)
+                                    @if (((System.Security.Claims.ClaimsPrincipal)User).Claims.FirstOrDefault(item => item.Type == VotingCommon.Constants.CLAIM_MUNICIPALITY) != null)
                                     {
-                                        if (User.IsInRole(Constants.ROLE_ADMIN))
+                                        if (User.IsInRole(VotingCommon.Constants.ROLE_ADMIN))
                                         {
                                             <div class="dropdown-divider"></div>
                                         }

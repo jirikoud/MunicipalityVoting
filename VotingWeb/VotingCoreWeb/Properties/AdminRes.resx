@@ -162,12 +162,6 @@
   <data name="PAGE_PREV" xml:space="preserve">
     <value>&lt;</value>
   </data>
-  <data name="ROLE_ADMIN" xml:space="preserve">
-    <value>Administrátor</value>
-  </data>
-  <data name="ROLE_EDITOR" xml:space="preserve">
-    <value>Editor</value>
-  </data>
   <data name="SUCCESS_CREATE" xml:space="preserve">
     <value>Záznam byl úspěšně uložen</value>
   </data>

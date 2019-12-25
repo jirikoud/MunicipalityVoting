@@ -1,0 +1,39 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.User.IndexModel
+@{
+    ViewData["Title"] = UserAdminRes.PAGE_TITLE;
+    ViewData["MenuItem"] = CommonRes.MENU_ITEM_ADMIN_USER;
+}
+
+<div id="content">
+    <div class="float-right">
+        <a asp-area="Admin" asp-page="/User/Create" class="btn btn-success">@UserAdminRes.BUTTON_CREATE</a>
+    </div>
+    <h1>@UserAdminRes.TABLE_TITLE</h1>
+    <div class="grid-view">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">@UserAdminRes.COLUMN_USER_NAME</th>
+                    <th scope="col">@UserAdminRes.COLUMN_ROLES</th>
+                    <th scope="col">@UserAdminRes.COLUMN_MUNICIPALITIES</th>
+                    <th scope="col">@CommonRes.COLUMN_ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ItemList)
+                {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.GetRoleFormat()</td>
+                    <td>@item.GetMunicipalityFormat(Model.Municipalities)</td>
+                    <td>
+                        <a asp-page="/User/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>
+                        <a asp-page="/User/Delete" asp-route-id="@item.Id" class="btn btn-danger">@AdminRes.BUTTON_DELETE</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
