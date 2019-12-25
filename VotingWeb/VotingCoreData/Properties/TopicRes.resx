@@ -117,37 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_CREATE" xml:space="preserve">
-    <value>Nový bod</value>
+  <data name="DETAIL_COMMENT" xml:space="preserve">
+    <value>Komentář</value>
   </data>
-  <data name="BUTTON_VOTING" xml:space="preserve">
-    <value>Hlasování</value>
-  </data>
-  <data name="COLUMN_IS_PROCEDURAL" xml:space="preserve">
+  <data name="DETAIL_IS_PROCEDURAL" xml:space="preserve">
     <value>Procedurální</value>
   </data>
-  <data name="COLUMN_IS_SECRET" xml:space="preserve">
+  <data name="DETAIL_IS_SECRET" xml:space="preserve">
     <value>Tajné</value>
   </data>
-  <data name="COLUMN_NAME" xml:space="preserve">
+  <data name="DETAIL_NAME" xml:space="preserve">
     <value>Název</value>
   </data>
-  <data name="COLUMN_ORDER" xml:space="preserve">
-    <value>#</value>
-  </data>
-  <data name="PAGE_TITLE" xml:space="preserve">
-    <value>Seznam bodů</value>
-  </data>
-  <data name="PAGE_TITLE_CREATE" xml:space="preserve">
-    <value>Nový bod jednání</value>
-  </data>
-  <data name="PAGE_TITLE_DELETE" xml:space="preserve">
-    <value>Odstranit bod jednání</value>
-  </data>
-  <data name="PAGE_TITLE_UPDATE" xml:space="preserve">
-    <value>Upravit bod jednání</value>
-  </data>
-  <data name="TABLE_TITLE" xml:space="preserve">
-    <value>Body jednání</value>
+  <data name="DETAIL_ORDER" xml:space="preserve">
+    <value>Pořadí bodu</value>
   </data>
 </root>

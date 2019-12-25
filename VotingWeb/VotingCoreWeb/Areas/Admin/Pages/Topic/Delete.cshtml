@@ -1,0 +1,23 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.Topic.DeleteModel
+@{
+    ViewData["Title"] = TopicAdminRes.PAGE_TITLE;
+}
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/Topic/Index" asp-route-id="@Model.Item.SessionId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@TopicAdminRes.PAGE_TITLE_DELETE</h1>
+    <form method="post">
+        <input type="hidden" name="Id" value="@Model.Item.Id" />
+        <input type="hidden" name="Name" value="@Model.Item.Name" />
+        <div class="form-group">
+            <label asp-for="Item.Name"></label>
+            <div class="form-control">@Model.Item.Name</div>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-warning">@AdminRes.BUTTON_DELETE</button>
+        </div>
+    </form>
+</div>

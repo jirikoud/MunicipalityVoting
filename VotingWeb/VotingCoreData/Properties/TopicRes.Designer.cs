@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VotingCoreWeb.Properties {
+namespace VotingCoreData.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace VotingCoreWeb.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class TopicAdminRes {
+    public class TopicRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TopicAdminRes() {
+        internal TopicRes() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace VotingCoreWeb.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VotingCoreWeb.Properties.TopicAdminRes", typeof(TopicAdminRes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VotingCoreData.Properties.TopicRes", typeof(TopicRes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,101 +61,47 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nový bod.
+        ///   Looks up a localized string similar to Komentář.
         /// </summary>
-        public static string BUTTON_CREATE {
+        public static string DETAIL_COMMENT {
             get {
-                return ResourceManager.GetString("BUTTON_CREATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hlasování.
-        /// </summary>
-        public static string BUTTON_VOTING {
-            get {
-                return ResourceManager.GetString("BUTTON_VOTING", resourceCulture);
+                return ResourceManager.GetString("DETAIL_COMMENT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Procedurální.
         /// </summary>
-        public static string COLUMN_IS_PROCEDURAL {
+        public static string DETAIL_IS_PROCEDURAL {
             get {
-                return ResourceManager.GetString("COLUMN_IS_PROCEDURAL", resourceCulture);
+                return ResourceManager.GetString("DETAIL_IS_PROCEDURAL", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tajné.
         /// </summary>
-        public static string COLUMN_IS_SECRET {
+        public static string DETAIL_IS_SECRET {
             get {
-                return ResourceManager.GetString("COLUMN_IS_SECRET", resourceCulture);
+                return ResourceManager.GetString("DETAIL_IS_SECRET", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Název.
         /// </summary>
-        public static string COLUMN_NAME {
+        public static string DETAIL_NAME {
             get {
-                return ResourceManager.GetString("COLUMN_NAME", resourceCulture);
+                return ResourceManager.GetString("DETAIL_NAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #.
+        ///   Looks up a localized string similar to Pořadí bodu.
         /// </summary>
-        public static string COLUMN_ORDER {
+        public static string DETAIL_ORDER {
             get {
-                return ResourceManager.GetString("COLUMN_ORDER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Seznam bodů.
-        /// </summary>
-        public static string PAGE_TITLE {
-            get {
-                return ResourceManager.GetString("PAGE_TITLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nový bod jednání.
-        /// </summary>
-        public static string PAGE_TITLE_CREATE {
-            get {
-                return ResourceManager.GetString("PAGE_TITLE_CREATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Odstranit bod jednání.
-        /// </summary>
-        public static string PAGE_TITLE_DELETE {
-            get {
-                return ResourceManager.GetString("PAGE_TITLE_DELETE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upravit bod jednání.
-        /// </summary>
-        public static string PAGE_TITLE_UPDATE {
-            get {
-                return ResourceManager.GetString("PAGE_TITLE_UPDATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Body jednání.
-        /// </summary>
-        public static string TABLE_TITLE {
-            get {
-                return ResourceManager.GetString("TABLE_TITLE", resourceCulture);
+                return ResourceManager.GetString("DETAIL_ORDER", resourceCulture);
             }
         }
     }

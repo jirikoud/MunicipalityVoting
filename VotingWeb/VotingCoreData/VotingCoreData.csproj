@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -29,6 +29,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SessionRes.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\TopicRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TopicRes.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\ValidationRes.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -52,6 +57,10 @@
     <EmbeddedResource Update="Properties\SessionRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SessionRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\TopicRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TopicRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\ValidationRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

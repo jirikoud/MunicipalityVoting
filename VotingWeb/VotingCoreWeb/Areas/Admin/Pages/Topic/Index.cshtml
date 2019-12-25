@@ -1,0 +1,46 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.Topic.IndexModel
+@{
+    ViewData["Title"] = TopicAdminRes.PAGE_TITLE;
+    ViewData["MenuItem"] = CommonRes.MENU_ITEM_ADMIN_TOPICS;
+}
+
+<div id="content">
+    <div class="float-right">
+        <a asp-area="Admin" asp-page="/Session/Index" asp-route-id="@Model.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_BACK</a>
+        <a asp-area="Admin" asp-page="/Topic/Create" asp-route-sessionId="@Model.SessionId" class="btn btn-success">@TopicAdminRes.BUTTON_CREATE</a>
+    </div>
+    <h1>@TopicAdminRes.TABLE_TITLE</h1>
+    <div class="grid-view">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">@TopicAdminRes.COLUMN_ORDER</th>
+                    <th scope="col">@TopicAdminRes.COLUMN_NAME</th>
+                    <th scope="col">@TopicAdminRes.COLUMN_IS_PROCEDURAL</th>
+                    <th scope="col">@TopicAdminRes.COLUMN_IS_SECRET</th>
+                    <th scope="col"></th>
+                    <th scope="col">@CommonRes.COLUMN_ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ItemList)
+                {
+                <tr>
+                    <td>@item.Order</td>
+                    <td>@item.Name</td>
+                    <td>@(item.IsProcedural ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
+                    <td>@(item.IsSecret ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
+                    <td>
+                        <a asp-page="/Voting/Index" asp-route-id="@item.Id" class="btn btn-info">@TopicAdminRes.BUTTON_VOTING</a>
+                    </td>
+                    <td>
+                        <a asp-page="/Topic/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>
+                        <a asp-page="/Topic/Delete" asp-route-id="@item.Id" class="btn btn-danger">@AdminRes.BUTTON_DELETE</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

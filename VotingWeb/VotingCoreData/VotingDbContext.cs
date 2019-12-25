@@ -208,6 +208,20 @@ namespace VotingCoreData
             }
         }
 
+        public async Task<int?> GetSessionTopicCountAsync(int id)
+        {
+            try
+            {
+                var count = await this.Topics.Where(item => !item.IsDeleted && item.SessionId == id).CountAsync();
+                return count;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"GetSessionTopicCount({id})");
+                return null;
+            }
+        }
+
         #endregion
 
         #region Topic
@@ -237,6 +251,58 @@ namespace VotingCoreData
             {
                 _logger.LogError(exception, $"FindTopicById({id})");
                 return null;
+            }
+        }
+
+        public async Task<int?> UpdateTopicAsync(int? id, Topic changes)
+        {
+            try
+            {
+                Topic model;
+                if (id.HasValue)
+                {
+                    model = await this.Topics.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                    if (model == null)
+                    {
+                        return null;
+                    }
+                    model.UpdateFrom(changes);
+                }
+                else
+                {
+                    model = new Topic()
+                    {
+                        SessionId = changes.SessionId,
+                    };
+                    model.UpdateFrom(changes);
+                    this.Topics.Add(model);
+                }
+                await SaveChangesAsync();
+                return model.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"UpdateTopic({id})");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteTopicAsync(int id)
+        {
+            try
+            {
+                var deleteItem = await this.Topics.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (deleteItem != null)
+                {
+                    deleteItem.IsDeleted = true;
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteTopic({id})");
+                return false;
             }
         }
 
@@ -430,5 +496,6 @@ namespace VotingCoreData
         }
 
         #endregion
+
     }
 }
