@@ -16,20 +16,24 @@
                 <tr>
                     <th scope="col">@MunicipalityAdminRes.COLUMN_NAME</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                     <th scope="col">@CommonRes.COLUMN_ACTION</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.ItemList)
                 {
-                    <tr>
-                        <td>@item.Name</td>
-                        <td><a asp-page="/Session/Index" asp-route-id="@item.Id" class="btn btn-info">@MunicipalityAdminRes.BUTTON_SESSIONS</a></td>
-                        <td>
-                            <a asp-page="/Municipality/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>
-                            <a asp-page="/Municipality/Delete" asp-route-id="@item.Id" class="btn btn-danger">@AdminRes.BUTTON_DELETE</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>@item.Name</td>
+                    <td><a asp-page="/Session/Index" asp-route-id="@item.Id" class="btn btn-info">@MunicipalityAdminRes.BUTTON_SESSIONS</a></td>
+                    <td><a asp-page="/Party/Index" asp-route-id="@item.Id" class="btn btn-info">@MunicipalityAdminRes.BUTTON_PARTIES</a></td>
+                    <td><a asp-page="/Deputy/Index" asp-route-id="@item.Id" class="btn btn-info">@MunicipalityAdminRes.BUTTON_DEPUTIES</a></td>
+                    <td>
+                        <a asp-page="/Municipality/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>
+                        <a asp-page="/Municipality/Delete" asp-route-id="@item.Id" class="btn btn-danger">@AdminRes.BUTTON_DELETE</a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

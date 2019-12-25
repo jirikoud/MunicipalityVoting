@@ -1,0 +1,47 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.Deputy.CreateModel
+@{
+    ViewData["Title"] = DeputyAdminRes.PAGE_TITLE;
+}
+
+@await Component.InvokeAsync("Alert", new { alert = Model.Alert })
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/Deputy/Index" asp-route-id="@Model.Item.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@DeputyAdminRes.PAGE_TITLE_CREATE</h1>
+    <form method="post">
+        <input type="hidden" name="Item.MunicipalityId" value="@Model.Item.MunicipalityId" />
+        <div class="form-group">
+            <label asp-for="Item.Firstname"></label>
+            <input asp-for="Item.Firstname" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Firstname"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.Lastname"></label>
+            <input asp-for="Item.Lastname" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Lastname"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.TitlePre"></label>
+            <input asp-for="Item.TitlePre" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.TitlePre"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Item.TitlePost"></label>
+            <input asp-for="Item.TitlePost" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.TitlePost"></span>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary" name="action" asp-page-handler="Save">@AdminRes.BUTTON_SAVE</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

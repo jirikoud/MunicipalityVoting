@@ -97,42 +97,6 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Předsedající.
-        /// </summary>
-        public static string DETAIL_CHAIRMAN {
-            get {
-                return ResourceManager.GetString("DETAIL_CHAIRMAN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Datum konce.
-        /// </summary>
-        public static string DETAIL_DATE_END {
-            get {
-                return ResourceManager.GetString("DETAIL_DATE_END", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Datum začátku.
-        /// </summary>
-        public static string DETAIL_DATE_START {
-            get {
-                return ResourceManager.GetString("DETAIL_DATE_START", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Název.
-        /// </summary>
-        public static string DETAIL_NAME {
-            get {
-                return ResourceManager.GetString("DETAIL_NAME", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Zasedání.
         /// </summary>
         public static string PAGE_TITLE {

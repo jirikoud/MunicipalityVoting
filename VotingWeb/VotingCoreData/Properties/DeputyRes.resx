@@ -117,25 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BUTTON_CREATE" xml:space="preserve">
-    <value>Nový klub</value>
+  <data name="DETAIL_FIRSTNAME" xml:space="preserve">
+    <value>Jméno</value>
   </data>
-  <data name="COLUMN_NAME" xml:space="preserve">
-    <value>Název</value>
+  <data name="DETAIL_LASTNAME" xml:space="preserve">
+    <value>Příjmení</value>
   </data>
-  <data name="PAGE_TITLE" xml:space="preserve">
-    <value>Zastupitelské kluby</value>
+  <data name="DETAIL_TITLE_POST" xml:space="preserve">
+    <value>Tituly za jménem</value>
   </data>
-  <data name="PAGE_TITLE_CREATE" xml:space="preserve">
-    <value>Vytvořit nový záznam klubu</value>
-  </data>
-  <data name="PAGE_TITLE_DELETE" xml:space="preserve">
-    <value>Odstanit záznam klubu</value>
-  </data>
-  <data name="PAGE_TITLE_UPDATE" xml:space="preserve">
-    <value>Upravit záznam klubu</value>
-  </data>
-  <data name="TABLE_TITLE" xml:space="preserve">
-    <value>Zastupitelské kluby</value>
+  <data name="DETAIL_TITLE_PRE" xml:space="preserve">
+    <value>Tituly před jménem</value>
   </data>
 </root>

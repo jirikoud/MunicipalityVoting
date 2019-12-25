@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -9,10 +9,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\DeputyRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeputyRes.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\MunicipalityRes.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MunicipalityRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\PartyRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PartyRes.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\SessionRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SessionRes.resx</DependentUpon>
     </Compile>
     <Compile Update="Properties\ValidationRes.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -22,9 +37,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\DeputyRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeputyRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\MunicipalityRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MunicipalityRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\PartyRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PartyRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\SessionRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SessionRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\ValidationRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

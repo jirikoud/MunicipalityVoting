@@ -11,7 +11,7 @@ using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
-namespace VotingCoreWeb.Areas.Admin.Pages.Session
+namespace VotingCoreWeb.Areas.Admin.Pages.Party
 {
     [Authorize]
     public class IndexModel : PageModel
@@ -21,7 +21,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         private readonly ContextUtils _contextUtils;
 
         public int MunicipalityId { get; set; }
-        public List<VotingCoreData.Models.Session> ItemList { get; set; }
+        public List<VotingCoreData.Models.Party> ItemList { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
@@ -40,7 +40,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.MunicipalityId = municipalityId.Value;
-                this.ItemList = await _dbContext.LoadSessionsAsync(municipalityId.Value);
+                this.ItemList = await _dbContext.LoadPartiesAsync(municipalityId.Value);
                 return Page();
             }
             catch (Exception exception)

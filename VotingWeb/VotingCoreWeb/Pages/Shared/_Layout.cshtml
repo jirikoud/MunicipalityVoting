@@ -44,10 +44,9 @@
                                             <div class="dropdown-divider"></div>
                                         }
                                         <a asp-area="Admin" asp-page="/Session/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_SESSIONS ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_SESSIONS</a>
-                                        @*@Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_SESSIONS, "Index", "Session", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_SESSIONS ? " active" : "") })*@
-                                        @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_PARTY, "Index", "Party", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_PARTY ? " active" : "") })
-                                        @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_DEPUTY, "Index", "Deputy", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_DEPUTY ? " active" : "") })
-                                        @Html.ActionLink(CommonRes.MENU_ITEM_ADMIN_IMPORT, "Index", "Import", new { area = "Admin" }, new { @class = "dropdown-item" + (ViewBag.MenuItem == CommonRes.MENU_ITEM_ADMIN_IMPORT ? " active" : "") })
+                                        <a asp-area="Admin" asp-page="/Party/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_PARTY ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_PARTY</a>
+                                        <a asp-area="Admin" asp-page="/Deputy/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_DEPUTY ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_DEPUTY</a>
+                                        <a asp-area="Admin" asp-page="/Import/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_IMPORT ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_IMPORT</a>
                                     }
                                 </div>
                             </li>

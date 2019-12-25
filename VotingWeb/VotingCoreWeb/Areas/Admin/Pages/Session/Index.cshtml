@@ -7,7 +7,7 @@
 
 <div id="content">
     <div class="float-right">
-        <a asp-area="Admin" asp-page="/Session/Create" asp-route-municipality-id="@Model.MunicipalityId" class="btn btn-success">@SessionAdminRes.BUTTON_CREATE</a>
+        <a asp-area="Admin" asp-page="/Session/Create" asp-route-municipalityId="@Model.MunicipalityId" class="btn btn-success">@SessionAdminRes.BUTTON_CREATE</a>
     </div>
     <h1>@SessionAdminRes.TABLE_TITLE</h1>
     <div class="grid-view">
@@ -25,7 +25,7 @@
                 {
                     <tr>
                         <td>@item.Name</td>
-                        <td>@item.Name</td>
+                        <td>@item.StartDateFormat()</td>
                         <td><a asp-page="/Topic/Index" asp-route-id="@item.Id" class="btn btn-info">@SessionAdminRes.BUTTON_TOPICS</a></td>
                         <td>
                             <a asp-page="/Session/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>

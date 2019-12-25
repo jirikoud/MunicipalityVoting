@@ -109,10 +109,10 @@ namespace VotingCoreData
         {
             try
             {
-                var municipality = await this.Municipalities.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
-                if (municipality != null)
+                var deleteItem = await this.Municipalities.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (deleteItem != null)
                 {
-                    municipality.IsDeleted = true;
+                    deleteItem.IsDeleted = true;
                 }
                 await SaveChangesAsync();
                 return true;
@@ -146,13 +146,65 @@ namespace VotingCoreData
         {
             try
             {
-                var municipality = await this.Sessions.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
-                return municipality;
+                var session = await this.Sessions.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return session;
             }
             catch (Exception exception)
             {
                 _logger.LogError(exception, $"FindSessionById({id})");
                 return null;
+            }
+        }
+
+        public async Task<int?> UpdateSessionAsync(int? id, Session changes)
+        {
+            try
+            {
+                Session model;
+                if (id.HasValue)
+                {
+                    model = await this.Sessions.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                    if (model == null)
+                    {
+                        return null;
+                    }
+                    model.UpdateFrom(changes);
+                }
+                else
+                {
+                    model = new Session()
+                    {
+                        MunicipalityId = changes.MunicipalityId,
+                    };
+                    model.UpdateFrom(changes);
+                    this.Sessions.Add(model);
+                }
+                await SaveChangesAsync();
+                return model.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"UpdateSession({id})");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteSessionAsync(int id)
+        {
+            try
+            {
+                var deleteItem = await this.Sessions.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (deleteItem != null)
+                {
+                    deleteItem.IsDeleted = true;
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteSession({id})");
+                return false;
             }
         }
 
@@ -208,5 +260,175 @@ namespace VotingCoreData
 
         #endregion
 
+        #region Party
+
+        public async Task<List<Party>> LoadPartiesAsync(int municipalityId)
+        {
+            try
+            {
+                var list = await this.Parties.Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId).OrderBy(item => item.Name).ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadParties({municipalityId})");
+                return null;
+            }
+        }
+
+        public async Task<Party> FindPartyByIdAsync(int id)
+        {
+            try
+            {
+                var party = await this.Parties.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return party;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindPartyById({id})");
+                return null;
+            }
+        }
+
+        public async Task<int?> UpdatePartyAsync(int? id, Party changes)
+        {
+            try
+            {
+                Party model;
+                if (id.HasValue)
+                {
+                    model = await this.Parties.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                    if (model == null)
+                    {
+                        return null;
+                    }
+                    model.UpdateFrom(changes);
+                }
+                else
+                {
+                    model = new Party()
+                    {
+                        MunicipalityId = changes.MunicipalityId,
+                    };
+                    model.UpdateFrom(changes);
+                    this.Parties.Add(model);
+                }
+                await SaveChangesAsync();
+                return model.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"UpdateParty({id})");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeletePartyAsync(int id)
+        {
+            try
+            {
+                var deleteItem = await this.Parties.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (deleteItem != null)
+                {
+                    deleteItem.IsDeleted = true;
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteParty({id})");
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Deputy
+
+        public async Task<List<Deputy>> LoadDeputiesAsync(int municipalityId)
+        {
+            try
+            {
+                var list = await this.Deputies.Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId)
+                    .OrderBy(item => item.Lastname)
+                    .ThenBy(item => item.Firstname)
+                    .ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadDeputies({municipalityId})");
+                return null;
+            }
+        }
+
+        public async Task<Deputy> FindDeputyByIdAsync(int id)
+        {
+            try
+            {
+                var party = await this.Deputies.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return party;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindDeputyById({id})");
+                return null;
+            }
+        }
+
+        public async Task<int?> UpdateDeputyAsync(int? id, Deputy changes)
+        {
+            try
+            {
+                Deputy model;
+                if (id.HasValue)
+                {
+                    model = await this.Deputies.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                    if (model == null)
+                    {
+                        return null;
+                    }
+                    model.UpdateFrom(changes);
+                }
+                else
+                {
+                    model = new Deputy()
+                    {
+                        MunicipalityId = changes.MunicipalityId,
+                    };
+                    model.UpdateFrom(changes);
+                    this.Deputies.Add(model);
+                }
+                await SaveChangesAsync();
+                return model.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"UpdateDeputy({id})");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteDeputyAsync(int id)
+        {
+            try
+            {
+                var deleteItem = await this.Deputies.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (deleteItem != null)
+                {
+                    deleteItem.IsDeleted = true;
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteDeputy({id})");
+                return false;
+            }
+        }
+
+        #endregion
     }
 }

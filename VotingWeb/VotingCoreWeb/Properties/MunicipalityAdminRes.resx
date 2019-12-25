@@ -120,16 +120,16 @@
   <data name="BUTTON_CREATE" xml:space="preserve">
     <value>Vytvořit nový záznam</value>
   </data>
+  <data name="BUTTON_DEPUTIES" xml:space="preserve">
+    <value>Zastupitelé</value>
+  </data>
+  <data name="BUTTON_PARTIES" xml:space="preserve">
+    <value>Kluby</value>
+  </data>
   <data name="BUTTON_SESSIONS" xml:space="preserve">
     <value>Zasedání</value>
   </data>
   <data name="COLUMN_NAME" xml:space="preserve">
-    <value>Jméno obce</value>
-  </data>
-  <data name="DETAIL_DESCRIPTION" xml:space="preserve">
-    <value>Popis</value>
-  </data>
-  <data name="DETAIL_NAME" xml:space="preserve">
     <value>Jméno obce</value>
   </data>
   <data name="PAGE_TITLE" xml:space="preserve">

@@ -126,21 +126,6 @@
   <data name="COLUMN_LASTNAME" xml:space="preserve">
     <value>Přijmení</value>
   </data>
-  <data name="DETAIL_FIRSTNAME" xml:space="preserve">
-    <value>Jméno</value>
-  </data>
-  <data name="DETAIL_FULLNAME" xml:space="preserve">
-    <value>Celé jméno</value>
-  </data>
-  <data name="DETAIL_LASTNAME" xml:space="preserve">
-    <value>Jméno</value>
-  </data>
-  <data name="DETAIL_TITLE_POST" xml:space="preserve">
-    <value>Tituly za jménem</value>
-  </data>
-  <data name="DETAIL_TITLE_PRE" xml:space="preserve">
-    <value>Tituly před jménem</value>
-  </data>
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>Zastupitelé</value>
   </data>

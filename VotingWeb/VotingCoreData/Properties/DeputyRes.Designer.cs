@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VotingCoreWeb.Properties {
+namespace VotingCoreData.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace VotingCoreWeb.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class PartyAdminRes {
+    public class DeputyRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal PartyAdminRes() {
+        internal DeputyRes() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace VotingCoreWeb.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VotingCoreWeb.Properties.PartyAdminRes", typeof(PartyAdminRes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VotingCoreData.Properties.DeputyRes", typeof(DeputyRes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,38 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nový klub.
+        ///   Looks up a localized string similar to Jméno.
         /// </summary>
-        public static string BUTTON_CREATE {
+        public static string DETAIL_FIRSTNAME {
             get {
-                return ResourceManager.GetString("BUTTON_CREATE", resourceCulture);
+                return ResourceManager.GetString("DETAIL_FIRSTNAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Název.
+        ///   Looks up a localized string similar to Příjmení.
         /// </summary>
-        public static string COLUMN_NAME {
+        public static string DETAIL_LASTNAME {
             get {
-                return ResourceManager.GetString("COLUMN_NAME", resourceCulture);
+                return ResourceManager.GetString("DETAIL_LASTNAME", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zastupitelské kluby.
+        ///   Looks up a localized string similar to Tituly za jménem.
         /// </summary>
-        public static string PAGE_TITLE {
+        public static string DETAIL_TITLE_POST {
             get {
-                return ResourceManager.GetString("PAGE_TITLE", resourceCulture);
+                return ResourceManager.GetString("DETAIL_TITLE_POST", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vytvořit nový záznam klubu.
+        ///   Looks up a localized string similar to Tituly před jménem.
         /// </summary>
-        public static string PAGE_TITLE_CREATE {
+        public static string DETAIL_TITLE_PRE {
             get {
-                return ResourceManager.GetString("PAGE_TITLE_CREATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Odstanit záznam klubu.
-        /// </summary>
-        public static string PAGE_TITLE_DELETE {
-            get {
-                return ResourceManager.GetString("PAGE_TITLE_DELETE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upravit záznam klubu.
-        /// </summary>
-        public static string PAGE_TITLE_UPDATE {
-            get {
-                return ResourceManager.GetString("PAGE_TITLE_UPDATE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zastupitelské kluby.
-        /// </summary>
-        public static string TABLE_TITLE {
-            get {
-                return ResourceManager.GetString("TABLE_TITLE", resourceCulture);
+                return ResourceManager.GetString("DETAIL_TITLE_PRE", resourceCulture);
             }
         }
     }

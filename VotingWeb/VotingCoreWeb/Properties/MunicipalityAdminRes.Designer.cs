@@ -70,6 +70,24 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zastupitelé.
+        /// </summary>
+        public static string BUTTON_DEPUTIES {
+            get {
+                return ResourceManager.GetString("BUTTON_DEPUTIES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kluby.
+        /// </summary>
+        public static string BUTTON_PARTIES {
+            get {
+                return ResourceManager.GetString("BUTTON_PARTIES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zasedání.
         /// </summary>
         public static string BUTTON_SESSIONS {
@@ -84,24 +102,6 @@ namespace VotingCoreWeb.Properties {
         public static string COLUMN_NAME {
             get {
                 return ResourceManager.GetString("COLUMN_NAME", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Popis.
-        /// </summary>
-        public static string DETAIL_DESCRIPTION {
-            get {
-                return ResourceManager.GetString("DETAIL_DESCRIPTION", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jméno obce.
-        /// </summary>
-        public static string DETAIL_NAME {
-            get {
-                return ResourceManager.GetString("DETAIL_NAME", resourceCulture);
             }
         }
         

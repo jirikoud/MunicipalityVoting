@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
+using VotingCoreData.Properties;
 
 namespace VotingCoreData.Models
 {
@@ -8,11 +10,26 @@ namespace VotingCoreData.Models
     {
         public int Id { get; set; }
         public int MunicipalityId { get; set; }
+
+        [Display(Name = "DETAIL_FIRSTNAME", ResourceType = typeof(DeputyRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
         public string Firstname { get; set; }
+
+        [Display(Name = "DETAIL_LASTNAME", ResourceType = typeof(DeputyRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
         public string Lastname { get; set; }
-        public bool IsDeleted { get; set; }
+
+        [Display(Name = "DETAIL_TITLE_PRE", ResourceType = typeof(DeputyRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
         public string TitlePre { get; set; }
+
+        [Display(Name = "DETAIL_TITLE_POST", ResourceType = typeof(DeputyRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
         public string TitlePost { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public Municipality Municipality { get; set; }
         public List<Voting> Votings { get; set; }
@@ -31,5 +48,12 @@ namespace VotingCoreData.Models
             return fullname;
         }
 
+        public void UpdateFrom(Deputy model)
+        {
+            this.Firstname = model.Firstname;
+            this.Lastname = model.Lastname;
+            this.TitlePre = model.TitlePre;
+            this.TitlePost = model.TitlePost;
+        }
     }
 }

@@ -81,7 +81,7 @@ namespace VotingCoreWeb.Infrastructure
             {
                 if (user.IsInRole(Constants.ROLE_ADMIN))
                 {
-                    var municipality = dbContext.FindMunicipalityByIdAsync(id.Value);
+                    var municipality = await dbContext.FindMunicipalityByIdAsync(id.Value);
                     if (municipality == null)
                     {
                         CreateActionStateCookie(tempData, AlertTypeEnum.Danger, AdminRes.ERROR_NOT_EXIST);

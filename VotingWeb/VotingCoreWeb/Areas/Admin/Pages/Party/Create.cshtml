@@ -1,0 +1,32 @@
+﻿@page
+@model VotingCoreWeb.Areas.Admin.Pages.Party.CreateModel
+@{
+    ViewData["Title"] = PartyAdminRes.PAGE_TITLE;
+}
+
+@await Component.InvokeAsync("Alert", new { alert = Model.Alert })
+
+<div id="content">
+    <div class="float-right">
+        <a asp-page="/Party/Index" asp-route-id="@Model.Item.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+    </div>
+    <h1>@PartyAdminRes.PAGE_TITLE_CREATE</h1>
+    <form method="post">
+        <input type="hidden" name="Item.MunicipalityId" value="@Model.Item.MunicipalityId" />
+        <div class="form-group">
+            <label asp-for="Item.Name"></label>
+            <input asp-for="Item.Name" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Name"></span>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary" name="action" asp-page-handler="Save">@AdminRes.BUTTON_SAVE</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

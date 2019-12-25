@@ -13,7 +13,7 @@
         <input type="hidden" name="Id" value="@Model.Id" />
         <input type="hidden" name="Name" value="@Model.Name" />
         <div class="form-group">
-            <label>@MunicipalityAdminRes.DETAIL_NAME</label>
+            <label asp-for="Name"></label>
             <div class="form-control">@Model.Name</div>
         </div>
         <div class="btn-group" role="group" aria-label="...">

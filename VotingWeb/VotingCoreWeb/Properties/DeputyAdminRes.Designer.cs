@@ -88,51 +88,6 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jméno.
-        /// </summary>
-        public static string DETAIL_FIRSTNAME {
-            get {
-                return ResourceManager.GetString("DETAIL_FIRSTNAME", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Celé jméno.
-        /// </summary>
-        public static string DETAIL_FULLNAME {
-            get {
-                return ResourceManager.GetString("DETAIL_FULLNAME", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jméno.
-        /// </summary>
-        public static string DETAIL_LASTNAME {
-            get {
-                return ResourceManager.GetString("DETAIL_LASTNAME", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tituly za jménem.
-        /// </summary>
-        public static string DETAIL_TITLE_POST {
-            get {
-                return ResourceManager.GetString("DETAIL_TITLE_POST", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tituly před jménem.
-        /// </summary>
-        public static string DETAIL_TITLE_PRE {
-            get {
-                return ResourceManager.GetString("DETAIL_TITLE_PRE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Zastupitelé.
         /// </summary>
         public static string PAGE_TITLE {
