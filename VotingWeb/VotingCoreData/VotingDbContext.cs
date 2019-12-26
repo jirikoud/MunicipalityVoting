@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VotingCommon.Models;
 using VotingCoreData.Models;
 
 namespace VotingCoreData
@@ -590,6 +591,15 @@ namespace VotingCoreData
                 _logger.LogError(exception, $"LoadUsers()");
                 return null;
             }
+        }
+
+        #endregion
+
+        #region Import
+
+        public async Task<bool> ImportSessionAsync(int municipalityId, SessionModel sessionModel)
+        {
+            return false;
         }
 
         #endregion

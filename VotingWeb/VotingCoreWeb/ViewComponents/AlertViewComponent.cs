@@ -9,10 +9,10 @@ namespace VotingCoreWeb.ViewComponents
 {
     public class AlertViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(AlertModel alert)
+        public IViewComponentResult Invoke(AlertModel alert, bool isGeneral = false)
         {
             AlertModel model = alert;
-            if (alert == null && TempData[ContextUtils.TEMPDATA_ALERT_TYPE] != null)
+            if (isGeneral && TempData[ContextUtils.TEMPDATA_ALERT_TYPE] != null)
             {
                 model = new AlertModel((AlertTypeEnum)TempData[ContextUtils.TEMPDATA_ALERT_TYPE], TempData[ContextUtils.TEMPDATA_ALERT_MESSAGE].ToString());
             }

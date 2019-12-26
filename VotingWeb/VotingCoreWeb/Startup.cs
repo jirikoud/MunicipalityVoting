@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace VotingCoreWeb
 {
@@ -71,6 +73,21 @@ namespace VotingCoreWeb
             }
 
             app.UseHttpsRedirection();
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("cs-CZ"),
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("cs-CZ"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
+
             app.UseStaticFiles();
 
             app.UseRouting();

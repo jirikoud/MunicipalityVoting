@@ -58,7 +58,7 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @await Component.InvokeAsync("Alert", new { alert = (AlertModel)null })
+            @await Component.InvokeAsync("Alert", new { alert = (AlertModel)null, isGeneral = true })
             @RenderBody()
         </main>
     </div>

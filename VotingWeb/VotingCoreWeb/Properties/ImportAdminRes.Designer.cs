@@ -124,6 +124,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importer.
+        /// </summary>
+        public static string DETAIL_IMPORTER {
+            get {
+                return ResourceManager.GetString("DETAIL_IMPORTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Název:.
         /// </summary>
         public static string DETAIL_TITLE {
@@ -156,6 +165,15 @@ namespace VotingCoreWeb.Properties {
         public static string DETAIL_TOPIC_TIME {
             get {
                 return ResourceManager.GetString("DETAIL_TOPIC_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vyberte soubor.
+        /// </summary>
+        public static string DETAIL_UPLOAD {
+            get {
+                return ResourceManager.GetString("DETAIL_UPLOAD", resourceCulture);
             }
         }
         

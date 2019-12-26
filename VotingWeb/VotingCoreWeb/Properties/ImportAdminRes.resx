@@ -138,6 +138,9 @@
   <data name="DETAIL_DATE_START" xml:space="preserve">
     <value>Začátek jednání:</value>
   </data>
+  <data name="DETAIL_IMPORTER" xml:space="preserve">
+    <value>Importer</value>
+  </data>
   <data name="DETAIL_TITLE" xml:space="preserve">
     <value>Název:</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="DETAIL_TOPIC_TIME" xml:space="preserve">
     <value>Čas hlasování</value>
+  </data>
+  <data name="DETAIL_UPLOAD" xml:space="preserve">
+    <value>Vyberte soubor</value>
   </data>
   <data name="LABEL_NO_DATE" xml:space="preserve">
     <value>Není k dispozici</value>
