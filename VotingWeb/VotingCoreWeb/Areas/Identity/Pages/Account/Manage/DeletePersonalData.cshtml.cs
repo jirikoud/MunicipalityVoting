@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 {
@@ -29,7 +30,8 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Display(Name = "DELETE_ACCOUNT_PASSWORD", ResourceType = typeof(AccountRes))]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }
@@ -61,7 +63,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, AccountRes.DELETE_ACCOUNT_PASSWORD_INVALID);
                     return Page();
                 }
             }

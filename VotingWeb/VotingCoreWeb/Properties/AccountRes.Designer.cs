@@ -61,6 +61,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Změnit e-mail.
+        /// </summary>
+        public static string BUTTON_CHANGE_EMAIL {
+            get {
+                return ResourceManager.GetString("BUTTON_CHANGE_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Změnit heslo.
         /// </summary>
         public static string BUTTON_CHANGE_PASSWORD {
@@ -79,6 +88,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Smazat data a odstranit účet.
+        /// </summary>
+        public static string BUTTON_DELETE_ACCOUNT {
+            get {
+                return ResourceManager.GetString("BUTTON_DELETE_ACCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zapomenuté heslo?.
         /// </summary>
         public static string BUTTON_FORGOTTEN_PASSWORD {
@@ -93,6 +111,33 @@ namespace VotingCoreWeb.Properties {
         public static string BUTTON_LOGIN {
             get {
                 return ResourceManager.GetString("BUTTON_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smazat.
+        /// </summary>
+        public static string BUTTON_PERSONAL_DATA_DELETE {
+            get {
+                return ResourceManager.GetString("BUTTON_PERSONAL_DATA_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stáhnout.
+        /// </summary>
+        public static string BUTTON_PERSONAL_DATA_DOWNLOAD {
+            get {
+                return ResourceManager.GetString("BUTTON_PERSONAL_DATA_DOWNLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uložit.
+        /// </summary>
+        public static string BUTTON_PROFILE_SAVE {
+            get {
+                return ResourceManager.GetString("BUTTON_PROFILE_SAVE", resourceCulture);
             }
         }
         
@@ -169,6 +214,69 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Potvrzení změny e-mailu.
+        /// </summary>
+        public static string CONFIRM_EMAIL_TITLE {
+            get {
+                return ResourceManager.GetString("CONFIRM_EMAIL_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heslo.
+        /// </summary>
+        public static string DELETE_ACCOUNT_PASSWORD {
+            get {
+                return ResourceManager.GetString("DELETE_ACCOUNT_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zadané heslo nesouhlasí..
+        /// </summary>
+        public static string DELETE_ACCOUNT_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("DELETE_ACCOUNT_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smazání osobních údajů.
+        /// </summary>
+        public static string DELETE_ACCOUNT_TITLE {
+            get {
+                return ResourceManager.GetString("DELETE_ACCOUNT_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smazáním těchto dat dojde k trvalému odstranění vašeho účtu. Jde o nevratnou změnu..
+        /// </summary>
+        public static string DELETE_ACCOUNT_WARNING {
+            get {
+                return ResourceManager.GetString("DELETE_ACCOUNT_WARNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prosím, potvrďte svůj účet na portálu hlasovali.eu kliknutím &lt;a href=&quot;{0}&quot;&gt;sem&lt;/a&gt;..
+        /// </summary>
+        public static string EMAIL_CONFIRM_BODY {
+            get {
+                return ResourceManager.GetString("EMAIL_CONFIRM_BODY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Potvrďte svůj účet.
+        /// </summary>
+        public static string EMAIL_CONFIRM_SUBJECT {
+            get {
+                return ResourceManager.GetString("EMAIL_CONFIRM_SUBJECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pokud jste požádal/a o přenastavení hesla na portálu hlasovali.eu, přejděte &lt;a href=&quot;{0}&quot;&gt;sem&lt;/a&gt;..
         /// </summary>
         public static string EMAIL_RESET_BODY {
@@ -207,9 +315,18 @@ namespace VotingCoreWeb.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Prosím zkontrolujte svoji e-mailovou schránku. Dorazí vám e-mail s instrukcemi k přenastavení hesla..
         /// </summary>
-        public static string FORGOT_SENT_INFO {
+        public static string FORGOT_SENT_HEADER {
             get {
-                return ResourceManager.GetString("FORGOT_SENT_INFO", resourceCulture);
+                return ResourceManager.GetString("FORGOT_SENT_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email odeslán.
+        /// </summary>
+        public static string FORGOT_SENT_TITLE {
+            get {
+                return ResourceManager.GetString("FORGOT_SENT_TITLE", resourceCulture);
             }
         }
         
@@ -250,6 +367,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Neplatné přihlašovací údaje.
+        /// </summary>
+        public static string LOGIN_INVALID_ATTEMPT {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALID_ATTEMPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heslo.
         /// </summary>
         public static string LOGIN_PASSWORD {
@@ -286,6 +412,60 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Úspěšně jste se odhlásil/a..
+        /// </summary>
+        public static string LOGOUT_HEADER {
+            get {
+                return ResourceManager.GetString("LOGOUT_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odhlášení.
+        /// </summary>
+        public static string LOGOUT_TITLE {
+            get {
+                return ResourceManager.GetString("LOGOUT_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stávající e-mail.
+        /// </summary>
+        public static string MANAGE_EMAIL_CURRENT_EMAIL {
+            get {
+                return ResourceManager.GetString("MANAGE_EMAIL_CURRENT_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nový e-mail.
+        /// </summary>
+        public static string MANAGE_EMAIL_NEW_EMAIL {
+            get {
+                return ResourceManager.GetString("MANAGE_EMAIL_NEW_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Změna e-mailu.
+        /// </summary>
+        public static string MANAGE_EMAIL_TITLE {
+            get {
+                return ResourceManager.GetString("MANAGE_EMAIL_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uživatelské jméno.
+        /// </summary>
+        public static string MANAGE_EMAIL_USERNAME {
+            get {
+                return ResourceManager.GetString("MANAGE_EMAIL_USERNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Změňte nastavení svého účtu.
         /// </summary>
         public static string MANAGE_HEADER {
@@ -304,6 +484,69 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        public static string MENU_EMAIL {
+            get {
+                return ResourceManager.GetString("MENU_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heslo.
+        /// </summary>
+        public static string MENU_PASSWORD {
+            get {
+                return ResourceManager.GetString("MENU_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Osobní údaje.
+        /// </summary>
+        public static string MENU_PERSONAL_DATA {
+            get {
+                return ResourceManager.GetString("MENU_PERSONAL_DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Účet.
+        /// </summary>
+        public static string MENU_PROFILE {
+            get {
+                return ResourceManager.GetString("MENU_PROFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Změna e-mailu byla úspěšně dokončena..
+        /// </summary>
+        public static string MESSAGE_CHANGE_EMAIL_SUCCESS {
+            get {
+                return ResourceManager.GetString("MESSAGE_CHANGE_EMAIL_SUCCESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Při změně e-mailu došlo k chybě.
+        /// </summary>
+        public static string MESSAGE_EMAIL_CHANGE_ERROR {
+            get {
+                return ResourceManager.GetString("MESSAGE_EMAIL_CHANGE_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vaší novou schránku potvrdíte prokliknutím z emailu, který Vám byl zaslán..
+        /// </summary>
+        public static string MESSAGE_EMAIL_SENT {
+            get {
+                return ResourceManager.GetString("MESSAGE_EMAIL_SENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vaše heslo bylo změněno.
         /// </summary>
         public static string MESSAGE_PASSWORD_CHANGED {
@@ -318,6 +561,78 @@ namespace VotingCoreWeb.Properties {
         public static string MESSAGE_PASSWORD_SET {
             get {
                 return ResourceManager.GetString("MESSAGE_PASSWORD_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Váš účet byl aktualizován.
+        /// </summary>
+        public static string MESSAGE_PROFILE_SAVED {
+            get {
+                return ResourceManager.GetString("MESSAGE_PROFILE_SAVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Při změně uživatelského jména došlo k chybě.
+        /// </summary>
+        public static string MESSAGE_USERNAME_CHANGE_ERROR {
+            get {
+                return ResourceManager.GetString("MESSAGE_USERNAME_CHANGE_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Váš účet obsahuje osobní údaje, které jste nám předal. Tato stránka umožňuje data stáhnout nebo smazat..
+        /// </summary>
+        public static string PERSONAL_DATA_HEADER {
+            get {
+                return ResourceManager.GetString("PERSONAL_DATA_HEADER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Osobní údaje.
+        /// </summary>
+        public static string PERSONAL_DATA_TITLE {
+            get {
+                return ResourceManager.GetString("PERSONAL_DATA_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smazáním těchto dat dojde k trvalému odstranění vašeho účtu. Jde o nevratnou změnu..
+        /// </summary>
+        public static string PERSONAL_DATA_WARNING {
+            get {
+                return ResourceManager.GetString("PERSONAL_DATA_WARNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telefonní číslo.
+        /// </summary>
+        public static string PROFILE_PHONE_NUMBER {
+            get {
+                return ResourceManager.GetString("PROFILE_PHONE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Účet.
+        /// </summary>
+        public static string PROFILE_TITLE {
+            get {
+                return ResourceManager.GetString("PROFILE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uživatelské jméno.
+        /// </summary>
+        public static string PROFILE_USERNAME {
+            get {
+                return ResourceManager.GetString("PROFILE_USERNAME", resourceCulture);
             }
         }
         

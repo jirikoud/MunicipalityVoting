@@ -177,4 +177,10 @@
   <data name="VALIDATION_LENGTH" xml:space="preserve">
     <value>Text může být dlouhý nejvýše {1} znaků</value>
   </data>
+  <data name="VALIDATION_LENGTH_FULL" xml:space="preserve">
+    <value>Text musí být alespoň {2} a nejvýše {1} znaků dlouhý</value>
+  </data>
+  <data name="VALIDATION_PASSWORD_COMPARE" xml:space="preserve">
+    <value>Zadaná hesla se neshodují</value>
+  </data>
 </root>

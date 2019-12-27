@@ -16,6 +16,7 @@ using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace VotingCoreWeb
 {
@@ -44,13 +45,27 @@ namespace VotingCoreWeb
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddTransient<IEmailSender, EmailSender>();
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
             var razorBuilder = services.AddRazorPages();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
             #if DEBUG
-                if (Env.IsDevelopment())
+            if (Env.IsDevelopment())
                 {
                     razorBuilder.AddRazorRuntimeCompilation();
                 }

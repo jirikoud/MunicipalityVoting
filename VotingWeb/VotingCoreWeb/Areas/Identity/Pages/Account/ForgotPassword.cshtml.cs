@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account
 {
@@ -30,7 +31,8 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Display(Name = "LOGIN_EMAIL", ResourceType = typeof(AccountRes))]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
             [EmailAddress]
             public string Email { get; set; }
         }
@@ -58,8 +60,8 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    AccountRes.EMAIL_RESET_SUBJECT,
+                    string.Format(AccountRes.EMAIL_RESET_BODY, HtmlEncoder.Default.Encode(callbackUrl)));
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

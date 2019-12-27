@@ -117,17 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BUTTON_CHANGE_EMAIL" xml:space="preserve">
+    <value>Změnit e-mail</value>
+  </data>
   <data name="BUTTON_CHANGE_PASSWORD" xml:space="preserve">
     <value>Změnit heslo</value>
   </data>
   <data name="BUTTON_CREATE_PASSWORD" xml:space="preserve">
     <value>Zadat heslo</value>
   </data>
+  <data name="BUTTON_DELETE_ACCOUNT" xml:space="preserve">
+    <value>Smazat data a odstranit účet</value>
+  </data>
   <data name="BUTTON_FORGOTTEN_PASSWORD" xml:space="preserve">
     <value>Zapomenuté heslo?</value>
   </data>
   <data name="BUTTON_LOGIN" xml:space="preserve">
     <value>Přihlásit se</value>
+  </data>
+  <data name="BUTTON_PERSONAL_DATA_DELETE" xml:space="preserve">
+    <value>Smazat</value>
+  </data>
+  <data name="BUTTON_PERSONAL_DATA_DOWNLOAD" xml:space="preserve">
+    <value>Stáhnout</value>
+  </data>
+  <data name="BUTTON_PROFILE_SAVE" xml:space="preserve">
+    <value>Uložit</value>
   </data>
   <data name="BUTTON_RESET" xml:space="preserve">
     <value>Nastavit heslo</value>
@@ -153,6 +168,27 @@
   <data name="CHANGE_TITLE" xml:space="preserve">
     <value>Změna hesla</value>
   </data>
+  <data name="CONFIRM_EMAIL_TITLE" xml:space="preserve">
+    <value>Potvrzení změny e-mailu</value>
+  </data>
+  <data name="DELETE_ACCOUNT_PASSWORD" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="DELETE_ACCOUNT_PASSWORD_INVALID" xml:space="preserve">
+    <value>Zadané heslo nesouhlasí.</value>
+  </data>
+  <data name="DELETE_ACCOUNT_TITLE" xml:space="preserve">
+    <value>Smazání osobních údajů</value>
+  </data>
+  <data name="DELETE_ACCOUNT_WARNING" xml:space="preserve">
+    <value>Smazáním těchto dat dojde k trvalému odstranění vašeho účtu. Jde o nevratnou změnu.</value>
+  </data>
+  <data name="EMAIL_CONFIRM_BODY" xml:space="preserve">
+    <value>Prosím, potvrďte svůj účet na portálu hlasovali.eu kliknutím &lt;a href="{0}"&gt;sem&lt;/a&gt;.</value>
+  </data>
+  <data name="EMAIL_CONFIRM_SUBJECT" xml:space="preserve">
+    <value>Potvrďte svůj účet</value>
+  </data>
   <data name="EMAIL_RESET_BODY" xml:space="preserve">
     <value>Pokud jste požádal/a o přenastavení hesla na portálu hlasovali.eu, přejděte &lt;a href="{0}"&gt;sem&lt;/a&gt;.</value>
   </data>
@@ -165,8 +201,11 @@
   <data name="FORGOT_HEADER" xml:space="preserve">
     <value>Zadejte vaši e-mailovou adresu, na kterou vám zašleme instrukce k přenastavení hesla.</value>
   </data>
-  <data name="FORGOT_SENT_INFO" xml:space="preserve">
+  <data name="FORGOT_SENT_HEADER" xml:space="preserve">
     <value>Prosím zkontrolujte svoji e-mailovou schránku. Dorazí vám e-mail s instrukcemi k přenastavení hesla.</value>
+  </data>
+  <data name="FORGOT_SENT_TITLE" xml:space="preserve">
+    <value>Email odeslán</value>
   </data>
   <data name="FORGOT_TITLE" xml:space="preserve">
     <value>Zapomenuté heslo</value>
@@ -180,6 +219,9 @@
   <data name="LOGIN_HEADER" xml:space="preserve">
     <value>Přihlašte se pomocí svého e-mailu a hesla</value>
   </data>
+  <data name="LOGIN_INVALID_ATTEMPT" xml:space="preserve">
+    <value>Neplatné přihlašovací údaje</value>
+  </data>
   <data name="LOGIN_PASSWORD" xml:space="preserve">
     <value>Heslo</value>
   </data>
@@ -192,17 +234,80 @@
   <data name="LOGIN_TITLE" xml:space="preserve">
     <value>Přihlášení</value>
   </data>
+  <data name="LOGOUT_HEADER" xml:space="preserve">
+    <value>Úspěšně jste se odhlásil/a.</value>
+  </data>
+  <data name="LOGOUT_TITLE" xml:space="preserve">
+    <value>Odhlášení</value>
+  </data>
+  <data name="MANAGE_EMAIL_CURRENT_EMAIL" xml:space="preserve">
+    <value>Stávající e-mail</value>
+  </data>
+  <data name="MANAGE_EMAIL_NEW_EMAIL" xml:space="preserve">
+    <value>Nový e-mail</value>
+  </data>
+  <data name="MANAGE_EMAIL_TITLE" xml:space="preserve">
+    <value>Změna e-mailu</value>
+  </data>
+  <data name="MANAGE_EMAIL_USERNAME" xml:space="preserve">
+    <value>Uživatelské jméno</value>
+  </data>
   <data name="MANAGE_HEADER" xml:space="preserve">
     <value>Změňte nastavení svého účtu</value>
   </data>
   <data name="MANAGE_TITLE" xml:space="preserve">
     <value>Nastavení účtu</value>
   </data>
+  <data name="MENU_EMAIL" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="MENU_PASSWORD" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="MENU_PERSONAL_DATA" xml:space="preserve">
+    <value>Osobní údaje</value>
+  </data>
+  <data name="MENU_PROFILE" xml:space="preserve">
+    <value>Účet</value>
+  </data>
+  <data name="MESSAGE_CHANGE_EMAIL_SUCCESS" xml:space="preserve">
+    <value>Změna e-mailu byla úspěšně dokončena.</value>
+  </data>
+  <data name="MESSAGE_EMAIL_CHANGE_ERROR" xml:space="preserve">
+    <value>Při změně e-mailu došlo k chybě</value>
+  </data>
+  <data name="MESSAGE_EMAIL_SENT" xml:space="preserve">
+    <value>Vaší novou schránku potvrdíte prokliknutím z emailu, který Vám byl zaslán.</value>
+  </data>
   <data name="MESSAGE_PASSWORD_CHANGED" xml:space="preserve">
     <value>Vaše heslo bylo změněno</value>
   </data>
   <data name="MESSAGE_PASSWORD_SET" xml:space="preserve">
     <value>Vaše heslo bylo nastaveno</value>
+  </data>
+  <data name="MESSAGE_PROFILE_SAVED" xml:space="preserve">
+    <value>Váš účet byl aktualizován</value>
+  </data>
+  <data name="MESSAGE_USERNAME_CHANGE_ERROR" xml:space="preserve">
+    <value>Při změně uživatelského jména došlo k chybě</value>
+  </data>
+  <data name="PERSONAL_DATA_HEADER" xml:space="preserve">
+    <value>Váš účet obsahuje osobní údaje, které jste nám předal. Tato stránka umožňuje data stáhnout nebo smazat.</value>
+  </data>
+  <data name="PERSONAL_DATA_TITLE" xml:space="preserve">
+    <value>Osobní údaje</value>
+  </data>
+  <data name="PERSONAL_DATA_WARNING" xml:space="preserve">
+    <value>Smazáním těchto dat dojde k trvalému odstranění vašeho účtu. Jde o nevratnou změnu.</value>
+  </data>
+  <data name="PROFILE_PHONE_NUMBER" xml:space="preserve">
+    <value>Telefonní číslo</value>
+  </data>
+  <data name="PROFILE_TITLE" xml:space="preserve">
+    <value>Účet</value>
+  </data>
+  <data name="PROFILE_USERNAME" xml:space="preserve">
+    <value>Uživatelské jméno</value>
   </data>
   <data name="RESET_DONE" xml:space="preserve">
     <value>Vaše heslo bylo přenastaveno. Prosím</value>

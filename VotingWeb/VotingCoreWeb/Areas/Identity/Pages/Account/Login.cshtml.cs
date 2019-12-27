@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account
 {
@@ -42,15 +43,17 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Display(Name = "LOGIN_EMAIL", ResourceType = typeof(AccountRes))]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Display(Name = "LOGIN_PASSWORD", ResourceType = typeof(AccountRes))]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "LOGIN_REMEMBER_ME", ResourceType = typeof(AccountRes))]
             public bool RememberMe { get; set; }
         }
 
@@ -96,7 +99,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, AccountRes.LOGIN_INVALID_ATTEMPT);
                     return Page();
                 }
             }

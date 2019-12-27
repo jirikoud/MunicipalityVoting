@@ -599,7 +599,83 @@ namespace VotingCoreData
 
         public async Task<bool> ImportSessionAsync(int municipalityId, SessionModel sessionModel)
         {
-            return false;
+            try
+            {
+                var session = new Session()
+                {
+                    Name = sessionModel.Title,
+                    Chairman = sessionModel.Chairman,
+                    StartDate = sessionModel.StartDate,
+                    EndDate = sessionModel.EndDate,
+                    MunicipalityId = municipalityId,
+                    Topics = new List<Topic>(),
+                };
+                this.Sessions.Add(session);
+
+                var deputyDictionary = await this.Deputies.Where(item => item.MunicipalityId == municipalityId && !item.IsDeleted).ToDictionaryAsync(item => item.TitlePre + ";" + item.Firstname + ";" + item.Lastname + ";" + item.TitlePost, item => item);
+                var partyDictionary = await this.Parties.Where(item => item.MunicipalityId == municipalityId && !item.IsDeleted).ToDictionaryAsync(item => item.Name, item => item);
+
+                foreach (var topicModel in sessionModel.TopicList)
+                {
+                    var topic = new Topic()
+                    {
+                        Name = topicModel.Name,
+                        Comment = topicModel.Comment,
+                        Order = topicModel.Order,
+                        Time = topicModel.Time,
+                        Total = topicModel.DeputyTotal,
+                        IsProcedural = topicModel.IsProcedural,
+                        IsSecret = topicModel.IsSecret,
+                    };
+                    session.Topics.Add(topic);
+                    foreach (var deputyModel in topicModel.DeputyList)
+                    {
+                        if (!partyDictionary.ContainsKey(deputyModel.Party))
+                        {
+                            var newParty = new Party()
+                            {
+                                MunicipalityId = municipalityId,
+                                Name = deputyModel.Party,
+                            };
+                            this.Parties.Add(newParty);
+                            partyDictionary.Add(newParty.Name, newParty);
+                        }
+                        var party = partyDictionary[deputyModel.Party];
+
+                        var deputyKey = deputyModel.TitlePre + ";" + deputyModel.FirstName + ";" + deputyModel.Lastname + ";" + deputyModel.TitlePost;
+                        if (!deputyDictionary.ContainsKey(deputyKey))
+                        {
+                            var newDeputy = new Deputy()
+                            {
+                                MunicipalityId = municipalityId,
+                                Firstname = deputyModel.FirstName,
+                                Lastname = deputyModel.Lastname,
+                                TitlePre = deputyModel.TitlePre,
+                                TitlePost = deputyModel.TitlePost,
+                            };
+                            this.Deputies.Add(newDeputy);
+                            deputyDictionary.Add(deputyKey, newDeputy);
+                        }
+                        var deputy = deputyDictionary[deputyKey];
+
+                        var voting = new Voting()
+                        {
+                            Deputy = deputy,
+                            Party = party,
+                            Topic = topic,
+                            Vote = (int)deputyModel.Vote,
+                        };
+                        this.Votings.Add(voting);
+                    }
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"Import({municipalityId}) failed");
+                return false;
+            }
         }
 
         #endregion

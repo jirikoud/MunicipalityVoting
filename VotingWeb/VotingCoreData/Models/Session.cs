@@ -31,7 +31,7 @@ namespace VotingCoreData.Models
         public bool IsDeleted { get; set; }
 
         public Municipality Municipality { get; set; }
-        public List<Topic> Topics { get; set; }
+        public virtual List<Topic> Topics { get; set; }
 
         public void UpdateFrom(Session model)
         {

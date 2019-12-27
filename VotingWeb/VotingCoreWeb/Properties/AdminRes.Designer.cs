@@ -239,5 +239,23 @@ namespace VotingCoreWeb.Properties {
                 return ResourceManager.GetString("VALIDATION_LENGTH", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text musí být alespoň {2} a nejvýše {1} znaků dlouhý.
+        /// </summary>
+        public static string VALIDATION_LENGTH_FULL {
+            get {
+                return ResourceManager.GetString("VALIDATION_LENGTH_FULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zadaná hesla se neshodují.
+        /// </summary>
+        public static string VALIDATION_PASSWORD_COMPARE {
+            get {
+                return ResourceManager.GetString("VALIDATION_PASSWORD_COMPARE", resourceCulture);
+            }
+        }
     }
 }

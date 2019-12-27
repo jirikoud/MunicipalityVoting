@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 {
@@ -22,6 +23,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+        [Display(Name = "PROFILE_USERNAME", ResourceType = typeof(AccountRes))]
         public string Username { get; set; }
 
         [TempData]
@@ -33,7 +35,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "PROFILE_PHONE_NUMBER", ResourceType = typeof(AccountRes))]
             public string PhoneNumber { get; set; }
         }
 
@@ -88,7 +90,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = AccountRes.MESSAGE_PROFILE_SAVED;
             return RedirectToPage();
         }
     }

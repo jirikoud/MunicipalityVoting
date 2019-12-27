@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using VotingCoreWeb.Properties;
+
 namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
@@ -33,20 +35,20 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "CHANGE_PASSWORD_OLD", ResourceType = typeof(AccountRes))]
             public string OldPassword { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
+            [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = "VALIDATION_LENGTH_FULL", ErrorMessageResourceType = typeof(AdminRes))]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "CHANGE_PASSWORD_NEW", ResourceType = typeof(AccountRes))]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "CHANGE_PASSWORD_CONFIRM", ResourceType = typeof(AccountRes))]
+            [Compare("NewPassword", ErrorMessageResourceName = "VALIDATION_PASSWORD_COMPARE", ErrorMessageResourceType = typeof(AdminRes))]
             public string ConfirmPassword { get; set; }
         }
 
@@ -92,7 +94,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            StatusMessage = AccountRes.MESSAGE_PASSWORD_CHANGED;
 
             return RedirectToPage();
         }

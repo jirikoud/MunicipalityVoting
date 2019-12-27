@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 {
@@ -29,8 +30,10 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             _emailSender = emailSender;
         }
 
+        [Display(Name = "MANAGE_EMAIL_USERNAME", ResourceType = typeof(AccountRes))]
         public string Username { get; set; }
 
+        [Display(Name = "MANAGE_EMAIL_CURRENT_EMAIL", ResourceType = typeof(AccountRes))]
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -43,9 +46,9 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Display(Name = "MANAGE_EMAIL_NEW_EMAIL", ResourceType = typeof(AccountRes))]
+            [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
             [EmailAddress]
-            [Display(Name = "New email")]
             public string NewEmail { get; set; }
         }
 
@@ -100,10 +103,10 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    AccountRes.EMAIL_CONFIRM_SUBJECT,
+                    string.Format(AccountRes.EMAIL_CONFIRM_BODY, HtmlEncoder.Default.Encode(callbackUrl)));
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage = AccountRes.MESSAGE_EMAIL_SENT;
                 return RedirectToPage();
             }
 
@@ -136,10 +139,10 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                AccountRes.EMAIL_CONFIRM_SUBJECT,
+                string.Format(AccountRes.EMAIL_CONFIRM_BODY, HtmlEncoder.Default.Encode(callbackUrl)));
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = AccountRes.MESSAGE_EMAIL_SENT;
             return RedirectToPage();
         }
     }
