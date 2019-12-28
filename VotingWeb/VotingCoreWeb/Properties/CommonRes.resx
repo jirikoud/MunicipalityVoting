@@ -141,6 +141,9 @@
   <data name="MENU_ITEM_ADMIN" xml:space="preserve">
     <value>Administrace</value>
   </data>
+  <data name="MENU_ITEM_ADMIN_BODIES" xml:space="preserve">
+    <value>Orgány obce</value>
+  </data>
   <data name="MENU_ITEM_ADMIN_DEPUTY" xml:space="preserve">
     <value>Správa zastupitelů</value>
   </data>

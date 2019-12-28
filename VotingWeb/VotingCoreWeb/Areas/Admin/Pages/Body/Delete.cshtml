@@ -1,14 +1,14 @@
 ﻿@page
-@model VotingCoreWeb.Areas.Admin.Pages.Session.DeleteModel
+@model VotingCoreWeb.Areas.Admin.Pages.Body.DeleteModel
 @{
-    ViewData["Title"] = SessionAdminRes.PAGE_TITLE;
+    ViewData["Title"] = BodyAdminRes.PAGE_TITLE;
 }
 
 <div id="content">
     <div class="float-right">
-        <a asp-page="/Session/Index" asp-route-id="@Model.Item.BodyId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+        <a asp-page="/Body/Index" asp-route-id="@Model.Item.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
     </div>
-    <h1>@SessionAdminRes.PAGE_TITLE_DELETE</h1>
+    <h1>@BodyAdminRes.PAGE_TITLE_DELETE</h1>
     <form method="post">
         <input type="hidden" name="Id" value="@Model.Item.Id" />
         <input type="hidden" name="Name" value="@Model.Item.Name" />

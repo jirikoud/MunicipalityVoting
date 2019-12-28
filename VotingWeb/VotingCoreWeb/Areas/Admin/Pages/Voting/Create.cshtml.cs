@@ -59,7 +59,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
@@ -68,7 +68,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
                 {
                     TopicId = topicId,
                 };
-                await PrepareSelectListAsync(topic.Session.MunicipalityId);
+                await PrepareSelectListAsync(topic.Session.Body.MunicipalityId);
                 return Page();
             }
             catch (Exception exception)
@@ -88,7 +88,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });

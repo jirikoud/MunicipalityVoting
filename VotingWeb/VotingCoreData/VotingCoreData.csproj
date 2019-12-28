@@ -13,71 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\DeputyRes.Designer.cs">
+    <Compile Update="Properties\ModelRes.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>DeputyRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\MunicipalityRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MunicipalityRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\PartyRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>PartyRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\SessionRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SessionRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\TopicRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>TopicRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\ValidationRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ValidationRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\VotingRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>VotingRes.resx</DependentUpon>
+      <DependentUpon>ModelRes.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\DeputyRes.resx">
+    <EmbeddedResource Update="Properties\ModelRes.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeputyRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\MunicipalityRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MunicipalityRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\PartyRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>PartyRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\SessionRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SessionRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\TopicRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TopicRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\ValidationRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ValidationRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\VotingRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>VotingRes.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

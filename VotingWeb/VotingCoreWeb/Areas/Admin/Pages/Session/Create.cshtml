@@ -8,11 +8,11 @@
 
 <div id="content">
     <div class="float-right">
-        <a asp-page="/Session/Index" asp-route-id="@Model.Item.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+        <a asp-page="/Session/Index" asp-route-id="@Model.Item.BodyId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
     </div>
     <h1>@SessionAdminRes.PAGE_TITLE_CREATE</h1>
     <form method="post">
-        <input type="hidden" name="Item.MunicipalityId" value="@Model.Item.MunicipalityId" />
+        <input type="hidden" name="Item.BodyId" value="@Model.Item.BodyId" />
         <div class="form-group">
             <label asp-for="Item.Name"></label>
             <input asp-for="Item.Name" class="form-control form-control-lg" />

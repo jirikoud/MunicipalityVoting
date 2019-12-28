@@ -11,24 +11,24 @@ namespace VotingCoreData.Models
         public int Id { get; set; }
         public int SessionId { get; set; }
 
-        [Display(Name = "DETAIL_NAME", ResourceType = typeof(TopicRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "TOPIC_NAME", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Name { get; set; }
 
-        [Display(Name = "DETAIL_COMMENT", ResourceType = typeof(TopicRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "TOPIC_COMMENT", ResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Comment { get; set; }
 
-        [Display(Name = "DETAIL_ORDER", ResourceType = typeof(TopicRes))]
+        [Display(Name = "TOPIC_ORDER", ResourceType = typeof(ModelRes))]
         public int Order { get; set; }
 
-        [Display(Name = "DETAIL_IS_PROCEDURAL", ResourceType = typeof(TopicRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "TOPIC_IS_PROCEDURAL", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public bool IsProcedural { get; set; }
 
-        [Display(Name = "DETAIL_IS_SECRET", ResourceType = typeof(TopicRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "TOPIC_IS_SECRET", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public bool IsSecret { get; set; }
 
         public DateTime? Time { get; set; }

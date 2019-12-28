@@ -49,8 +49,8 @@ namespace VotingCoreWeb
                 var topic = await _dbContext.FindTopicByIdAsync(id);
                 var votingList = await _dbContext.LoadVotingsAsync(id);
 
-                this.MunicipalityId = topic.Session.MunicipalityId;
-                this.MunicipalityName = topic.Session.Municipality.Name;
+                this.MunicipalityId = topic.Session.Body.MunicipalityId;
+                this.MunicipalityName = topic.Session.Body.Municipality.Name;
                 this.SessionId = topic.Session.Id;
                 this.SessionName = topic.Session.Name;
                 this.TopicId = topic.Id;

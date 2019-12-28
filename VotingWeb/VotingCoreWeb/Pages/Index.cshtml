@@ -14,10 +14,15 @@
         <div class="list-group">
             @foreach (var municipality in Model.MunicipalityList)
             {
-                <a asp-page="/Municipality" asp-route-id="@municipality.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <h3>@municipality.Name</h3>
                     <p>@municipality.Description</p>
-                </a>
+                    <a asp-page="/Municipality" asp-route-id="@municipality.Id" class="btn btn-secondary">@VotingRes.BUTTON_MUNICIPALITY_DETAIL</a>
+                    @foreach (var body in municipality.BodyList)
+                    {
+                        <a asp-page="/Body" asp-route-id="@body.Id" class="btn btn-primary">@body.Name</a>
+                    }
+                </div>
             }
         </div>
     </div>

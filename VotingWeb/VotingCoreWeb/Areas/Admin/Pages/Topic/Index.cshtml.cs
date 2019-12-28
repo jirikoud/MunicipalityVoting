@@ -21,7 +21,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
         private readonly ContextUtils _contextUtils;
 
         public int SessionId { get; set; }
-        public int MunicipalityId { get; set; }
+        public int BodyId { get; set; }
         public List<VotingCoreData.Models.Topic> ItemList { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
@@ -40,13 +40,13 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                int? municipalityId = await _contextUtils.CheckMunicipalityRightsAsync(session.MunicipalityId, User, _dbContext, TempData);
+                int? municipalityId = await _contextUtils.CheckMunicipalityRightsAsync(session.Body.MunicipalityId, User, _dbContext, TempData);
                 if (!municipalityId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.SessionId = session.Id;
-                this.MunicipalityId = session.MunicipalityId;
+                this.BodyId = session.BodyId;
                 this.ItemList = await _dbContext.LoadTopicsAsync(session.Id);
                 return Page();
             }

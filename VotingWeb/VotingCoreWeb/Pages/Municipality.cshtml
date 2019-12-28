@@ -19,21 +19,11 @@
     <div class="col">
         <h3>@VotingRes.HEADER_SESSION_LIST</h3>
         <div class="list-group">
-            @foreach (var session in Model.SessionList)
+            @foreach (var body in Model.BodyList)
             {
-                <a asp-page="Session" asp-route-id="@session.Id" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" data-placement="top" title="@session.Name">
-                    <h3 class="text-truncate">@session.Name</h3>
-                    @if (session.StartDate != null && session.EndDate != null)
-                    {
-                        if (session.StartDate != session.EndDate)
-                        {
-                            <p>@session.StartDate - @session.EndDate</p>
-                        }
-                        else
-                        {
-                            <p>@session.StartDate</p>
-                        }
-                    }
+                <a asp-page="Body" asp-route-id="@body.Id" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" data-placement="top" title="@body.Name">
+                    <h3 class="text-truncate">@body.Name</h3>
+                    <p>@body.Description</p>
                 </a>
             }
         </div>

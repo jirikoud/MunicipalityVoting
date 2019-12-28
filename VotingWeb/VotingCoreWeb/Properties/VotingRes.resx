@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BUTTON_MUNICIPALITY_DETAIL" xml:space="preserve">
+    <value>Detail</value>
+  </data>
   <data name="HEADER_SESSION_LIST" xml:space="preserve">
-    <value>Seznam zasedání zastupitelstva</value>
+    <value>Seznam zasedání</value>
   </data>
   <data name="HEADER_TOPIC_LIST" xml:space="preserve">
     <value>Seznam hlasování</value>

@@ -7,23 +7,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using VotingCommon;
 using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
-namespace VotingCoreWeb.Areas.Admin.Pages.Voting
+namespace VotingCoreWeb.Areas.Admin.Pages.Body
 {
-    [Authorize(Roles = Constants.ROLE_ADMIN)]
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly VotingDbContext _dbContext;
         private readonly ContextUtils _contextUtils;
 
-        public int SessionId { get; set; }
-        public int TopicId { get; set; }
-        public List<VotingCoreData.Models.Voting> ItemList { get; set; }
+        public int MunicipalityId { get; set; }
+        public List<VotingCoreData.Models.Body> ItemList { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
         {
@@ -32,23 +30,17 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
             _contextUtils = contextUtils;
         }
 
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
             try
             {
-                var topic = await _dbContext.FindTopicByIdAsync(id);
-                if (topic == null)
-                {
-                    return RedirectToPage("/Index", new { area = "" });
-                }
-                int? municipalityId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
+                int? municipalityId = await _contextUtils.CheckMunicipalityRightsAsync(id, User, _dbContext, TempData);
                 if (!municipalityId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                this.TopicId = topic.Id;
-                this.SessionId = topic.SessionId;
-                this.ItemList = await _dbContext.LoadVotingsAsync(topic.Id);
+                this.MunicipalityId = municipalityId.Value;
+                this.ItemList = await _dbContext.LoadBodiesAsync(municipalityId.Value);
                 return Page();
             }
             catch (Exception exception)

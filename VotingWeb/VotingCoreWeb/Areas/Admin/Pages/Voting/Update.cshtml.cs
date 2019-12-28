@@ -60,13 +60,13 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(voting.Topic.Session.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(voting.Topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.Item = voting;
-                await PrepareSelectListAsync(voting.Topic.Session.MunicipalityId);
+                await PrepareSelectListAsync(voting.Topic.Session.Body.MunicipalityId);
                 return Page();
             }
             catch (Exception exception)
@@ -87,7 +87,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(voting.Topic.Session.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(voting.Topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });

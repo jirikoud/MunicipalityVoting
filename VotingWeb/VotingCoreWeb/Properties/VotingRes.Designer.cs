@@ -61,7 +61,16 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Seznam zasedání zastupitelstva.
+        ///   Looks up a localized string similar to Detail.
+        /// </summary>
+        public static string BUTTON_MUNICIPALITY_DETAIL {
+            get {
+                return ResourceManager.GetString("BUTTON_MUNICIPALITY_DETAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seznam zasedání.
         /// </summary>
         public static string HEADER_SESSION_LIST {
             get {

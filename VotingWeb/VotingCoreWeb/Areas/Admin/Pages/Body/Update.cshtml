@@ -1,17 +1,18 @@
 ﻿@page
-@model VotingCoreWeb.Areas.Admin.Pages.Municipality.CreateModel
+@model VotingCoreWeb.Areas.Admin.Pages.Body.UpdateModel
 @{
-    ViewData["Title"] = MunicipalityAdminRes.PAGE_TITLE;
+    ViewData["Title"] = BodyAdminRes.PAGE_TITLE;
 }
 
 @await Component.InvokeAsync("Alert", new { alert = Model.Alert })
 
 <div id="content">
     <div class="float-right">
-        <a asp-page="/Municipality/Index" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
+        <a asp-page="/Body/Index" asp-route-id="@Model.Item.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_LIST</a>
     </div>
-    <h1>@MunicipalityAdminRes.PAGE_TITLE_CREATE</h1>
+    <h1>@BodyAdminRes.PAGE_TITLE_UPDATE</h1>
     <form method="post">
+        <input type="hidden" name="Item.Id" value="@Model.Item.Id" />
         <div class="form-group">
             <label asp-for="Item.Name"></label>
             <input asp-for="Item.Name" class="form-control form-control-lg" />
@@ -22,8 +23,9 @@
             <input asp-for="Item.Description" class="form-control form-control-lg" />
             <span asp-validation-for="Item.Description"></span>
         </div>
+
         <div class="btn-group" role="group" aria-label="...">
-            <button type="submit" class="btn btn-info" name="action" asp-page-handler="Bodies">@MunicipalityAdminRes.BUTTON_BODIES</button>
+            <button type="submit" class="btn btn-info" name="action" asp-page-handler="Sessions">@BodyAdminRes.BUTTON_SESSIONS</button>
             <button type="submit" class="btn btn-primary" name="action" asp-page-handler="Save">@AdminRes.BUTTON_SAVE</button>
         </div>
     </form>

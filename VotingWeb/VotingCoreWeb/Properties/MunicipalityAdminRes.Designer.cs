@@ -61,6 +61,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Orgány.
+        /// </summary>
+        public static string BUTTON_BODIES {
+            get {
+                return ResourceManager.GetString("BUTTON_BODIES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vytvořit nový záznam.
         /// </summary>
         public static string BUTTON_CREATE {
@@ -84,15 +93,6 @@ namespace VotingCoreWeb.Properties {
         public static string BUTTON_PARTIES {
             get {
                 return ResourceManager.GetString("BUTTON_PARTIES", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zasedání.
-        /// </summary>
-        public static string BUTTON_SESSIONS {
-            get {
-                return ResourceManager.GetString("BUTTON_SESSIONS", resourceCulture);
             }
         }
         

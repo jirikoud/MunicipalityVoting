@@ -64,9 +64,9 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
                     if (itemId.HasValue)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
-                        if (handler == "Sessions")
+                        if (handler == "Bodies")
                         {
-                            return RedirectToPage("/Session/Index", new { area = "Admin", id = itemId.Value });
+                            return RedirectToPage("/Body/Index", new { area = "Admin", id = itemId.Value });
                         }
                         return RedirectToPage("/Municipality/Index", new { area = "Admin" });
                     }

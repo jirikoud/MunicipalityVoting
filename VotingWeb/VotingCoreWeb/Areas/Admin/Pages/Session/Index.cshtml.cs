@@ -21,6 +21,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         private readonly ContextUtils _contextUtils;
 
         public int MunicipalityId { get; set; }
+        public int BodyId { get; set; }
         public List<VotingCoreData.Models.Session> ItemList { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
@@ -30,17 +31,23 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
             _contextUtils = contextUtils;
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             try
             {
-                int? municipalityId = await _contextUtils.CheckMunicipalityRightsAsync(id, User, _dbContext, TempData);
+                var body = await _dbContext.FindBodyByIdAsync(id);
+                if (body == null)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
+                int? municipalityId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                 if (!municipalityId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.MunicipalityId = municipalityId.Value;
-                this.ItemList = await _dbContext.LoadSessionsAsync(municipalityId.Value);
+                this.BodyId = body.Id;
+                this.ItemList = await _dbContext.LoadSessionsAsync(BodyId);
                 return Page();
             }
             catch (Exception exception)

@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using VotingCoreData.Models;
 
 namespace VotingCoreWeb.Models.Home
 {
-    public class MunicipalityItem
+    public class BodyItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public List<BodyItem> BodyList { get; set; }
-
-        public MunicipalityItem(VotingCoreData.Models.Municipality entity, List<VotingCoreData.Models.Body> bodyList)
+        public BodyItem(VotingCoreData.Models.Body entity)
         {
             this.Id = entity.Id;
             this.Name = entity.Name;
             this.Description = entity.Description;
-            this.BodyList = bodyList.ConvertAll(item => new BodyItem(item));
         }
     }
 }

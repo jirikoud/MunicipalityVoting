@@ -11,22 +11,22 @@ namespace VotingCoreData.Models
         public int Id { get; set; }
         public int MunicipalityId { get; set; }
 
-        [Display(Name = "DETAIL_FIRSTNAME", ResourceType = typeof(DeputyRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "DEPUTY_FIRSTNAME", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Firstname { get; set; }
 
-        [Display(Name = "DETAIL_LASTNAME", ResourceType = typeof(DeputyRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "DEPUTY_LASTNAME", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Lastname { get; set; }
 
-        [Display(Name = "DETAIL_TITLE_PRE", ResourceType = typeof(DeputyRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "DEPUTY_TITLE_PRE", ResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string TitlePre { get; set; }
 
-        [Display(Name = "DETAIL_TITLE_POST", ResourceType = typeof(DeputyRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "DEPUTY_TITLE_POST", ResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string TitlePost { get; set; }
 
         public bool IsDeleted { get; set; }

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VotingCoreData.Models;
 
-namespace VotingCoreWeb.Models.Municipality
+namespace VotingCoreWeb.Models.Body
 {
     public class SessionItem
     {
@@ -17,8 +16,8 @@ namespace VotingCoreWeb.Models.Municipality
         {
             this.Id = entity.Id;
             this.Name = entity.Name;
-            this.StartDate = entity.StartDate.HasValue ? entity.StartDate.Value.ToString("D") : null;
-            this.EndDate = entity.StartDate.HasValue ? entity.StartDate.Value.ToString("D") : null;
+            this.StartDate = entity.StartDate?.ToString("D");
+            this.EndDate = entity.EndDate?.ToString("D");
         }
     }
 }

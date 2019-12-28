@@ -33,18 +33,23 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
             _contextUtils = contextUtils;
         }
 
-        public async Task<IActionResult> OnGetAsync(int municipalityId)
+        public async Task<IActionResult> OnGetAsync(int bodyId)
         {
             try
             {
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(municipalityId, User, _dbContext, TempData);
+                var body = await _dbContext.FindBodyByIdAsync(bodyId);
+                if (body == null)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.Item = new VotingCoreData.Models.Session()
                 {
-                    MunicipalityId = municipalityId,
+                    BodyId = bodyId,
                 };
                 return Page();
             }
@@ -52,7 +57,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
             {
                 _logger.LogError(exception, "Create failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Session/Index", new { area = "Admin", id = municipalityId });
+                return RedirectToPage("/Session/Index", new { area = "Admin", id = bodyId });
             }
         }
 
@@ -60,7 +65,12 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(this.Item.MunicipalityId, User, _dbContext, TempData);
+                var body = await _dbContext.FindBodyByIdAsync(this.Item.BodyId);
+                if (body == null)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
@@ -75,7 +85,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
                         {
                             return RedirectToPage("/Topic/Index", new { area = "Admin", id = itemId.Value });
                         }
-                        return RedirectToPage("/Session/Index", new { area = "Admin", id = this.Item.MunicipalityId });
+                        return RedirectToPage("/Session/Index", new { area = "Admin", id = this.Item.BodyId });
                     }
                     else
                     {

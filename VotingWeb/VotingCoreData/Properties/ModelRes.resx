@@ -117,7 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DETAIL_NAME" xml:space="preserve">
+  <data name="BODY_DESCRIPTION" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="BODY_NAME" xml:space="preserve">
     <value>Název</value>
+  </data>
+  <data name="DEPUTY_FIRSTNAME" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="DEPUTY_LASTNAME" xml:space="preserve">
+    <value>Příjmení</value>
+  </data>
+  <data name="DEPUTY_TITLE_POST" xml:space="preserve">
+    <value>Tituly za jménem</value>
+  </data>
+  <data name="DEPUTY_TITLE_PRE" xml:space="preserve">
+    <value>Tituly před jménem</value>
+  </data>
+  <data name="MUNICIPALITY_DESCRIPTION" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="MUNICIPALITY_NAME" xml:space="preserve">
+    <value>Jméno obce</value>
+  </data>
+  <data name="PARTY_NAME" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="SESSION_CHAIRMAN" xml:space="preserve">
+    <value>Předsedající</value>
+  </data>
+  <data name="SESSION_DATE_END" xml:space="preserve">
+    <value>Datum konce</value>
+  </data>
+  <data name="SESSION_DATE_START" xml:space="preserve">
+    <value>Datum začátku</value>
+  </data>
+  <data name="SESSION_NAME" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="TOPIC_COMMENT" xml:space="preserve">
+    <value>Komentář</value>
+  </data>
+  <data name="TOPIC_IS_PROCEDURAL" xml:space="preserve">
+    <value>Procedurální</value>
+  </data>
+  <data name="TOPIC_IS_SECRET" xml:space="preserve">
+    <value>Tajné</value>
+  </data>
+  <data name="TOPIC_NAME" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="TOPIC_ORDER" xml:space="preserve">
+    <value>Pořadí bodu</value>
+  </data>
+  <data name="VALIDATION_EMPTY" xml:space="preserve">
+    <value>Toto pole nemůže zůstat prázdné</value>
+  </data>
+  <data name="VALIDATION_LENGTH" xml:space="preserve">
+    <value>Text může být dlouhý nejvýše {1} znaků</value>
+  </data>
+  <data name="VOTING_DEPUTY" xml:space="preserve">
+    <value>Zastupitel</value>
+  </data>
+  <data name="VOTING_PARTY" xml:space="preserve">
+    <value>Zastupitelský klub</value>
+  </data>
+  <data name="VOTING_VOTE" xml:space="preserve">
+    <value>Volba</value>
   </data>
 </root>

@@ -9,7 +9,7 @@ using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
-namespace VotingCoreWeb.Areas.Admin.Pages.Voting
+namespace VotingCoreWeb.Areas.Admin.Pages.Body
 {
     public class DeleteModel : PageModel
     {
@@ -18,10 +18,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
         private readonly ContextUtils _contextUtils;
 
         [BindProperty]
-        public VotingCoreData.Models.Voting Item { get; set; }
-
-        [BindProperty]
-        public string Name { get; set; }
+        public VotingCoreData.Models.Body Item { get; set; }
 
         public AlertModel Alert { get; set; }
 
@@ -36,26 +33,25 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
         {
             try
             {
-                var voting = await _dbContext.FindVotingByIdAsync(id);
-                if (voting == null)
+                var body = await _dbContext.FindBodyByIdAsync(id);
+                if (body == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                    return RedirectToPage("/Voting/Index", new { area = "Admin" });
+                    return RedirectToPage("/Body/Index", new { area = "Admin" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(voting.Topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
-                    return RedirectToPage("/Voting/Index", new { area = "Admin" });
+                    return RedirectToPage("/Body/Index", new { area = "Admin" });
                 }
-                this.Item = voting;
-                this.Name = voting.Deputy.GetFullName();
+                this.Item = body;
                 return Page();
             }
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Delete failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Voting/Index", new { area = "Admin" });
+                return RedirectToPage("/Body/Index", new { area = "Admin" });
             }
         }
 
@@ -65,22 +61,22 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
             {
                 if (this.Item != null)
                 {
-                    var voting = await _dbContext.FindVotingByIdAsync(this.Item.Id);
-                    if (voting == null)
+                    var body = await _dbContext.FindBodyByIdAsync(this.Item.Id);
+                    if (body == null)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                        return RedirectToPage("/Voting/Index", new { area = "Admin" });
+                        return RedirectToPage("/Body/Index", new { area = "Admin" });
                     }
-                    var checkId = await _contextUtils.CheckMunicipalityRightsAsync(voting.Topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
+                    var checkId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                     if (!checkId.HasValue)
                     {
-                        return RedirectToPage("/Voting/Index", new { area = "Admin" });
+                        return RedirectToPage("/Body/Index", new { area = "Admin" });
                     }
-                    var isSuccess = await _dbContext.DeleteVotingAsync(voting.Id);
+                    var isSuccess = await _dbContext.DeleteBodyAsync(body.Id);
                     if (isSuccess)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_DELETE);
-                        return RedirectToPage("/Voting/Index", new { area = "Admin", id = voting.TopicId });
+                        return RedirectToPage("/Body/Index", new { area = "Admin", id = body.MunicipalityId });
                     }
                     else
                     {
@@ -93,7 +89,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
             {
                 _logger.LogError(exception, $"Delete() failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Voting/Index", new { area = "Admin" });
+                return RedirectToPage("/Body/Index", new { area = "Admin" });
             }
         }
 

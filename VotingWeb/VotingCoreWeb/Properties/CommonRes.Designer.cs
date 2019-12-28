@@ -133,6 +133,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Orgány obce.
+        /// </summary>
+        public static string MENU_ITEM_ADMIN_BODIES {
+            get {
+                return ResourceManager.GetString("MENU_ITEM_ADMIN_BODIES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Správa zastupitelů.
         /// </summary>
         public static string MENU_ITEM_ADMIN_DEPUTY {

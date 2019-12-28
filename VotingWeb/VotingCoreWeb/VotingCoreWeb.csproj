@@ -36,6 +36,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Properties\BodyAdminRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BodyAdminRes.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\CommonRes.Designer.cs">
       <DependentUpon>CommonRes.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -97,6 +102,10 @@
     <EmbeddedResource Update="Properties\AdminRes.resx">
       <LastGenOutput>AdminRes.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\BodyAdminRes.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BodyAdminRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\CommonRes.resx">
       <LastGenOutput>CommonRes.Designer.cs</LastGenOutput>

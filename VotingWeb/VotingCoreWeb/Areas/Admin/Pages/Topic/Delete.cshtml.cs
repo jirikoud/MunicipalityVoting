@@ -39,7 +39,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                     return RedirectToPage("/Topic/Index", new { area = "Admin" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Topic/Index", new { area = "Admin" });
@@ -67,7 +67,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                         return RedirectToPage("/Topic/Index", new { area = "Admin" });
                     }
-                    var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.MunicipalityId, User, _dbContext, TempData);
+                    var checkId = await _contextUtils.CheckMunicipalityRightsAsync(topic.Session.Body.MunicipalityId, User, _dbContext, TempData);
                     if (!checkId.HasValue)
                     {
                         return RedirectToPage("/Topic/Index", new { area = "Admin" });

@@ -12,13 +12,13 @@ namespace VotingCoreData.Models
     {
         public int Id { get; set; }
         public int TopicId { get; set; }
-        [Display(Name = "DETAIL_DEPUTY", ResourceType = typeof(VotingRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "VOTING_DEPUTY", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public int DeputyId { get; set; }
-        [Display(Name = "DETAIL_PARTY", ResourceType = typeof(VotingRes))]
+        [Display(Name = "VOTING_PARTY", ResourceType = typeof(ModelRes))]
         public int? PartyId { get; set; }
-        [Display(Name = "DETAIL_VOTE", ResourceType = typeof(VotingRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "VOTING_VOTE", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public int Vote { get; set; }
 
         public Deputy Deputy { get; set; }

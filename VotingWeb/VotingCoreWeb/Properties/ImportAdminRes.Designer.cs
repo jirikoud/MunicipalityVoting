@@ -97,6 +97,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Orgán obce.
+        /// </summary>
+        public static string DETAIL_BODY {
+            get {
+                return ResourceManager.GetString("DETAIL_BODY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Předsedající:.
         /// </summary>
         public static string DETAIL_CHAIRMAN {

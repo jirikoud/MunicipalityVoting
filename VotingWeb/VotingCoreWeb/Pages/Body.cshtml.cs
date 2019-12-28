@@ -6,19 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using VotingCoreData;
-using VotingCoreWeb.Models.Municipality;
+using VotingCoreWeb.Models.Body;
 
 namespace VotingCoreWeb
 {
-    public class MunicipalityModel : PageModel
+    public class BodyModel : PageModel
     {
         private readonly ILogger<MunicipalityModel> _logger;
         private readonly VotingDbContext _dbContext;
 
+        public int MunicipalityId { get; set; }
         public string MunicipalityName { get; set; }
-        public List<BodyItem> BodyList { get; set; }
+        public string BodyName { get; set; }
+        public List<SessionItem> SessionList { get; set; }
 
-        public MunicipalityModel(ILogger<MunicipalityModel> logger, VotingDbContext dbContext)
+        public BodyModel(ILogger<MunicipalityModel> logger, VotingDbContext dbContext)
         {
             _logger = logger;
             _dbContext = dbContext;
@@ -29,15 +31,17 @@ namespace VotingCoreWeb
         {
             try
             {
-                var municipality = await _dbContext.FindMunicipalityByIdAsync(id);
-                var bodyList = await _dbContext.LoadBodiesAsync(id);
-                this.MunicipalityName = municipality.Name;
-                this.BodyList = bodyList.ConvertAll(item => new BodyItem(item));
+                var body = await _dbContext.FindBodyByIdAsync(id);
+                var sessionList = await _dbContext.LoadSessionsAsync(id);
+                this.MunicipalityId = body.MunicipalityId;
+                this.MunicipalityName = body.Municipality.Name;
+                this.BodyName = body.Name;
+                this.SessionList = sessionList.ConvertAll(item => new SessionItem(item));
                 return Page();
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, $"Municipality({id}) failed");
+                _logger.LogError(exception, $"Body({id}) failed");
                 return RedirectToPage("Index");
             }
         }

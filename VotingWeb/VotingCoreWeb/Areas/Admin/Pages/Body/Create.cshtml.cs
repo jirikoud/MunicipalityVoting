@@ -7,14 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using VotingCommon;
 using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
-namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
+namespace VotingCoreWeb.Areas.Admin.Pages.Body
 {
-    [Authorize(Roles = Constants.ROLE_ADMIN)]
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly ILogger<CreateModel> _logger;
@@ -23,7 +22,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
 
         [BindProperty]
         [Required]
-        public VotingCoreData.Models.Municipality Item { get; set; }
+        public VotingCoreData.Models.Body Item { get; set; }
 
         public AlertModel Alert { get; set; }
 
@@ -34,17 +33,26 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             _contextUtils = contextUtils;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int municipalityId)
         {
             try
             {
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(municipalityId, User, _dbContext, TempData);
+                if (!checkId.HasValue)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
+                this.Item = new VotingCoreData.Models.Body()
+                {
+                    MunicipalityId = municipalityId,
+                };
                 return Page();
             }
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Create failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Municipality/Index", new { area = "Admin" });
+                return RedirectToPage("/Body/Index", new { area = "Admin", id = municipalityId });
             }
         }
 
@@ -52,17 +60,22 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
         {
             try
             {
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(this.Item.MunicipalityId, User, _dbContext, TempData);
+                if (!checkId.HasValue)
+                {
+                    return RedirectToPage("/Index", new { area = "" });
+                }
                 if (ModelState.IsValid)
                 {
-                    var itemId = await _dbContext.UpdateMunicipalityAsync(null, this.Item);
+                    var itemId = await _dbContext.UpdateBodyAsync(null, this.Item);
                     if (itemId.HasValue)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_CREATE);
-                        if (handler == "Bodies")
+                        if (handler == "Sessions")
                         {
-                            return RedirectToPage("/Body/Index", new { area = "Admin", id = itemId.Value });
+                            return RedirectToPage("/Session/Index", new { area = "Admin", id = itemId.Value });
                         }
-                        return RedirectToPage("Index");
+                        return RedirectToPage("/Body/Index", new { area = "Admin", id = this.Item.MunicipalityId });
                     }
                     else
                     {
@@ -75,7 +88,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
             {
                 _logger.LogError(exception, "Create failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Municipality/Index", new { area = "Admin" });
+                return RedirectToPage("/Body/Index", new { area = "Admin" });
             }
         }
     }

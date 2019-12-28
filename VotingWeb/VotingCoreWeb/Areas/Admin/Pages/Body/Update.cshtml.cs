@@ -11,7 +11,7 @@ using VotingCoreData;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
-namespace VotingCoreWeb.Areas.Admin.Pages.Session
+namespace VotingCoreWeb.Areas.Admin.Pages.Body
 {
     [Authorize]
     public class UpdateModel : PageModel
@@ -22,7 +22,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
 
         [BindProperty]
         [Required]
-        public VotingCoreData.Models.Session Item { get; set; }
+        public VotingCoreData.Models.Body Item { get; set; }
 
         public AlertModel Alert { get; set; }
 
@@ -37,25 +37,25 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(id);
-                if (session == null)
+                var body = await _dbContext.FindBodyByIdAsync(id);
+                if (body == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(session.Body.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                this.Item = session;
+                this.Item = body;
                 return Page();
             }
             catch (Exception exception)
             {
                 _logger.LogError(exception, "Update failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Index", new { area = "" });
+                return RedirectToPage("/Body/Index", new { area = "Admin" });
             }
         }
 
@@ -63,28 +63,28 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(this.Item.Id);
-                if (session == null)
+                var body = await _dbContext.FindBodyByIdAsync(this.Item.Id);
+                if (body == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
                     return RedirectToPage("/Index", new { area = "" });
                 }
-                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(session.Body.MunicipalityId, User, _dbContext, TempData);
+                var checkId = await _contextUtils.CheckMunicipalityRightsAsync(body.MunicipalityId, User, _dbContext, TempData);
                 if (!checkId.HasValue)
                 {
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 if (ModelState.IsValid)
                 {
-                    var itemId = await _dbContext.UpdateSessionAsync(session.Id, this.Item);
+                    var itemId = await _dbContext.UpdateBodyAsync(body.Id, this.Item);
                     if (itemId.HasValue)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
-                        if (handler == "Topics")
+                        if (handler == "Sessions")
                         {
-                            return RedirectToPage("/Topic/Index", new { area = "Admin", id = itemId.Value });
+                            return RedirectToPage("/Session/Index", new { area = "Admin", id = itemId.Value });
                         }
-                        return RedirectToPage("/Session/Index", new { area = "Admin", id = session.BodyId });
+                        return RedirectToPage("/Body/Index", new { area = "Admin", id = body.MunicipalityId });
                     }
                     else
                     {
@@ -97,7 +97,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
             {
                 _logger.LogError(exception, "Update failed");
                 _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
-                return RedirectToPage("/Session/Index", new { area = "Admin" });
+                return RedirectToPage("/Body/Index", new { area = "Admin" });
             }
         }
     }

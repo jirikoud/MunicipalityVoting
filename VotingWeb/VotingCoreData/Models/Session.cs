@@ -10,28 +10,28 @@ namespace VotingCoreData.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "DETAIL_NAME", ResourceType = typeof(SessionRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
-        
+        [Display(Name = "SESSION_NAME", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Name { get; set; }
-        [Display(Name = "DETAIL_CHAIRMAN", ResourceType = typeof(SessionRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
-        
+
+        [Display(Name = "SESSION_CHAIRMAN", ResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Chairman { get; set; }
-        [Display(Name = "DETAIL_DATE_START", ResourceType = typeof(SessionRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
-        
+
+        [Display(Name = "SESSION_DATE_START", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public DateTime? StartDate { get; set; }
-        [Display(Name = "DETAIL_DATE_END", ResourceType = typeof(SessionRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
+
+        [Display(Name = "SESSION_DATE_END", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public DateTime? EndDate { get; set; }
 
-        public int MunicipalityId { get; set; }
+        public int BodyId { get; set; }
         public bool IsDeleted { get; set; }
 
-        public Municipality Municipality { get; set; }
-        public virtual List<Topic> Topics { get; set; }
+        public Body Body { get; set; }
+        public List<Topic> Topics { get; set; }
 
         public void UpdateFrom(Session model)
         {

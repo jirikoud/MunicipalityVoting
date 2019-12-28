@@ -35,8 +35,13 @@ namespace VotingCoreWeb.Pages
                         return RedirectToAction("Index", "Topic", new { id = shortcut.TopicId });
                     }
                 }
+                this.MunicipalityList = new List<MunicipalityItem>();
                 var municipalityList = await _dbContext.LoadMunicipalitiesAsync();
-                this.MunicipalityList = municipalityList.ConvertAll(item => new MunicipalityItem(item));
+                foreach (var municipality in municipalityList)
+                {
+                    var bodyList = await _dbContext.LoadBodiesAsync(municipality.Id);
+                    this.MunicipalityList.Add(new MunicipalityItem(municipality, bodyList));
+                }
             }
             catch (Exception exception)
             {

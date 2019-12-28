@@ -129,6 +129,9 @@
   <data name="BUTTON_LOAD" xml:space="preserve">
     <value>Načíst</value>
   </data>
+  <data name="DETAIL_BODY" xml:space="preserve">
+    <value>Orgán obce</value>
+  </data>
   <data name="DETAIL_CHAIRMAN" xml:space="preserve">
     <value>Předsedající:</value>
   </data>

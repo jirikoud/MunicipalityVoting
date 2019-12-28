@@ -27,6 +27,13 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
         [BindProperty]
         public int MunicipalityId { get; set; }
 
+        [Display(Name = "DETAIL_BODY", ResourceType = typeof(ImportAdminRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
+        [BindProperty]
+        public int BodyId { get; set; }
+
+        public SelectList BodyList { get; set; }
+
         [Display(Name = "DETAIL_IMPORTER", ResourceType = typeof(ImportAdminRes))]
         [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(AdminRes))]
         [BindProperty]
@@ -54,6 +61,13 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
             _environment = environment;
         }
 
+        private async Task PrepareSelectListsAsync()
+        {
+            this.ImporterList = new SelectList(ImporterConvert.GetImporterList(), "Item1", "Item2", null);
+            var bodyList = await _dbContext.LoadBodiesAsync(this.MunicipalityId);
+            this.BodyList = new SelectList(bodyList, "Id", "Name");
+        }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             try
@@ -65,7 +79,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.MunicipalityId = claimId.Value;
-                this.ImporterList = new SelectList(ImporterConvert.GetImporterList(), "Item1", "Item2", null);
+                await PrepareSelectListsAsync();
                 return Page();
             }
             catch (Exception exception)
@@ -101,7 +115,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
                     if (sessionModel.ErrorMessage != null)
                     {
                         ModelState.AddModelError("Importer", string.Format(ImportAdminRes.VALIDATION_FILE_INVALID_FORMAT, sessionModel.ErrorMessage));
-                        this.ImporterList = new SelectList(ImporterConvert.GetImporterList(), "Item1", "Item2", null);
+                        await PrepareSelectListsAsync();
                         return Page();
                     }
                     this.SessionModel = sessionModel;
@@ -133,7 +147,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
                 this.SessionModel = sessionModel;
                 if (sessionModel.ErrorMessage == null)
                 {
-                    var isSuccess = await _dbContext.ImportSessionAsync(claimId.Value, sessionModel);
+                    var isSuccess = await _dbContext.ImportSessionAsync(claimId.Value, this.BodyId, sessionModel);
                     if (isSuccess)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, ImportAdminRes.ALERT_IMPORT_SUCCESS);

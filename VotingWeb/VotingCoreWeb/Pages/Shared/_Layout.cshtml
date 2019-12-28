@@ -43,7 +43,7 @@
                                         {
                                             <div class="dropdown-divider"></div>
                                         }
-                                        <a asp-area="Admin" asp-page="/Session/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_SESSIONS ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_SESSIONS</a>
+                                        <a asp-area="Admin" asp-page="/Body/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_BODIES ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_BODIES</a>
                                         <a asp-area="Admin" asp-page="/Party/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_PARTY ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_PARTY</a>
                                         <a asp-area="Admin" asp-page="/Deputy/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_DEPUTY ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_DEPUTY</a>
                                         <a asp-area="Admin" asp-page="/Import/Index" class="dropdown-item @(ViewData["MenuItem"]?.ToString() == CommonRes.MENU_ITEM_ADMIN_IMPORT ? "active" : "")">@CommonRes.MENU_ITEM_ADMIN_IMPORT</a>

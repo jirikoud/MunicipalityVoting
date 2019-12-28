@@ -22,6 +22,7 @@ namespace VotingCoreData
         public DbSet<Deputy> Deputies { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<Municipality> Municipalities { get; set; }
+        public DbSet<Body> Bodies { get; set; }
         public DbSet<Party> Parties { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Shortcut> Shortcuts { get; set; }
@@ -136,18 +137,102 @@ namespace VotingCoreData
 
         #endregion
 
-        #region Session
+        #region Body
 
-        public async Task<List<Session>> LoadSessionsAsync(int municipalityId)
+        public async Task<List<Body>> LoadBodiesAsync(int municipalityId)
         {
             try
             {
-                var list = await this.Sessions.Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId).OrderByDescending(item => item.StartDate).ToListAsync();
+                var list = await this.Bodies.Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId).OrderBy(item => item.Name).ToListAsync();
                 return list;
             }
             catch (Exception exception)
             {
-                _logger.LogError(exception, $"LoadSessions({municipalityId})");
+                _logger.LogError(exception, $"LoadBodies({municipalityId})");
+                return null;
+            }
+        }
+
+        public async Task<Body> FindBodyByIdAsync(int id)
+        {
+            try
+            {
+                var body = await this.Bodies.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                return body;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"FindBodyById({id})");
+                return null;
+            }
+        }
+
+        public async Task<int?> UpdateBodyAsync(int? id, Body changes)
+        {
+            try
+            {
+                Body model;
+                if (id.HasValue)
+                {
+                    model = await this.Bodies.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                    if (model == null)
+                    {
+                        return null;
+                    }
+                    model.UpdateFrom(changes);
+                }
+                else
+                {
+                    model = new Body()
+                    {
+                        MunicipalityId = changes.MunicipalityId,
+                    };
+                    model.UpdateFrom(changes);
+                    this.Bodies.Add(model);
+                }
+                await SaveChangesAsync();
+                return model.Id;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"UpdateBody({id})");
+                return null;
+            }
+        }
+
+        public async Task<bool> DeleteBodyAsync(int id)
+        {
+            try
+            {
+                var deleteItem = await this.Bodies.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                if (deleteItem != null)
+                {
+                    deleteItem.IsDeleted = true;
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"DeleteBody({id})");
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Session
+
+        public async Task<List<Session>> LoadSessionsAsync(int bodyId)
+        {
+            try
+            {
+                var list = await this.Sessions.Where(item => !item.IsDeleted && item.BodyId == bodyId).OrderByDescending(item => item.StartDate).ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadSessions({bodyId})");
                 return null;
             }
         }
@@ -156,7 +241,7 @@ namespace VotingCoreData
         {
             try
             {
-                var session = await this.Sessions.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                var session = await this.Sessions.Include(item => item.Body.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
                 return session;
             }
             catch (Exception exception)
@@ -184,7 +269,7 @@ namespace VotingCoreData
                 {
                     model = new Session()
                     {
-                        MunicipalityId = changes.MunicipalityId,
+                        BodyId = changes.BodyId,
                     };
                     model.UpdateFrom(changes);
                     this.Sessions.Add(model);
@@ -254,7 +339,7 @@ namespace VotingCoreData
         {
             try
             {
-                var municipality = await this.Topics.Include(item => item.Session.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                var municipality = await this.Topics.Include(item => item.Session.Body.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
                 return municipality;
             }
             catch (Exception exception)
@@ -338,7 +423,7 @@ namespace VotingCoreData
         {
             try
             {
-                var party = await this.Votings.Include(item => item.Topic.Session).Include(item => item.Deputy).FirstOrDefaultAsync(item => item.Id == id);
+                var party = await this.Votings.Include(item => item.Topic.Session.Body.Municipality).Include(item => item.Deputy).FirstOrDefaultAsync(item => item.Id == id);
                 return party;
             }
             catch (Exception exception)
@@ -597,7 +682,7 @@ namespace VotingCoreData
 
         #region Import
 
-        public async Task<bool> ImportSessionAsync(int municipalityId, SessionModel sessionModel)
+        public async Task<bool> ImportSessionAsync(int municipalityId, int bodyId, SessionModel sessionModel)
         {
             try
             {
@@ -607,7 +692,7 @@ namespace VotingCoreData
                     Chairman = sessionModel.Chairman,
                     StartDate = sessionModel.StartDate,
                     EndDate = sessionModel.EndDate,
-                    MunicipalityId = municipalityId,
+                    BodyId = bodyId,
                     Topics = new List<Topic>(),
                 };
                 this.Sessions.Add(session);

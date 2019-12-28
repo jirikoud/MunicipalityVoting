@@ -11,9 +11,9 @@ namespace VotingCoreData.Models
         public int Id { get; set; }
         public int MunicipalityId { get; set; }
 
-        [Display(Name = "DETAIL_NAME", ResourceType = typeof(PartyRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ValidationRes))]
-        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ValidationRes))]
+        [Display(Name = "PARTY_NAME", ResourceType = typeof(ModelRes))]
+        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
+        [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
 

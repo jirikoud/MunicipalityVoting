@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VotingCoreData.Properties {
+namespace VotingCoreWeb.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace VotingCoreData.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class PartyRes {
+    public class BodyAdminRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal PartyRes() {
+        internal BodyAdminRes() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace VotingCoreData.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VotingCoreData.Properties.PartyRes", typeof(PartyRes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VotingCoreWeb.Properties.BodyAdminRes", typeof(BodyAdminRes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,74 @@ namespace VotingCoreData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Přidat nový.
+        /// </summary>
+        public static string BUTTON_CREATE {
+            get {
+                return ResourceManager.GetString("BUTTON_CREATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zasedání.
+        /// </summary>
+        public static string BUTTON_SESSIONS {
+            get {
+                return ResourceManager.GetString("BUTTON_SESSIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Název.
         /// </summary>
-        public static string DETAIL_NAME {
+        public static string COLUMN_NAME {
             get {
-                return ResourceManager.GetString("DETAIL_NAME", resourceCulture);
+                return ResourceManager.GetString("COLUMN_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orgány obce.
+        /// </summary>
+        public static string PAGE_TITLE {
+            get {
+                return ResourceManager.GetString("PAGE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Přidat nový.
+        /// </summary>
+        public static string PAGE_TITLE_CREATE {
+            get {
+                return ResourceManager.GetString("PAGE_TITLE_CREATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odstranit orgán.
+        /// </summary>
+        public static string PAGE_TITLE_DELETE {
+            get {
+                return ResourceManager.GetString("PAGE_TITLE_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upravit orgán.
+        /// </summary>
+        public static string PAGE_TITLE_UPDATE {
+            get {
+                return ResourceManager.GetString("PAGE_TITLE_UPDATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orgány obce.
+        /// </summary>
+        public static string TABLE_TITLE {
+            get {
+                return ResourceManager.GetString("TABLE_TITLE", resourceCulture);
             }
         }
     }

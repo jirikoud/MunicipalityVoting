@@ -7,7 +7,8 @@
 
 <div id="content">
     <div class="float-right">
-        <a asp-area="Admin" asp-page="/Session/Create" asp-route-municipalityId="@Model.MunicipalityId" class="btn btn-success">@SessionAdminRes.BUTTON_CREATE</a>
+        <a asp-area="Admin" asp-page="/Body/Index" asp-route-id="@Model.MunicipalityId" class="btn btn-info">@AdminRes.BUTTON_BACK</a>
+        <a asp-area="Admin" asp-page="/Session/Create" asp-route-bodyId="@Model.BodyId" class="btn btn-success">@SessionAdminRes.BUTTON_CREATE</a>
     </div>
     <h1>@SessionAdminRes.TABLE_TITLE</h1>
     <div class="grid-view">

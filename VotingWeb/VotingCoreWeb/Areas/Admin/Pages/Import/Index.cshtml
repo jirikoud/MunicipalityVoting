@@ -15,6 +15,11 @@
         <form method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="MunicipalityId" />
             <div class="form-group">
+                <label asp-for="BodyId"></label>
+                <select asp-for="BodyId" asp-items="Model.BodyList" class="form-control form-control-lg"></select>
+                <span asp-validation-for="BodyId"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Importer"></label>
                 <select asp-for="Importer" asp-items="Model.ImporterList" class="form-control form-control-lg"></select>
                 <span asp-validation-for="Importer"></span>
