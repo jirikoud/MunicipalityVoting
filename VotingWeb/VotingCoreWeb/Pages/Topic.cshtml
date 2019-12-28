@@ -8,6 +8,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-page="/Index">@VotingRes.TITLE_HOME</a></li>
         <li class="breadcrumb-item"><a asp-page="/Municipality" asp-route-id="@Model.MunicipalityId">@Model.MunicipalityName</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Body" asp-route-id="@Model.BodyId">@Model.BodyName</a></li>
         <li class="breadcrumb-item"><a asp-page="/Session" asp-route-id="@Model.SessionId">@Model.SessionName</a></li>
         <li class="breadcrumb-item active" aria-current="page">@Model.TopicOrder. @Model.TopicShortname</li>
     </ol>

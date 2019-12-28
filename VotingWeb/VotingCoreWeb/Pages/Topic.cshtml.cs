@@ -23,6 +23,8 @@ namespace VotingCoreWeb
 
         public int MunicipalityId { get; set; }
         public string MunicipalityName { get; set; }
+        public int BodyId { get; set; }
+        public string BodyName { get; set; }
         public int SessionId { get; set; }
         public string SessionName { get; set; }
         public int TopicId { get; set; }
@@ -51,6 +53,8 @@ namespace VotingCoreWeb
 
                 this.MunicipalityId = topic.Session.Body.MunicipalityId;
                 this.MunicipalityName = topic.Session.Body.Municipality.Name;
+                this.BodyId = topic.Session.Body.Id;
+                this.BodyName = topic.Session.Body.Name;
                 this.SessionId = topic.Session.Id;
                 this.SessionName = topic.Session.Name;
                 this.TopicId = topic.Id;

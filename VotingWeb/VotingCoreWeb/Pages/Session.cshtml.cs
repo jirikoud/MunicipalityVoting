@@ -17,6 +17,8 @@ namespace VotingCoreWeb
 
         public int MunicipalityId { get; set; }
         public string MunicipalityName { get; set; }
+        public int BodyId { get; set; }
+        public string BodyName { get; set; }
         public int SessionId { get; set; }
         public string SessionName { get; set; }
 
@@ -38,6 +40,8 @@ namespace VotingCoreWeb
 
                 this.MunicipalityId = session.Body.MunicipalityId;
                 this.MunicipalityName = session.Body.Municipality.Name;
+                this.BodyId = session.Body.Id;
+                this.BodyName = session.Body.Name;
                 this.SessionId = session.Id;
                 this.SessionName = session.Name;
                 this.TopicList = topicList.ConvertAll(item => new TopicItem(item));
