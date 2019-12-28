@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingWeb", "VotingWeb\VotingWeb.csproj", "{70F72EEF-5BDA-4470-9DB8-BED2090A273E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingData", "VotingData\VotingData.csproj", "{ACE86830-E04A-43ED-93B8-A7FE27F33984}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableGenerator", "TableGenerator\TableGenerator.csproj", "{416B0AD8-717D-426D-8759-3A6B5A49B1F4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingImporter", "VotingImporter\VotingImporter.csproj", "{27109BA9-D482-4605-B0F7-696A14451DF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingCommon", "VotingCommon\VotingCommon.csproj", "{AE86DF2A-B8A7-431D-95AA-EC10A44EA5EB}"
@@ -23,18 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70F72EEF-5BDA-4470-9DB8-BED2090A273E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70F72EEF-5BDA-4470-9DB8-BED2090A273E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70F72EEF-5BDA-4470-9DB8-BED2090A273E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70F72EEF-5BDA-4470-9DB8-BED2090A273E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACE86830-E04A-43ED-93B8-A7FE27F33984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACE86830-E04A-43ED-93B8-A7FE27F33984}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACE86830-E04A-43ED-93B8-A7FE27F33984}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACE86830-E04A-43ED-93B8-A7FE27F33984}.Release|Any CPU.Build.0 = Release|Any CPU
-		{416B0AD8-717D-426D-8759-3A6B5A49B1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{416B0AD8-717D-426D-8759-3A6B5A49B1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{416B0AD8-717D-426D-8759-3A6B5A49B1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{416B0AD8-717D-426D-8759-3A6B5A49B1F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27109BA9-D482-4605-B0F7-696A14451DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{27109BA9-D482-4605-B0F7-696A14451DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27109BA9-D482-4605-B0F7-696A14451DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
