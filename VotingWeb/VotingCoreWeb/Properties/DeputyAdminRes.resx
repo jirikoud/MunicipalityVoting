@@ -126,6 +126,12 @@
   <data name="COLUMN_LASTNAME" xml:space="preserve">
     <value>Přijmení</value>
   </data>
+  <data name="COLUMN_PARTY" xml:space="preserve">
+    <value>Klub</value>
+  </data>
+  <data name="OPTION_PARTY" xml:space="preserve">
+    <value>Vyberte klub</value>
+  </data>
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>Zastupitelé</value>
   </data>

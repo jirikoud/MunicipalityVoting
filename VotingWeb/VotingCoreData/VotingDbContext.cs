@@ -31,6 +31,8 @@ namespace VotingCoreData
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<BodyMember> BodyMembers { get; set; }
+        public DbSet<SessionMember> SessionMembers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -157,7 +159,10 @@ namespace VotingCoreData
         {
             try
             {
-                var body = await this.Bodies.Include(item => item.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                var body = await this.Bodies
+                    .Include(item => item.Municipality)
+                    .Include(item => item.BodyMembers)
+                    .FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
                 return body;
             }
             catch (Exception exception)
@@ -167,19 +172,25 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<int?> UpdateBodyAsync(int? id, Body changes)
+        public async Task<int?> UpdateBodyAsync(int? id, Body changes, List<BodyMember> members)
         {
             try
             {
                 Body model;
                 if (id.HasValue)
                 {
-                    model = await this.Bodies.FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                    model = await this.Bodies.Include(item => item.BodyMembers).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
                     if (model == null)
                     {
                         return null;
                     }
                     model.UpdateFrom(changes);
+                    var memberIds = members.Select(item => item.DeputyId);
+                    var removeList = model.BodyMembers.Where(item => !memberIds.Contains(item.DeputyId));
+                    var currentIds = model.BodyMembers.Select(item => item.DeputyId);
+                    var addList = members.Where(item => !currentIds.Contains(item.DeputyId));
+                    this.RemoveRange(removeList);
+                    model.BodyMembers.AddRange(addList);
                 }
                 else
                 {
@@ -189,7 +200,10 @@ namespace VotingCoreData
                     };
                     model.UpdateFrom(changes);
                     this.Bodies.Add(model);
+                    model.BodyMembers = new List<BodyMember>();
+                    model.BodyMembers.AddRange(members);
                 }
+
                 await SaveChangesAsync();
                 return model.Id;
             }
@@ -241,7 +255,10 @@ namespace VotingCoreData
         {
             try
             {
-                var session = await this.Sessions.Include(item => item.Body.Municipality).FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
+                var session = await this.Sessions
+                    .Include(item => item.Body.Municipality)
+                    .Include(item => item.SessionMembers)
+                    .FirstOrDefaultAsync(item => item.Id == id && !item.IsDeleted);
                 return session;
             }
             catch (Exception exception)
@@ -251,7 +268,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<int?> UpdateSessionAsync(int? id, Session changes)
+        public async Task<int?> UpdateSessionAsync(int? id, Session changes, List<SessionMember> members)
         {
             try
             {
@@ -264,6 +281,12 @@ namespace VotingCoreData
                         return null;
                     }
                     model.UpdateFrom(changes);
+                    var memberIds = members.Select(item => item.DeputyId);
+                    var removeList = model.SessionMembers.Where(item => !memberIds.Contains(item.DeputyId));
+                    var currentIds = model.SessionMembers.Select(item => item.DeputyId);
+                    var addList = members.Where(item => !currentIds.Contains(item.DeputyId));
+                    this.RemoveRange(removeList);
+                    model.SessionMembers.AddRange(addList);
                 }
                 else
                 {
@@ -273,6 +296,8 @@ namespace VotingCoreData
                     };
                     model.UpdateFrom(changes);
                     this.Sessions.Add(model);
+                    model.SessionMembers = new List<SessionMember>();
+                    model.SessionMembers.AddRange(members);
                 }
                 await SaveChangesAsync();
                 return model.Id;
@@ -577,7 +602,9 @@ namespace VotingCoreData
         {
             try
             {
-                var list = await this.Deputies.Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId)
+                var list = await this.Deputies
+                    .Include(item => item.Party)
+                    .Where(item => !item.IsDeleted && item.MunicipalityId == municipalityId)
                     .OrderBy(item => item.Lastname)
                     .ThenBy(item => item.Firstname)
                     .ToListAsync();
@@ -653,6 +680,28 @@ namespace VotingCoreData
             {
                 _logger.LogError(exception, $"DeleteDeputy({id})");
                 return false;
+            }
+        }
+
+        #endregion
+
+        #region BodyMember
+
+        public async Task<List<BodyMember>> LoadBodyMembersAsync(int bodyId)
+        {
+            try
+            {
+                var list = await this.BodyMembers
+                    .Include(item => item.Deputy)
+                    .Where(item => item.BodyId == bodyId)
+                    .OrderBy(item => item.Deputy.Lastname).ThenBy(item => item.Deputy.Firstname)
+                    .ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadBodyMembers()");
+                return null;
             }
         }
 

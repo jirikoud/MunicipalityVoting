@@ -88,6 +88,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aktuální členové.
+        /// </summary>
+        public static string LABEL_CURRENT_MEMBERS {
+            get {
+                return ResourceManager.GetString("LABEL_CURRENT_MEMBERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Orgány obce.
         /// </summary>
         public static string PAGE_TITLE {

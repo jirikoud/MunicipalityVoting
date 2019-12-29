@@ -129,6 +129,9 @@
   <data name="COLUMN_NAME" xml:space="preserve">
     <value>Název</value>
   </data>
+  <data name="LABEL_PRESENT_MEMBERS" xml:space="preserve">
+    <value>Přítomní členové</value>
+  </data>
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>Zasedání</value>
   </data>

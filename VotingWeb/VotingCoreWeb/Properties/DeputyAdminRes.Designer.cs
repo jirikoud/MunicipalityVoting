@@ -88,6 +88,24 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Klub.
+        /// </summary>
+        public static string COLUMN_PARTY {
+            get {
+                return ResourceManager.GetString("COLUMN_PARTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vyberte klub.
+        /// </summary>
+        public static string OPTION_PARTY {
+            get {
+                return ResourceManager.GetString("OPTION_PARTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zastupitelé.
         /// </summary>
         public static string PAGE_TITLE {

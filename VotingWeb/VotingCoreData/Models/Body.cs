@@ -25,6 +25,8 @@ namespace VotingCoreData.Models
         public Municipality Municipality { get; set; }
         public List<Session> Sessions { get; set; }
 
+        public List<BodyMember> BodyMembers { get; set; }
+
         public void UpdateFrom(Body model)
         {
             this.Name = model.Name;

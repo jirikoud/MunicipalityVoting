@@ -97,6 +97,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Přítomní členové.
+        /// </summary>
+        public static string LABEL_PRESENT_MEMBERS {
+            get {
+                return ResourceManager.GetString("LABEL_PRESENT_MEMBERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zasedání.
         /// </summary>
         public static string PAGE_TITLE {

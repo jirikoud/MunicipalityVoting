@@ -23,6 +23,21 @@
             <input asp-for="Item.Description" class="form-control form-control-lg" />
             <span asp-validation-for="Item.Description"></span>
         </div>
+        <div class="form-group">
+            <h2>@BodyAdminRes.LABEL_CURRENT_MEMBERS</h2>
+            <ul class="list-unstyled row">
+                @for (int index = 0; index < Model.MemberList.Count; index++)
+                {
+                    <li class="list-item col-6 col-md-4 col-lg-3">
+                        <div class="custom-control custom-checkbox">
+                            <input asp-for="MemberList[index].DeputyId" type="hidden" />
+                            <input asp-for="MemberList[index].IsChecked" type="checkbox" class="custom-control-input">
+                            <label asp-for="MemberList[index].IsChecked" class="custom-control-label">@Model.MemberList[index].DeputyName</label>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
 
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit" class="btn btn-info" name="action" asp-page-handler="Sessions">@BodyAdminRes.BUTTON_SESSIONS</button>

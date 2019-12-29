@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using VotingCoreData;
+using VotingCoreData.Models;
+using VotingCoreWeb.Areas.Admin.Models;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
@@ -24,6 +26,9 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
         [Required]
         public VotingCoreData.Models.Body Item { get; set; }
 
+        [BindProperty]
+        public List<MemberItem> MemberList { get; set; }
+
         public AlertModel Alert { get; set; }
 
         public UpdateModel(ILogger<UpdateModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
@@ -31,6 +36,12 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
             _logger = logger;
             _dbContext = dbContext;
             _contextUtils = contextUtils;
+        }
+
+        private async Task PrepareListAsync(VotingCoreData.Models.Body body)
+        {
+            var deputyList = await _dbContext.LoadDeputiesAsync(body.MunicipalityId);
+            this.MemberList = deputyList.ConvertAll(item => new MemberItem(item, body.BodyMembers.Any(member => member.DeputyId == item.Id)));
         }
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -49,6 +60,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.Item = body;
+                await PrepareListAsync(body);
                 return Page();
             }
             catch (Exception exception)
@@ -76,7 +88,8 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
                 }
                 if (ModelState.IsValid)
                 {
-                    var itemId = await _dbContext.UpdateBodyAsync(body.Id, this.Item);
+                    var members = this.MemberList.Where(item => item.IsChecked).Select(item => new BodyMember() { DeputyId = item.DeputyId }).ToList();
+                    var itemId = await _dbContext.UpdateBodyAsync(body.Id, this.Item, members);
                     if (itemId.HasValue)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
@@ -91,6 +104,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
                         Alert = new AlertModel(AlertTypeEnum.Danger, AdminRes.ERROR_FAILED_UPDATE);
                     }
                 }
+                await PrepareListAsync(body);
                 return Page();
             }
             catch (Exception exception)

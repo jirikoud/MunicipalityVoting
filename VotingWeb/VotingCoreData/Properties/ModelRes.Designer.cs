@@ -97,6 +97,15 @@ namespace VotingCoreData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Klub.
+        /// </summary>
+        public static string DEPUTY_PARTY {
+            get {
+                return ResourceManager.GetString("DEPUTY_PARTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tituly za jménem.
         /// </summary>
         public static string DEPUTY_TITLE_POST {

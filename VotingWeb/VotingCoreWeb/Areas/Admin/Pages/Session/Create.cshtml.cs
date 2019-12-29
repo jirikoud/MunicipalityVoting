@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using VotingCoreData;
+using VotingCoreData.Models;
+using VotingCoreWeb.Areas.Admin.Models;
 using VotingCoreWeb.Infrastructure;
 using VotingCoreWeb.Properties;
 
@@ -24,6 +26,9 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         [Required]
         public VotingCoreData.Models.Session Item { get; set; }
 
+        [BindProperty]
+        public List<MemberItem> MemberList { get; set; }
+
         public AlertModel Alert { get; set; }
 
         public CreateModel(ILogger<CreateModel> logger, VotingDbContext dbContext, ContextUtils contextUtils)
@@ -31,6 +36,12 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
             _logger = logger;
             _dbContext = dbContext;
             _contextUtils = contextUtils;
+        }
+
+        private async Task PrepareListAsync(int bodyId)
+        {
+            var memberList = await _dbContext.LoadBodyMembersAsync(bodyId);
+            this.MemberList = memberList.ConvertAll(item => new MemberItem(item.Deputy, true));
         }
 
         public async Task<IActionResult> OnGetAsync(int bodyId)
@@ -51,6 +62,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
                 {
                     BodyId = bodyId,
                 };
+                await PrepareListAsync(body.Id);
                 return Page();
             }
             catch (Exception exception)
@@ -77,7 +89,8 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
                 }
                 if (ModelState.IsValid)
                 {
-                    var itemId = await _dbContext.UpdateSessionAsync(null, this.Item);
+                    var members = this.MemberList.Where(item => item.IsChecked).Select(item => new SessionMember() { DeputyId = item.DeputyId }).ToList();
+                    var itemId = await _dbContext.UpdateSessionAsync(null, this.Item, members);
                     if (itemId.HasValue)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_CREATE);
@@ -92,6 +105,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
                         Alert = new AlertModel(AlertTypeEnum.Danger, AdminRes.ERROR_FAILED_CREATE);
                     }
                 }
+                await PrepareListAsync(body.Id);
                 return Page();
             }
             catch (Exception exception)

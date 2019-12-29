@@ -129,6 +129,9 @@
   <data name="DEPUTY_LASTNAME" xml:space="preserve">
     <value>Příjmení</value>
   </data>
+  <data name="DEPUTY_PARTY" xml:space="preserve">
+    <value>Klub</value>
+  </data>
   <data name="DEPUTY_TITLE_POST" xml:space="preserve">
     <value>Tituly za jménem</value>
   </data>

@@ -29,10 +29,14 @@ namespace VotingCoreData.Models
         [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string TitlePost { get; set; }
 
+        [Display(Name = "DEPUTY_PARTY", ResourceType = typeof(ModelRes))]
+        public int? PartyId { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public Municipality Municipality { get; set; }
         public List<Voting> Votings { get; set; }
+        public Party Party { get; set; }
 
         public string GetFullName()
         {
@@ -54,6 +58,7 @@ namespace VotingCoreData.Models
             this.Lastname = model.Lastname;
             this.TitlePre = model.TitlePre;
             this.TitlePost = model.TitlePost;
+            this.PartyId = model.PartyId;
         }
     }
 }

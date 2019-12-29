@@ -33,6 +33,21 @@
             <input asp-for="Item.EndDate" type="date" class="form-control form-control-lg" min="1990-01-01" max="2099-12-31" />
             <span asp-validation-for="Item.EndDate"></span>
         </div>
+        <div class="form-group">
+            <h3>@SessionAdminRes.LABEL_PRESENT_MEMBERS</h3>
+            <ul class="list-unstyled row">
+                @for (int index = 0; index < Model.MemberList.Count; index++)
+                {
+                    <li class="list-item col-6 col-md-4 col-lg-3">
+                        <div class="custom-control custom-checkbox">
+                            <input asp-for="MemberList[index].DeputyId" type="hidden" />
+                            <input asp-for="MemberList[index].IsChecked" type="checkbox" class="custom-control-input">
+                            <label asp-for="MemberList[index].IsChecked" class="custom-control-label">@Model.MemberList[index].DeputyName</label>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
 
         <div class="btn-group" role="group" aria-label="...">
             <button type="submit" class="btn btn-info" name="action" asp-page-handler="Topics">@SessionAdminRes.BUTTON_TOPICS</button>

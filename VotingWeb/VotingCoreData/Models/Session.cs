@@ -32,6 +32,7 @@ namespace VotingCoreData.Models
 
         public Body Body { get; set; }
         public List<Topic> Topics { get; set; }
+        public List<SessionMember> SessionMembers { get; set; }
 
         public void UpdateFrom(Session model)
         {
