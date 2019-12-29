@@ -135,6 +135,9 @@
   <data name="COLUMN_ORDER" xml:space="preserve">
     <value>#</value>
   </data>
+  <data name="LABEL_VOTING" xml:space="preserve">
+    <value>Hlasování</value>
+  </data>
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>Seznam bodů</value>
   </data>

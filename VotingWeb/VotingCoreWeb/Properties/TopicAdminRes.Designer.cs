@@ -115,6 +115,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hlasování.
+        /// </summary>
+        public static string LABEL_VOTING {
+            get {
+                return ResourceManager.GetString("LABEL_VOTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seznam bodů.
         /// </summary>
         public static string PAGE_TITLE {

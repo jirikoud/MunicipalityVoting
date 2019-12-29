@@ -30,13 +30,27 @@
         </div>
         <div class="form-group">
             <label asp-for="Item.IsProcedural"></label>
-            <input asp-for="Item.IsProcedural" class="form-control form-control-lg" />
+            <input asp-for="Item.IsProcedural" class="form-control form-control-sm" />
             <span asp-validation-for="Item.IsProcedural"></span>
         </div>
         <div class="form-group">
             <label asp-for="Item.IsSecret"></label>
-            <input asp-for="Item.IsSecret" class="form-control form-control-lg" />
+            <input asp-for="Item.IsSecret" class="form-control form-control-sm" />
             <span asp-validation-for="Item.IsSecret"></span>
+        </div>
+        <div class="form-group">
+            <h2>@TopicAdminRes.LABEL_VOTING</h2>
+            <ul class="list-unstyled row">
+                @for (int index = 0; index < Model.VotingList.Count; index++)
+                {
+                    <li class="list-item col-6 col-md-4 col-lg-3">
+                        <label asp-for="VotingList[index].Vote">@Model.VotingList[index].DeputyName</label>
+                        <input asp-for="VotingList[index].PartyId" type="hidden" />
+                        <input asp-for="VotingList[index].DeputyId" type="hidden" />
+                        <select asp-for="VotingList[index].Vote" asp-items="Model.VoteList" class="form-control form-control-md"></select>
+                    </li>
+                }
+            </ul>
         </div>
 
         <div class="btn-group" role="group" aria-label="...">

@@ -26,7 +26,7 @@
                 {
                 <tr>
                     <td>@item.Deputy.GetFullName()</td>
-                    <td>@item.Party.Name</td>
+                    <td>@item.Party?.Name</td>
                     <td>@item.GetVoteFormat()</td>
                     <td>
                         <a asp-page="/Voting/Update" asp-route-id="@item.Id" class="btn btn-primary">@AdminRes.BUTTON_UPDATE</a>

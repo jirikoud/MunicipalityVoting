@@ -374,7 +374,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<int?> UpdateTopicAsync(int? id, Topic changes)
+        public async Task<int?> UpdateTopicAsync(int? id, Topic changes, List<Voting> votings)
         {
             try
             {
@@ -396,6 +396,7 @@ namespace VotingCoreData
                     };
                     model.UpdateFrom(changes);
                     this.Topics.Add(model);
+                    model.Votings = votings;
                 }
                 await SaveChangesAsync();
                 return model.Id;
@@ -701,6 +702,28 @@ namespace VotingCoreData
             catch (Exception exception)
             {
                 _logger.LogError(exception, $"LoadBodyMembers()");
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region SessionMember
+
+        public async Task<List<SessionMember>> LoadSessionMembersAsync(int sessionId)
+        {
+            try
+            {
+                var list = await this.SessionMembers
+                    .Include(item => item.Deputy)
+                    .Where(item => item.SessionId == sessionId)
+                    .OrderBy(item => item.Deputy.Lastname).ThenBy(item => item.Deputy.Firstname)
+                    .ToListAsync();
+                return list;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"LoadSessionMembers()");
                 return null;
             }
         }

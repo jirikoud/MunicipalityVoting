@@ -76,7 +76,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
                 }
                 if (ModelState.IsValid)
                 {
-                    var itemId = await _dbContext.UpdateTopicAsync(topic.Id, this.Item);
+                    var itemId = await _dbContext.UpdateTopicAsync(topic.Id, this.Item, null);
                     if (itemId.HasValue)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, AdminRes.SUCCESS_UPDATE);
