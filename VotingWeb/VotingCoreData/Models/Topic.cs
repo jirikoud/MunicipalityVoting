@@ -20,6 +20,9 @@ namespace VotingCoreData.Models
         [StringLength(255, ErrorMessageResourceName = "VALIDATION_LENGTH", ErrorMessageResourceType = typeof(ModelRes))]
         public string Comment { get; set; }
 
+        [Display(Name = "TOPIC_TEXT", ResourceType = typeof(ModelRes))]
+        public string Text { get; set; }
+
         [Display(Name = "TOPIC_ORDER", ResourceType = typeof(ModelRes))]
         public int Order { get; set; }
 
@@ -43,6 +46,7 @@ namespace VotingCoreData.Models
         {
             this.Name = model.Name;
             this.Comment = model.Comment;
+            this.Text = model.Text;
             this.Order = model.Order;
             this.IsProcedural = model.IsProcedural;
             this.IsSecret = model.IsSecret;

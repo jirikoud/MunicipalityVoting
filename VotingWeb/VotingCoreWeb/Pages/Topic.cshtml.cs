@@ -29,6 +29,7 @@ namespace VotingCoreWeb
         public string SessionName { get; set; }
         public int TopicId { get; set; }
         public int TopicOrder { get; set; }
+        public string TopicText { get; set; }
         public string TopicName { get; set; }
         public string TopicShortname { get; set; }
         public string TopicComment { get; set; }
@@ -60,6 +61,7 @@ namespace VotingCoreWeb
                 this.TopicId = topic.Id;
                 this.TopicOrder = topic.Order;
                 this.TopicName = topic.Name;
+                this.TopicText = topic.Text;
                 this.TopicShortname = _contextUtils.ShortenString(topic.Name, 40);
                 this.TopicComment = topic.Comment;
 

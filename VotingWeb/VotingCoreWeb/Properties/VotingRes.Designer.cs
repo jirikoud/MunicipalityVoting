@@ -106,6 +106,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plný text usnesení.
+        /// </summary>
+        public static string TITLE_TEXT {
+            get {
+                return ResourceManager.GetString("TITLE_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hlasování.
         /// </summary>
         public static string TITLE_VOTING {

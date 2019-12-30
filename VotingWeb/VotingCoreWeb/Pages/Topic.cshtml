@@ -17,6 +17,11 @@
     <div class="col">
         <h1>@Model.TopicName</h1>
         <p>@Model.TopicComment</p>
+        @if (!string.IsNullOrWhiteSpace(Model.TopicText))
+        {
+            <h3>@VotingRes.TITLE_TEXT</h3>
+            @Html.Raw(Model.TopicText)
+        }
     </div>
 </div>
 <ul class="nav nav-tabs" id="myTab" role="tablist">

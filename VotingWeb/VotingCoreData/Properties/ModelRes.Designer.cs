@@ -232,6 +232,15 @@ namespace VotingCoreData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plný text usnesení.
+        /// </summary>
+        public static string TOPIC_TEXT {
+            get {
+                return ResourceManager.GetString("TOPIC_TEXT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Toto pole nemůže zůstat prázdné.
         /// </summary>
         public static string VALIDATION_EMPTY {

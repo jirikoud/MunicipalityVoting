@@ -132,6 +132,9 @@
   <data name="TITLE_HOME" xml:space="preserve">
     <value>Seznam obcí</value>
   </data>
+  <data name="TITLE_TEXT" xml:space="preserve">
+    <value>Plný text usnesení</value>
+  </data>
   <data name="TITLE_VOTING" xml:space="preserve">
     <value>Hlasování</value>
   </data>
