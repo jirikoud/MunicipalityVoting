@@ -79,6 +79,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schválen.
+        /// </summary>
+        public static string COLUMN_IS_APPROVED {
+            get {
+                return ResourceManager.GetString("COLUMN_IS_APPROVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Procedurální.
         /// </summary>
         public static string COLUMN_IS_PROCEDURAL {

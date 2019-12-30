@@ -27,12 +27,13 @@ namespace VotingCoreData.Models
         public int Order { get; set; }
 
         [Display(Name = "TOPIC_IS_PROCEDURAL", ResourceType = typeof(ModelRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public bool IsProcedural { get; set; }
 
         [Display(Name = "TOPIC_IS_SECRET", ResourceType = typeof(ModelRes))]
-        [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public bool IsSecret { get; set; }
+
+        [Display(Name = "TOPIC_IS_APPROVED", ResourceType = typeof(ModelRes))]
+        public bool IsApproved { get; set; }
 
         public DateTime? Time { get; set; }
         public int? Total { get; set; }
@@ -50,6 +51,7 @@ namespace VotingCoreData.Models
             this.Order = model.Order;
             this.IsProcedural = model.IsProcedural;
             this.IsSecret = model.IsSecret;
+            this.IsApproved = model.IsApproved;
         }
     }
 }

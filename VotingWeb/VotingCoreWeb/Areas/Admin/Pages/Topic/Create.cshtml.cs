@@ -70,6 +70,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
                 {
                     SessionId = sessionId,
                     Order = (count ?? 0) + 1,
+                    IsApproved = true,
                 };
                 await PrepareListAsync(session.BodyId, session.Id);
                 return Page();

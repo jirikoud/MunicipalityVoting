@@ -17,6 +17,7 @@
                 <tr>
                     <th scope="col">@TopicAdminRes.COLUMN_ORDER</th>
                     <th scope="col">@TopicAdminRes.COLUMN_NAME</th>
+                    <th scope="col">@TopicAdminRes.COLUMN_IS_APPROVED</th>
                     <th scope="col">@TopicAdminRes.COLUMN_IS_PROCEDURAL</th>
                     <th scope="col">@TopicAdminRes.COLUMN_IS_SECRET</th>
                     <th scope="col"></th>
@@ -29,6 +30,7 @@
                 <tr>
                     <td>@item.Order</td>
                     <td>@item.Name</td>
+                    <td>@(item.IsApproved ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
                     <td>@(item.IsProcedural ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
                     <td>@(item.IsSecret ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
                     <td>

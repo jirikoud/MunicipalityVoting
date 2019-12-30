@@ -350,7 +350,7 @@ namespace VotingCoreData
         {
             try
             {
-                var list = await this.Topics.Where(item => !item.IsDeleted && item.SessionId == sessionId).OrderBy(item => item.Order).ToListAsync();
+                var list = await this.Topics.Include(item => item.Votings).Where(item => !item.IsDeleted && item.SessionId == sessionId).OrderBy(item => item.Order).ToListAsync();
                 return list;
             }
             catch (Exception exception)

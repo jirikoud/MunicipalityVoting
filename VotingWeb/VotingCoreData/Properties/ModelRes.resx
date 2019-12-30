@@ -162,6 +162,9 @@
   <data name="TOPIC_COMMENT" xml:space="preserve">
     <value>Komentář</value>
   </data>
+  <data name="TOPIC_IS_APPROVED" xml:space="preserve">
+    <value>Bod schválen?</value>
+  </data>
   <data name="TOPIC_IS_PROCEDURAL" xml:space="preserve">
     <value>Procedurální</value>
   </data>

@@ -124,6 +124,51 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zdržel/a se:.
+        /// </summary>
+        public static string TOPIC_RESULT_ABSTAIN {
+            get {
+                return ResourceManager.GetString("TOPIC_RESULT_ABSTAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nepřítomný/á:.
+        /// </summary>
+        public static string TOPIC_RESULT_MISSING {
+            get {
+                return ResourceManager.GetString("TOPIC_RESULT_MISSING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proti:.
+        /// </summary>
+        public static string TOPIC_RESULT_NO {
+            get {
+                return ResourceManager.GetString("TOPIC_RESULT_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nehlasoval/a:.
+        /// </summary>
+        public static string TOPIC_RESULT_NOT {
+            get {
+                return ResourceManager.GetString("TOPIC_RESULT_NOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pro:.
+        /// </summary>
+        public static string TOPIC_RESULT_YES {
+            get {
+                return ResourceManager.GetString("TOPIC_RESULT_YES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Žádný zastupitel.
         /// </summary>
         public static string VOTING_NO_DEPUTY {

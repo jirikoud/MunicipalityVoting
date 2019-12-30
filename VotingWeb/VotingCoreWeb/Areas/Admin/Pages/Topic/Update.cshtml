@@ -34,13 +34,18 @@
             <span asp-validation-for="Item.Order"></span>
         </div>
         <div class="form-group">
+            <label asp-for="Item.IsApproved"></label>
+            <input asp-for="Item.IsApproved" class="form-control form-control-sm" />
+            <span asp-validation-for="Item.IsApproved"></span>
+        </div>
+        <div class="form-group">
             <label asp-for="Item.IsProcedural"></label>
-            <input asp-for="Item.IsProcedural" class="form-control form-control-lg" />
+            <input asp-for="Item.IsProcedural" class="form-control form-control-sm" />
             <span asp-validation-for="Item.IsProcedural"></span>
         </div>
         <div class="form-group">
             <label asp-for="Item.IsSecret"></label>
-            <input asp-for="Item.IsSecret" class="form-control form-control-lg" />
+            <input asp-for="Item.IsSecret" class="form-control form-control-sm" />
             <span asp-validation-for="Item.IsSecret"></span>
         </div>
 

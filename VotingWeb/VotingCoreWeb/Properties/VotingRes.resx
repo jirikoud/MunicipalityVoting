@@ -138,6 +138,21 @@
   <data name="TITLE_VOTING" xml:space="preserve">
     <value>Hlasování</value>
   </data>
+  <data name="TOPIC_RESULT_ABSTAIN" xml:space="preserve">
+    <value>Zdržel/a se:</value>
+  </data>
+  <data name="TOPIC_RESULT_MISSING" xml:space="preserve">
+    <value>Nepřítomný/á:</value>
+  </data>
+  <data name="TOPIC_RESULT_NO" xml:space="preserve">
+    <value>Proti:</value>
+  </data>
+  <data name="TOPIC_RESULT_NOT" xml:space="preserve">
+    <value>Nehlasoval/a:</value>
+  </data>
+  <data name="TOPIC_RESULT_YES" xml:space="preserve">
+    <value>Pro:</value>
+  </data>
   <data name="VOTING_NO_DEPUTY" xml:space="preserve">
     <value>Žádný zastupitel</value>
   </data>

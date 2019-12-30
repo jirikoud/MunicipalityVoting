@@ -24,8 +24,38 @@
             @foreach (var topic in Model.TopicList)
             {
                 <a asp-page="/Topic" asp-route-id="@topic.Id" class="list-group-item list-group-item-action flex-column align-items-start" data-toggle="tooltip" data-placement="top" title="@topic.Name">
-                    <h3 class="text-truncate">@topic.Order. @topic.Name</h3>
-                    <p>@topic.Comment</p>
+                    <div class="row">
+                        <div class="col-10">
+                            <h3 class="text-truncate">@topic.Order. @topic.Name</h3>
+                            @if (!string.IsNullOrWhiteSpace(topic.Comment) || topic.IsShowResults)
+                            {
+                                <p>
+                                    @topic.Comment
+                                    @if (!string.IsNullOrWhiteSpace(topic.Comment) && topic.IsShowResults)
+                                    {
+                                        <br />
+                                    }
+                                    @if (topic.IsShowResults)
+                                    {
+                                        @VotingRes.TOPIC_RESULT_YES <b>@topic.VoteYes</b>@:,
+                                        @VotingRes.TOPIC_RESULT_NO <b>@topic.VoteNo</b>@:,
+                                        @VotingRes.TOPIC_RESULT_ABSTAIN <b>@topic.VoteAbstain</b>@:,
+                                        @VotingRes.TOPIC_RESULT_MISSING <b>@topic.VoteMissing</b>@:,
+                                        @VotingRes.TOPIC_RESULT_NOT <b>@topic.VoteNot</b>
+                                    }
+                                </p>
+                            }
+                        </div>
+                        <div class="col-2">
+                            @if (topic.IsApproved){
+                                <img src="~/images/icons8-checkmark-yes-50.png" />
+                            }
+                            else
+                            {
+                                <img src="~/images/icons8-macos-close-50.png" />
+                            }
+                        </div>
+                    </div>
                 </a>
             }
         </div>

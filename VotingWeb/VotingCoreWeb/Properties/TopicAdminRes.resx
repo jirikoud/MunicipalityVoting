@@ -123,6 +123,9 @@
   <data name="BUTTON_VOTING" xml:space="preserve">
     <value>Hlasování</value>
   </data>
+  <data name="COLUMN_IS_APPROVED" xml:space="preserve">
+    <value>Schválen</value>
+  </data>
   <data name="COLUMN_IS_PROCEDURAL" xml:space="preserve">
     <value>Procedurální</value>
   </data>

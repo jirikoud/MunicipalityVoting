@@ -196,6 +196,15 @@ namespace VotingCoreData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bod schválen?.
+        /// </summary>
+        public static string TOPIC_IS_APPROVED {
+            get {
+                return ResourceManager.GetString("TOPIC_IS_APPROVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Procedurální.
         /// </summary>
         public static string TOPIC_IS_PROCEDURAL {
