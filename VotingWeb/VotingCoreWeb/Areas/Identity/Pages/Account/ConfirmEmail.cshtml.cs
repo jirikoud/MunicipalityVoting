@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using VotingCoreWeb.Areas.Identity.Pages.Account.Manage;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account
 {
@@ -39,7 +40,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            StatusMessage = result.Succeeded ? StatusMessageModel.Create("Thank you for confirming your email.") : StatusMessageModel.Create("Error confirming your email.", true);
             return Page();
         }
     }

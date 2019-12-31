@@ -112,6 +112,7 @@ namespace VotingCoreWeb
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

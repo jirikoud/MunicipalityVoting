@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,5 +111,51 @@ namespace VotingCoreWeb.Infrastructure
                 return claimId.Value;
             }
         }
+
+        private string GetApiKey(HttpRequest request)
+        {
+            var authorize = request.Headers["Authorization"].FirstOrDefault();
+            if (authorize != null)
+            {
+                if (authorize.StartsWith("Bearer "))
+                {
+                    return authorize.Substring("Bearer ".Length);
+                }
+            }
+            return null;
+        }
+
+        public async Task<IdentityUser> GetApiUserAsync(HttpRequest request, VotingDbContext dbContext, UserManager<IdentityUser> userManager)
+        {
+            var apiKey = GetApiKey(request);
+            var userId = await dbContext.GetUserIdByApiKeyAsync(apiKey);
+            if (userId == null)
+            {
+                return null;
+            }
+            var user = await userManager.FindByIdAsync(userId);
+            return user;
+        }
+
+        public string GetErrorMessage(Exception exception, string environment)
+        {
+            if (environment == Constants.ENVIRONMENT_DEV)
+            {
+                //Na vývoji posílat kompletní popis
+                return exception.ToString();
+            }
+            return exception.Message;
+        }
+
+        public string GetErrorMessage(string message, string environment)
+        {
+            if (environment == Constants.ENVIRONMENT_DEV)
+            {
+                //Na vývoji posílat kompletní popis
+                return message;
+            }
+            return null;
+        }
+
     }
 }

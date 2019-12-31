@@ -106,11 +106,11 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
                     AccountRes.EMAIL_CONFIRM_SUBJECT,
                     string.Format(AccountRes.EMAIL_CONFIRM_BODY, HtmlEncoder.Default.Encode(callbackUrl)));
 
-                StatusMessage = AccountRes.MESSAGE_EMAIL_SENT;
+                StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_EMAIL_SENT);
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage = StatusMessageModel.Create("Your email is unchanged.");
             return RedirectToPage();
         }
 
@@ -142,7 +142,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
                 AccountRes.EMAIL_CONFIRM_SUBJECT,
                 string.Format(AccountRes.EMAIL_CONFIRM_BODY, HtmlEncoder.Default.Encode(callbackUrl)));
 
-            StatusMessage = AccountRes.MESSAGE_EMAIL_SENT;
+            StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_EMAIL_SENT);
             return RedirectToPage();
         }
     }

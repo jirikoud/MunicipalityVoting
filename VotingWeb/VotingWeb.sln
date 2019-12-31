@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingImporter", "VotingImporter\VotingImporter.csproj", "{27109BA9-D482-4605-B0F7-696A14451DF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingImporter", "VotingImporter\VotingImporter.csproj", "{27109BA9-D482-4605-B0F7-696A14451DF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingCommon", "VotingCommon\VotingCommon.csproj", "{AE86DF2A-B8A7-431D-95AA-EC10A44EA5EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingCommon", "VotingCommon\VotingCommon.csproj", "{AE86DF2A-B8A7-431D-95AA-EC10A44EA5EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VotingCoreWeb", "VotingCoreWeb\VotingCoreWeb.csproj", "{A3F194D6-2FA5-42D2-A283-CB2FE1DCDE42}"
 EndProject

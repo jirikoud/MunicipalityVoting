@@ -33,6 +33,7 @@ namespace VotingCoreData
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<BodyMember> BodyMembers { get; set; }
         public DbSet<SessionMember> SessionMembers { get; set; }
+        public DbSet<ApiKey> ApiKeys { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -832,6 +833,66 @@ namespace VotingCoreData
             {
                 _logger.LogError(exception, $"Import({municipalityId}) failed");
                 return false;
+            }
+        }
+
+        #endregion
+
+        #region ApiKey
+
+        public async Task<string> GetApiKeyAsync(string userId)
+        {
+            try
+            {
+                var apiKey = await this.ApiKeys.FirstOrDefaultAsync(item => item.AspNetUserId == userId);
+                return apiKey?.Key;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"GetApiKey({userId})");
+                return null;
+            }
+        }
+
+        public async Task<bool> CreateApiKeyAsync(string userId)
+        {
+            try
+            {
+                var apiKey = await this.ApiKeys.FirstOrDefaultAsync(item => item.AspNetUserId == userId);
+                if (apiKey != null)
+                {
+                    apiKey.Key = Guid.NewGuid().ToString();
+                }
+                else
+                {
+                    apiKey = new ApiKey()
+                    {
+                        Key = Guid.NewGuid().ToString(),
+                        AspNetUserId = userId,
+                    };
+                    this.ApiKeys.Add(apiKey);
+                }
+                await SaveChangesAsync();
+                return true;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"CreateApiKey({userId})");
+                return false;
+            }
+        }
+
+        public async Task<string> GetUserIdByApiKeyAsync(string key)
+        {
+            try
+            {
+                var apiKey = await this.ApiKeys.FirstOrDefaultAsync(item => item.Key == key);
+                return apiKey?.AspNetUserId;
+            }
+            catch (Exception exception)
+            {
+                _logger.LogError(exception, $"GetUserIdByApiKey({key})");
+                return null;
             }
         }
 

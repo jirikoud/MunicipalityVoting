@@ -84,7 +84,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your password has been set.";
+            StatusMessage = StatusMessageModel.Create("Your password has been set.");
 
             return RedirectToPage();
         }

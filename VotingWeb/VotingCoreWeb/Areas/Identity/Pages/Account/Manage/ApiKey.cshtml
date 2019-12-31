@@ -1,0 +1,32 @@
+﻿@page
+@model ApiKeyModel
+@{
+    ViewData["Title"] = AccountRes.API_KEY_TITLE;
+    ViewData["ActivePage"] = ManageNavPages.ApiKey;
+}
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            @if (Model.ApiKey != null)
+            {
+                <div class="form-group">
+                    <input asp-for="ApiKey" class="form-control" disabled />
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    @AccountRes.API_KEY_NOT_CREATED
+                </div>
+            }
+            <button id="update-profile-button" type="submit" class="btn btn-primary">@AccountRes.BUTTON_GENERATE_API_KEY</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

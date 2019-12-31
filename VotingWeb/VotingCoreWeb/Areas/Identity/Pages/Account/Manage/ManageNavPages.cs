@@ -18,6 +18,8 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 
         public static string PersonalData => "PersonalData";
 
+        public static string ApiKey => "ApiKey";
+
         public static string TwoFactorAuthentication => "TwoFactorAuthentication";
 
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
@@ -29,6 +31,8 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 
         public static string PersonalDataNavClass(ViewContext viewContext) => PageNavClass(viewContext, PersonalData);
+
+        public static string ApiKeyNavClass(ViewContext viewContext) => PageNavClass(viewContext, ApiKey);
 
         public static string TwoFactorAuthenticationNavClass(ViewContext viewContext) => PageNavClass(viewContext, TwoFactorAuthentication);
 

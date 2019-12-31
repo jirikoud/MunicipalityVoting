@@ -52,7 +52,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             _logger.LogInformation("User with ID '{UserId}' has reset their authentication app key.", user.Id);
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.";
+            StatusMessage = StatusMessageModel.Create("Your authenticator app key has been reset, you will need to configure your authenticator app using the new key.");
 
             return RedirectToPage("./EnableAuthenticator");
         }

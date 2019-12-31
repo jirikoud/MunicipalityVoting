@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="API_KEY_NOT_CREATED" xml:space="preserve">
+    <value>Nemáte vytvořen žádný klíč</value>
+  </data>
+  <data name="API_KEY_TITLE" xml:space="preserve">
+    <value>API klíč</value>
+  </data>
   <data name="BUTTON_CHANGE_EMAIL" xml:space="preserve">
     <value>Změnit e-mail</value>
   </data>
@@ -131,6 +137,9 @@
   </data>
   <data name="BUTTON_FORGOTTEN_PASSWORD" xml:space="preserve">
     <value>Zapomenuté heslo?</value>
+  </data>
+  <data name="BUTTON_GENERATE_API_KEY" xml:space="preserve">
+    <value>Vygenerovat klíč</value>
   </data>
   <data name="BUTTON_LOGIN" xml:space="preserve">
     <value>Přihlásit se</value>
@@ -258,6 +267,9 @@
   <data name="MANAGE_TITLE" xml:space="preserve">
     <value>Nastavení účtu</value>
   </data>
+  <data name="MENU_API_KEY" xml:space="preserve">
+    <value>API klíč</value>
+  </data>
   <data name="MENU_EMAIL" xml:space="preserve">
     <value>E-mail</value>
   </data>
@@ -269,6 +281,12 @@
   </data>
   <data name="MENU_PROFILE" xml:space="preserve">
     <value>Účet</value>
+  </data>
+  <data name="MESSAGE_API_KEY_FAILED" xml:space="preserve">
+    <value>Generování klíče selhalo</value>
+  </data>
+  <data name="MESSAGE_API_KEY_GENERATED" xml:space="preserve">
+    <value>Váš klíč byl úspěšně vygenerován</value>
   </data>
   <data name="MESSAGE_CHANGE_EMAIL_SUCCESS" xml:space="preserve">
     <value>Změna e-mailu byla úspěšně dokončena.</value>

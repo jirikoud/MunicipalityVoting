@@ -90,7 +90,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = AccountRes.MESSAGE_PROFILE_SAVED;
+            StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_PROFILE_SAVED);
             return RedirectToPage();
         }
     }

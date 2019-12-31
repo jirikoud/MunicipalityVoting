@@ -61,6 +61,24 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nemáte vytvořen žádný klíč.
+        /// </summary>
+        public static string API_KEY_NOT_CREATED {
+            get {
+                return ResourceManager.GetString("API_KEY_NOT_CREATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API klíč.
+        /// </summary>
+        public static string API_KEY_TITLE {
+            get {
+                return ResourceManager.GetString("API_KEY_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Změnit e-mail.
         /// </summary>
         public static string BUTTON_CHANGE_EMAIL {
@@ -102,6 +120,15 @@ namespace VotingCoreWeb.Properties {
         public static string BUTTON_FORGOTTEN_PASSWORD {
             get {
                 return ResourceManager.GetString("BUTTON_FORGOTTEN_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vygenerovat klíč.
+        /// </summary>
+        public static string BUTTON_GENERATE_API_KEY {
+            get {
+                return ResourceManager.GetString("BUTTON_GENERATE_API_KEY", resourceCulture);
             }
         }
         
@@ -484,6 +511,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to API klíč.
+        /// </summary>
+        public static string MENU_API_KEY {
+            get {
+                return ResourceManager.GetString("MENU_API_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string MENU_EMAIL {
@@ -516,6 +552,24 @@ namespace VotingCoreWeb.Properties {
         public static string MENU_PROFILE {
             get {
                 return ResourceManager.GetString("MENU_PROFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generování klíče selhalo.
+        /// </summary>
+        public static string MESSAGE_API_KEY_FAILED {
+            get {
+                return ResourceManager.GetString("MESSAGE_API_KEY_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Váš klíč byl úspěšně vygenerován.
+        /// </summary>
+        public static string MESSAGE_API_KEY_GENERATED {
+            get {
+                return ResourceManager.GetString("MESSAGE_API_KEY_GENERATED", resourceCulture);
             }
         }
         

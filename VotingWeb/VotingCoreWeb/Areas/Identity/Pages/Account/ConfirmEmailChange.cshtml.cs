@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using VotingCoreWeb.Areas.Identity.Pages.Account.Manage;
 using VotingCoreWeb.Properties;
 
 namespace VotingCoreWeb.Areas.Identity.Pages.Account
@@ -44,7 +45,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
             var result = await _userManager.ChangeEmailAsync(user, email, code);
             if (!result.Succeeded)
             {
-                StatusMessage = AccountRes.MESSAGE_EMAIL_CHANGE_ERROR;
+                StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_EMAIL_CHANGE_ERROR, true);
                 return Page();
             }
 
@@ -53,12 +54,12 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account
             var setUserNameResult = await _userManager.SetUserNameAsync(user, email);
             if (!setUserNameResult.Succeeded)
             {
-                StatusMessage = AccountRes.MESSAGE_USERNAME_CHANGE_ERROR;
+                StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_USERNAME_CHANGE_ERROR, true);
                 return Page();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = AccountRes.MESSAGE_CHANGE_EMAIL_SUCCESS;
+            StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_CHANGE_EMAIL_SUCCESS);
             return Page();
         }
     }

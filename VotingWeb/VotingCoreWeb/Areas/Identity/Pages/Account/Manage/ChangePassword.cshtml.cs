@@ -94,7 +94,7 @@ namespace VotingCoreWeb.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = AccountRes.MESSAGE_PASSWORD_CHANGED;
+            StatusMessage = StatusMessageModel.Create(AccountRes.MESSAGE_PASSWORD_CHANGED);
 
             return RedirectToPage();
         }
