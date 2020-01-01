@@ -36,7 +36,6 @@ namespace VotingCoreData.Models
         public bool IsApproved { get; set; }
 
         public DateTime? Time { get; set; }
-        public int? Total { get; set; }
         public bool IsDeleted { get; set; }
 
         public Session Session { get; set; }
@@ -49,6 +48,7 @@ namespace VotingCoreData.Models
             this.Comment = model.Comment;
             this.Text = model.Text;
             this.Order = model.Order;
+            this.Time = model.Time;
             this.IsProcedural = model.IsProcedural;
             this.IsSecret = model.IsSecret;
             this.IsApproved = model.IsApproved;

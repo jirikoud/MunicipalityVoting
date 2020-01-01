@@ -40,7 +40,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
 
         private async Task PrepareListAsync(int bodyId)
         {
-            var memberList = await _dbContext.LoadBodyMembersAsync(bodyId);
+            var memberList = await _dbContext.GetBodyMemberListAsync(bodyId);
             this.MemberList = memberList.ConvertAll(item => new MemberItem(item.Deputy, true));
         }
 
@@ -48,7 +48,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var body = await _dbContext.FindBodyByIdAsync(bodyId);
+                var body = await _dbContext.GetBodyByIdAsync(bodyId);
                 if (body == null)
                 {
                     return RedirectToPage("/Index", new { area = "" });
@@ -77,7 +77,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var body = await _dbContext.FindBodyByIdAsync(this.Item.BodyId);
+                var body = await _dbContext.GetBodyByIdAsync(this.Item.BodyId);
                 if (body == null)
                 {
                     return RedirectToPage("/Index", new { area = "" });

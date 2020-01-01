@@ -50,11 +50,15 @@ namespace VotingImporter.BitEST
                     var modelTopic = new TopicModel();
                     model.TopicList.Add(modelTopic);
 
+                    var yesVote = int.Parse(elementVoting.Attribute("aye").Value);
+                    var deputyTotal = int.Parse(elementVoting.Attribute("deputies").Value);
+                    var appproveNeeded = (deputyTotal / 2) + 1;
+
                     modelTopic.Order = int.Parse(elementVoting.Attribute("number").Value);
                     modelTopic.Time = DateTime.ParseExact(elementVoting.Attribute("time").Value, "dd.MM.yyyy HH:mm:ss", cultureInfo);
-                    modelTopic.DeputyTotal = int.Parse(elementVoting.Attribute("deputies").Value);
                     modelTopic.IsProcedural = (elementVoting.Attribute("is_procedural").Value == "Yes");
                     modelTopic.IsSecret = (elementVoting.Attribute("is_secret").Value == "Yes");
+                    modelTopic.IsApproved = (yesVote >= appproveNeeded);
                     var elementTopic = elementVoting.Element("Topic");
                     modelTopic.Name = elementTopic.Value;
                     var elementTopicComment = elementVoting.Element("Comment");

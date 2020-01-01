@@ -40,7 +40,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
 
         private async Task PrepareListAsync(VotingCoreData.Models.Session session)
         {
-            var deputyList = await _dbContext.LoadBodyMembersAsync(session.BodyId);
+            var deputyList = await _dbContext.GetBodyMemberListAsync(session.BodyId);
             this.MemberList = deputyList.ConvertAll(item => new MemberItem(item.Deputy, session.SessionMembers.Any(member => member.DeputyId == item.DeputyId)));
         }
 
@@ -48,7 +48,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(id);
+                var session = await _dbContext.GetSessionByIdAsync(id);
                 if (session == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -75,7 +75,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(this.Item.Id);
+                var session = await _dbContext.GetSessionByIdAsync(this.Item.Id);
                 if (session == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

@@ -40,7 +40,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
 
         private async Task PrepareListAsync(int municipalityId)
         {
-            var deputyList = await _dbContext.LoadDeputiesAsync(municipalityId);
+            var deputyList = await _dbContext.GetDeputyListAsync(municipalityId);
             this.MemberList = deputyList.ConvertAll(item => new MemberItem(item, false));
         }
 

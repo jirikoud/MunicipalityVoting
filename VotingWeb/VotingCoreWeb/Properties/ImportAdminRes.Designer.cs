@@ -151,6 +151,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schváleno.
+        /// </summary>
+        public static string DETAIL_TOPIC_IS_APPROVED {
+            get {
+                return ResourceManager.GetString("DETAIL_TOPIC_IS_APPROVED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Název.
         /// </summary>
         public static string DETAIL_TOPIC_NAME {

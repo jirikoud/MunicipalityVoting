@@ -11,9 +11,9 @@ namespace VotingCommon.Models
         public string Name { get; set; }
         public string Comment { get; set; }
         public DateTime? Time { get; set; }
-        public int DeputyTotal { get; set; }
         public bool IsProcedural { get; set; }
         public bool IsSecret { get; set; }
+        public bool IsApproved { get; set; }
         public int Order { get; set; }
 
         public List<DeputyModel> DeputyList { get; set; }

@@ -36,10 +36,10 @@ namespace VotingCoreWeb.Pages
                     }
                 }
                 this.MunicipalityList = new List<MunicipalityItem>();
-                var municipalityList = await _dbContext.LoadMunicipalitiesAsync();
+                var municipalityList = await _dbContext.GetMunicipalityListAsync();
                 foreach (var municipality in municipalityList)
                 {
-                    var bodyList = await _dbContext.LoadBodiesAsync(municipality.Id);
+                    var bodyList = await _dbContext.GetBodyListAsync(municipality.Id);
                     this.MunicipalityList.Add(new MunicipalityItem(municipality, bodyList));
                 }
             }

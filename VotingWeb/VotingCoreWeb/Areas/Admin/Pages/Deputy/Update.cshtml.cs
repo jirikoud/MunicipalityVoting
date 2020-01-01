@@ -38,7 +38,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Deputy
 
         private async Task PrepareSelectListAsync(int municipalityId)
         {
-            var partyList = await _dbContext.LoadPartiesAsync(municipalityId);
+            var partyList = await _dbContext.GetPartyListAsync(municipalityId);
             this.PartyList = new SelectList(partyList.ConvertAll(item => new SelectListItem(item.Name, item.Id.ToString())), "Value", "Text");
         }
 
@@ -46,7 +46,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Deputy
         {
             try
             {
-                var deputy = await _dbContext.FindDeputyByIdAsync(id);
+                var deputy = await _dbContext.GetDeputyByIdAsync(id);
                 if (deputy == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -73,7 +73,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Deputy
         {
             try
             {
-                var deputy = await _dbContext.FindDeputyByIdAsync(this.Item.Id);
+                var deputy = await _dbContext.GetDeputyByIdAsync(this.Item.Id);
                 if (deputy == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

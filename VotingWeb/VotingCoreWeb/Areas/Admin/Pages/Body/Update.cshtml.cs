@@ -40,7 +40,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
 
         private async Task PrepareListAsync(VotingCoreData.Models.Body body)
         {
-            var deputyList = await _dbContext.LoadDeputiesAsync(body.MunicipalityId);
+            var deputyList = await _dbContext.GetDeputyListAsync(body.MunicipalityId);
             this.MemberList = deputyList.ConvertAll(item => new MemberItem(item, body.BodyMembers.Any(member => member.DeputyId == item.Id)));
         }
 
@@ -48,7 +48,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
         {
             try
             {
-                var body = await _dbContext.FindBodyByIdAsync(id);
+                var body = await _dbContext.GetBodyByIdAsync(id);
                 if (body == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -75,7 +75,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
         {
             try
             {
-                var body = await _dbContext.FindBodyByIdAsync(this.Item.Id);
+                var body = await _dbContext.GetBodyByIdAsync(this.Item.Id);
                 if (body == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

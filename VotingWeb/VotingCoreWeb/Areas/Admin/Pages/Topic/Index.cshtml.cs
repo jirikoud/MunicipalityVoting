@@ -35,7 +35,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(id);
+                var session = await _dbContext.GetSessionByIdAsync(id);
                 if (session == null)
                 {
                     return RedirectToPage("/Index", new { area = "" });
@@ -47,7 +47,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
                 }
                 this.SessionId = session.Id;
                 this.BodyId = session.BodyId;
-                this.ItemList = await _dbContext.LoadTopicsAsync(session.Id);
+                this.ItemList = await _dbContext.GetTopicListAsync(session.Id);
                 return Page();
             }
             catch (Exception exception)

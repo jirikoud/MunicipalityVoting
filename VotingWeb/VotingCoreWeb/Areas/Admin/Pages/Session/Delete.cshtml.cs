@@ -33,7 +33,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(id);
+                var session = await _dbContext.GetSessionByIdAsync(id);
                 if (session == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -61,7 +61,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Session
             {
                 if (this.Item != null)
                 {
-                    var session = await _dbContext.FindSessionByIdAsync(this.Item.Id);
+                    var session = await _dbContext.GetSessionByIdAsync(this.Item.Id);
                     if (session == null)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

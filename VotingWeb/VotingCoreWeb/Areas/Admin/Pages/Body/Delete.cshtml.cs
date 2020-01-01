@@ -33,7 +33,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
         {
             try
             {
-                var body = await _dbContext.FindBodyByIdAsync(id);
+                var body = await _dbContext.GetBodyByIdAsync(id);
                 if (body == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -61,7 +61,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Body
             {
                 if (this.Item != null)
                 {
-                    var body = await _dbContext.FindBodyByIdAsync(this.Item.Id);
+                    var body = await _dbContext.GetBodyByIdAsync(this.Item.Id);
                     if (body == null)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

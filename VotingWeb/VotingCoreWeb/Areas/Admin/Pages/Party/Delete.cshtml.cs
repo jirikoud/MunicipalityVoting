@@ -33,7 +33,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Party
         {
             try
             {
-                var party = await _dbContext.FindPartyByIdAsync(id);
+                var party = await _dbContext.GetPartyByIdAsync(id);
                 if (party == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -61,7 +61,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Party
             {
                 if (this.Item != null)
                 {
-                    var party = await _dbContext.FindPartyByIdAsync(this.Item.Id);
+                    var party = await _dbContext.GetPartyByIdAsync(this.Item.Id);
                     if (party == null)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

@@ -38,7 +38,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
         {
             try
             {
-                this.Item = await _dbContext.FindMunicipalityByIdAsync(id);
+                this.Item = await _dbContext.GetMunicipalityByIdAsync(id);
                 if (this.Item == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

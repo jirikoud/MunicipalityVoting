@@ -33,7 +33,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
         {
             try
             {
-                this.ItemList = await _dbContext.LoadMunicipalitiesAsync();
+                this.ItemList = await _dbContext.GetMunicipalityListAsync();
                 return Page();
             }
             catch (Exception exception)

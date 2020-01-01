@@ -42,9 +42,9 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
 
         private async Task PrepareSelectListAsync(int municipalityId)
         {
-            var deputyList = await _dbContext.LoadDeputiesAsync(municipalityId);
+            var deputyList = await _dbContext.GetDeputyListAsync(municipalityId);
             this.DeputyList = new SelectList(deputyList.ConvertAll(item => new SelectListItem(item.GetFullName(), item.Id.ToString())), "Value", "Text");
-            var partyList = await _dbContext.LoadPartiesAsync(municipalityId);
+            var partyList = await _dbContext.GetPartyListAsync(municipalityId);
             this.PartyList = new SelectList(partyList.ConvertAll(item => new SelectListItem(item.Name, item.Id.ToString())), "Value", "Text");
             var voteList = VoteConvert.GetVoteList();
             this.VoteList = new SelectList(voteList.ConvertAll(item => new SelectListItem(item.Item2, item.Item1.ToString())), "Value", "Text");
@@ -54,7 +54,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
         {
             try
             {
-                var voting = await _dbContext.FindVotingByIdAsync(id);
+                var voting = await _dbContext.GetVotingByIdAsync(id);
                 if (voting == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -81,7 +81,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
         {
             try
             {
-                var voting = await _dbContext.FindVotingByIdAsync(this.Item.Id);
+                var voting = await _dbContext.GetVotingByIdAsync(this.Item.Id);
                 if (voting == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

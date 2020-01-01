@@ -38,7 +38,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Deputy
 
         private async Task PrepareSelectListAsync(int municipalityId)
         {
-            var partyList = await _dbContext.LoadPartiesAsync(municipalityId);
+            var partyList = await _dbContext.GetPartyListAsync(municipalityId);
             this.PartyList = new SelectList(partyList.ConvertAll(item => new SelectListItem(item.Name, item.Id.ToString())), "Value", "Text");
         }
 

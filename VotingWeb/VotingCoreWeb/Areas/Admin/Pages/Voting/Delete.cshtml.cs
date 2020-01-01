@@ -36,7 +36,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
         {
             try
             {
-                var voting = await _dbContext.FindVotingByIdAsync(id);
+                var voting = await _dbContext.GetVotingByIdAsync(id);
                 if (voting == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -65,7 +65,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
             {
                 if (this.Item != null)
                 {
-                    var voting = await _dbContext.FindVotingByIdAsync(this.Item.Id);
+                    var voting = await _dbContext.GetVotingByIdAsync(this.Item.Id);
                     if (voting == null)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

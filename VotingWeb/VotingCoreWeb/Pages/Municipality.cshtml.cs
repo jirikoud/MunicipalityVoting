@@ -29,8 +29,8 @@ namespace VotingCoreWeb
         {
             try
             {
-                var municipality = await _dbContext.FindMunicipalityByIdAsync(id);
-                var bodyList = await _dbContext.LoadBodiesAsync(id);
+                var municipality = await _dbContext.GetMunicipalityByIdAsync(id);
+                var bodyList = await _dbContext.GetBodyListAsync(id);
                 this.MunicipalityName = municipality.Name;
                 this.BodyList = bodyList.ConvertAll(item => new BodyItem(item));
                 return Page();

@@ -61,7 +61,7 @@ namespace VotingCoreData
 
         #region Municipality
 
-        public async Task<List<Municipality>> LoadMunicipalitiesAsync()
+        public async Task<List<Municipality>> GetMunicipalityListAsync()
         {
             try
             {
@@ -75,7 +75,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Municipality> FindMunicipalityByIdAsync(int id)
+        public async Task<Municipality> GetMunicipalityByIdAsync(int id)
         {
             try
             {
@@ -142,7 +142,7 @@ namespace VotingCoreData
 
         #region Body
 
-        public async Task<List<Body>> LoadBodiesAsync(int municipalityId)
+        public async Task<List<Body>> GetBodyListAsync(int municipalityId)
         {
             try
             {
@@ -156,7 +156,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Body> FindBodyByIdAsync(int id)
+        public async Task<Body> GetBodyByIdAsync(int id)
         {
             try
             {
@@ -186,12 +186,15 @@ namespace VotingCoreData
                         return null;
                     }
                     model.UpdateFrom(changes);
-                    var memberIds = members.Select(item => item.DeputyId);
-                    var removeList = model.BodyMembers.Where(item => !memberIds.Contains(item.DeputyId));
-                    var currentIds = model.BodyMembers.Select(item => item.DeputyId);
-                    var addList = members.Where(item => !currentIds.Contains(item.DeputyId));
-                    this.RemoveRange(removeList);
-                    model.BodyMembers.AddRange(addList);
+                    if (members != null)
+                    {
+                        var memberIds = members.Select(item => item.DeputyId);
+                        var removeList = model.BodyMembers.Where(item => !memberIds.Contains(item.DeputyId));
+                        var currentIds = model.BodyMembers.Select(item => item.DeputyId);
+                        var addList = members.Where(item => !currentIds.Contains(item.DeputyId));
+                        this.RemoveRange(removeList);
+                        model.BodyMembers.AddRange(addList);
+                    }
                 }
                 else
                 {
@@ -201,8 +204,11 @@ namespace VotingCoreData
                     };
                     model.UpdateFrom(changes);
                     this.Bodies.Add(model);
-                    model.BodyMembers = new List<BodyMember>();
-                    model.BodyMembers.AddRange(members);
+                    if (members != null)
+                    {
+                        model.BodyMembers = new List<BodyMember>();
+                        model.BodyMembers.AddRange(members);
+                    }
                 }
 
                 await SaveChangesAsync();
@@ -238,7 +244,7 @@ namespace VotingCoreData
 
         #region Session
 
-        public async Task<List<Session>> LoadSessionsAsync(int bodyId)
+        public async Task<List<Session>> GetSessionListAsync(int bodyId)
         {
             try
             {
@@ -252,7 +258,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Session> FindSessionByIdAsync(int id)
+        public async Task<Session> GetSessionByIdAsync(int id)
         {
             try
             {
@@ -282,12 +288,15 @@ namespace VotingCoreData
                         return null;
                     }
                     model.UpdateFrom(changes);
-                    var memberIds = members.Select(item => item.DeputyId);
-                    var removeList = model.SessionMembers.Where(item => !memberIds.Contains(item.DeputyId));
-                    var currentIds = model.SessionMembers.Select(item => item.DeputyId);
-                    var addList = members.Where(item => !currentIds.Contains(item.DeputyId));
-                    this.RemoveRange(removeList);
-                    model.SessionMembers.AddRange(addList);
+                    if (members != null)
+                    {
+                        var memberIds = members.Select(item => item.DeputyId);
+                        var removeList = model.SessionMembers.Where(item => !memberIds.Contains(item.DeputyId));
+                        var currentIds = model.SessionMembers.Select(item => item.DeputyId);
+                        var addList = members.Where(item => !currentIds.Contains(item.DeputyId));
+                        this.RemoveRange(removeList);
+                        model.SessionMembers.AddRange(addList);
+                    }
                 }
                 else
                 {
@@ -297,8 +306,11 @@ namespace VotingCoreData
                     };
                     model.UpdateFrom(changes);
                     this.Sessions.Add(model);
-                    model.SessionMembers = new List<SessionMember>();
-                    model.SessionMembers.AddRange(members);
+                    if (members != null)
+                    {
+                        model.SessionMembers = new List<SessionMember>();
+                        model.SessionMembers.AddRange(members);
+                    }
                 }
                 await SaveChangesAsync();
                 return model.Id;
@@ -347,7 +359,7 @@ namespace VotingCoreData
 
         #region Topic
 
-        public async Task<List<Topic>> LoadTopicsAsync(int sessionId)
+        public async Task<List<Topic>> GetTopicListAsync(int sessionId)
         {
             try
             {
@@ -361,7 +373,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Topic> FindTopicByIdAsync(int id)
+        public async Task<Topic> GetTopicByIdAsync(int id)
         {
             try
             {
@@ -432,7 +444,7 @@ namespace VotingCoreData
 
         #region Voting
 
-        public async Task<List<Voting>> LoadVotingsAsync(int topicId)
+        public async Task<List<Voting>> GetVotingListAsync(int topicId)
         {
             try
             {
@@ -446,7 +458,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Voting> FindVotingByIdAsync(int id)
+        public async Task<Voting> GetVotingByIdAsync(int id)
         {
             try
             {
@@ -516,7 +528,7 @@ namespace VotingCoreData
 
         #region Party
 
-        public async Task<List<Party>> LoadPartiesAsync(int municipalityId)
+        public async Task<List<Party>> GetPartyListAsync(int municipalityId)
         {
             try
             {
@@ -530,7 +542,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Party> FindPartyByIdAsync(int id)
+        public async Task<Party> GetPartyByIdAsync(int id)
         {
             try
             {
@@ -600,7 +612,7 @@ namespace VotingCoreData
 
         #region Deputy
 
-        public async Task<List<Deputy>> LoadDeputiesAsync(int municipalityId)
+        public async Task<List<Deputy>> GetDeputyListAsync(int municipalityId)
         {
             try
             {
@@ -619,7 +631,7 @@ namespace VotingCoreData
             }
         }
 
-        public async Task<Deputy> FindDeputyByIdAsync(int id)
+        public async Task<Deputy> GetDeputyByIdAsync(int id)
         {
             try
             {
@@ -689,7 +701,7 @@ namespace VotingCoreData
 
         #region BodyMember
 
-        public async Task<List<BodyMember>> LoadBodyMembersAsync(int bodyId)
+        public async Task<List<BodyMember>> GetBodyMemberListAsync(int bodyId)
         {
             try
             {
@@ -711,7 +723,7 @@ namespace VotingCoreData
 
         #region SessionMember
 
-        public async Task<List<SessionMember>> LoadSessionMembersAsync(int sessionId)
+        public async Task<List<SessionMember>> GetSessionMemberListAsync(int sessionId)
         {
             try
             {
@@ -733,7 +745,7 @@ namespace VotingCoreData
 
         #region User
 
-        public async Task<List<User>> LoadUsersAsync()
+        public async Task<List<User>> GetUserListAsync()
         {
             try
             {
@@ -780,10 +792,9 @@ namespace VotingCoreData
                         Name = topicModel.Name,
                         Comment = topicModel.Comment,
                         Order = topicModel.Order,
-                        Time = topicModel.Time,
-                        Total = topicModel.DeputyTotal,
                         IsProcedural = topicModel.IsProcedural,
                         IsSecret = topicModel.IsSecret,
+                        IsApproved = topicModel.IsApproved,
                     };
                     session.Topics.Add(topic);
                     foreach (var deputyModel in topicModel.DeputyList)

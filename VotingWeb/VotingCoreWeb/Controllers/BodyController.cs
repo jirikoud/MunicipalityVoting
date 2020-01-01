@@ -16,15 +16,15 @@ namespace VotingCoreWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MunicipalityController : ControllerBase
+    public class BodyController : ControllerBase
     {
-        private readonly ILogger<MunicipalityController> _logger;
+        private readonly ILogger<BodyController> _logger;
         private readonly ContextUtils _contextUtils;
         private readonly VotingDbContext _dbContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly string serverEnvironment;
 
-        public MunicipalityController(ILogger<MunicipalityController> logger, ContextUtils contextUtils, VotingDbContext dbContext, IConfiguration configuration, UserManager<IdentityUser> userManager)
+        public BodyController(ILogger<BodyController> logger, ContextUtils contextUtils, VotingDbContext dbContext, IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             this._logger = logger;
             this._contextUtils = contextUtils;
@@ -35,7 +35,7 @@ namespace VotingCoreWeb.Controllers
 
         // GET
         [HttpGet]
-        public async Task<ActionResult<List<Municipality>>> GetAsync()
+        public async Task<ActionResult<List<Body>>> GetAsync(int municipalityId)
         {
             try
             {
@@ -44,19 +44,25 @@ namespace VotingCoreWeb.Controllers
                 {
                     return StatusCode(403);
                 }
+                //Reading is allowed for every APIKey, if object exists
+                var municipality = await _dbContext.GetMunicipalityByIdAsync(municipalityId);
+                if (municipality == null)
+                {
+                    return StatusCode(404);
+                }
 
-                var list = await _dbContext.GetMunicipalityListAsync();
+                var list = await _dbContext.GetBodyListAsync(municipalityId);
                 if (list == null)
                 {
                     var errorResponse = new ErrorModel()
                     {
                         Message = ApiRes.ERROR_DB,
                         Code = Constants.ERROR_CODE_DB,
-                        DebugMessage = _contextUtils.GetErrorMessage("GetMunicipalityListAsync failed", serverEnvironment),
+                        DebugMessage = _contextUtils.GetErrorMessage("LoadBodyAsync failed", serverEnvironment),
                     };
                     return StatusCode(500, errorResponse);
                 }
-                var model = list.ConvertAll(item => new Municipality(item));
+                var model = list.ConvertAll(item => new Body(item));
                 return model;
             }
             catch (Exception exception)
@@ -74,7 +80,7 @@ namespace VotingCoreWeb.Controllers
 
         // POST
         [HttpPost]
-        public async Task<ActionResult<int>> PostAsync([FromBody] Municipality model)
+        public async Task<ActionResult<int>> PostAsync([FromBody] Body model)
         {
             try
             {
@@ -83,14 +89,14 @@ namespace VotingCoreWeb.Controllers
                 {
                     return StatusCode(403);
                 }
-                //Admin is required
-                var isInRole = await _userManager.IsInRoleAsync(user, Constants.ROLE_ADMIN);
-                if (!isInRole)
+                //Admin or editor claim is required for editation
+                var hasRight = await _contextUtils.CheckMunicipalityRightAsync(model.MunicipalityId, user, _dbContext, _userManager);
+                if (!hasRight)
                 {
                     return StatusCode(403);
                 }
 
-                var newId = await _dbContext.UpdateMunicipalityAsync(model.Id, model.ToDbModel());
+                var newId = await _dbContext.UpdateBodyAsync(model.Id, model.ToDbModel(), null);
                 if (newId.HasValue)
                 {
                     return newId.Value;
@@ -99,7 +105,7 @@ namespace VotingCoreWeb.Controllers
                 {
                     Message = ApiRes.ERROR_DB,
                     Code = Constants.ERROR_CODE_DB,
-                    DebugMessage = _contextUtils.GetErrorMessage("UpdateMunicipalityAsync failed", serverEnvironment),
+                    DebugMessage = _contextUtils.GetErrorMessage("UpdateBodyAsync failed", serverEnvironment),
                 };
                 return StatusCode(500, errorResponse);
             }
@@ -127,21 +133,26 @@ namespace VotingCoreWeb.Controllers
                 {
                     return StatusCode(403);
                 }
-                //Admin is required
-                var isInRole = await _userManager.IsInRoleAsync(user, Constants.ROLE_ADMIN);
-                if (!isInRole)
+                var body = await _dbContext.GetBodyByIdAsync(id);
+                if (body == null)
+                {
+                    return StatusCode(404);
+                }
+                //Admin or editor claim is required for editation
+                var hasRight = await _contextUtils.CheckMunicipalityRightAsync(body.MunicipalityId, user, _dbContext, _userManager);
+                if (!hasRight)
                 {
                     return StatusCode(403);
                 }
 
-                var isDeleted = await _dbContext.DeleteMunicipalityAsync(id);
+                var isDeleted = await _dbContext.DeleteBodyAsync(id);
                 if (!isDeleted)
                 {
                     var errorResponse = new ErrorModel()
                     {
                         Message = ApiRes.ERROR_DB,
                         Code = Constants.ERROR_CODE_DB,
-                        DebugMessage = _contextUtils.GetErrorMessage("DeleteMunicipalityAsync failed", serverEnvironment),
+                        DebugMessage = _contextUtils.GetErrorMessage("DeleteBodyAsync failed", serverEnvironment),
                     };
                     return StatusCode(500, errorResponse);
                 }

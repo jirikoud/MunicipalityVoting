@@ -147,6 +147,9 @@
   <data name="DETAIL_TITLE" xml:space="preserve">
     <value>Název:</value>
   </data>
+  <data name="DETAIL_TOPIC_IS_APPROVED" xml:space="preserve">
+    <value>Schváleno</value>
+  </data>
   <data name="DETAIL_TOPIC_NAME" xml:space="preserve">
     <value>Název</value>
   </data>

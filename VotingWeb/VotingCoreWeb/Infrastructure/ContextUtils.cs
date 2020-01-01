@@ -57,7 +57,7 @@ namespace VotingCoreWeb.Infrastructure
                 int claimId = int.Parse(municipalityClaim.Value);
                 if (claimId == municipalityId)
                 {
-                    var municipality = await dbContext.FindMunicipalityByIdAsync(municipalityId);
+                    var municipality = await dbContext.GetMunicipalityByIdAsync(municipalityId);
                     return true;
                 }
             }
@@ -72,7 +72,7 @@ namespace VotingCoreWeb.Infrastructure
                 return null;
             }
             int claimId = int.Parse(municipalityClaim.Value);
-            var municipality = await dbContext.FindMunicipalityByIdAsync(claimId);
+            var municipality = await dbContext.GetMunicipalityByIdAsync(claimId);
             return municipality?.Id;
         }
 
@@ -82,7 +82,7 @@ namespace VotingCoreWeb.Infrastructure
             {
                 if (user.IsInRole(Constants.ROLE_ADMIN))
                 {
-                    var municipality = await dbContext.FindMunicipalityByIdAsync(id.Value);
+                    var municipality = await dbContext.GetMunicipalityByIdAsync(id.Value);
                     if (municipality == null)
                     {
                         CreateActionStateCookie(tempData, AlertTypeEnum.Danger, AdminRes.ERROR_NOT_EXIST);
@@ -110,6 +110,26 @@ namespace VotingCoreWeb.Infrastructure
                 }
                 return claimId.Value;
             }
+        }
+
+        public async Task<bool> CheckMunicipalityRightAsync(int municipalityId, IdentityUser user, VotingDbContext dbContext, UserManager<IdentityUser> userManager)
+        {
+            var municipality = await dbContext.GetMunicipalityByIdAsync(municipalityId);
+            if (municipality == null)
+            {
+                return false;
+            }
+            var isAdmin = await userManager.IsInRoleAsync(user, Constants.ROLE_ADMIN);
+            if (isAdmin)
+            {
+                return true;
+            }
+            var claims = await userManager.GetClaimsAsync(user);
+            if (claims.Any(item => item.Type == Constants.CLAIM_MUNICIPALITY && int.Parse(item.Value) == municipalityId))
+            {
+                return true;
+            }
+            return false;
         }
 
         private string GetApiKey(HttpRequest request)

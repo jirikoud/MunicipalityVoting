@@ -33,7 +33,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Deputy
         {
             try
             {
-                var deputy = await _dbContext.FindDeputyByIdAsync(id);
+                var deputy = await _dbContext.GetDeputyByIdAsync(id);
                 if (deputy == null)
                 {
                     _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);
@@ -61,7 +61,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Deputy
             {
                 if (this.Item != null)
                 {
-                    var deputy = await _dbContext.FindDeputyByIdAsync(this.Item.Id);
+                    var deputy = await _dbContext.GetDeputyByIdAsync(this.Item.Id);
                     if (deputy == null)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Danger, AdminRes.ERROR_EXCEPTION);

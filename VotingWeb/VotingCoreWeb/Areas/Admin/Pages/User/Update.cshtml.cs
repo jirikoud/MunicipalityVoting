@@ -47,7 +47,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.User
         public async Task PrepareSelectListAsync()
         {
             this.RoleList = new SelectList(RoleConvert.GetRoleList(), "Item1", "Item2");
-            var municipalityList = await _dbContext.LoadMunicipalitiesAsync();
+            var municipalityList = await _dbContext.GetMunicipalityListAsync();
             this.MunicipalityList = new SelectList(municipalityList.ConvertAll(item => new SelectListItem(item.Name, item.Id.ToString())), "Value", "Text");
         }
 

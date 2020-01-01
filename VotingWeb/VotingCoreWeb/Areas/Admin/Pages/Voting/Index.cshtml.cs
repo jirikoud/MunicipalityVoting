@@ -36,7 +36,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
         {
             try
             {
-                var topic = await _dbContext.FindTopicByIdAsync(id);
+                var topic = await _dbContext.GetTopicByIdAsync(id);
                 if (topic == null)
                 {
                     return RedirectToPage("/Index", new { area = "" });
@@ -48,7 +48,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Voting
                 }
                 this.TopicId = topic.Id;
                 this.SessionId = topic.SessionId;
-                this.ItemList = await _dbContext.LoadVotingsAsync(topic.Id);
+                this.ItemList = await _dbContext.GetVotingListAsync(topic.Id);
                 return Page();
             }
             catch (Exception exception)

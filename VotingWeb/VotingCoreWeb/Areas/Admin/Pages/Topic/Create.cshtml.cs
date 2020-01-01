@@ -44,8 +44,8 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
 
         private async Task PrepareListAsync(int bodyId, int sessionId)
         {
-            var memberList = await _dbContext.LoadBodyMembersAsync(bodyId);
-            var presentList = await _dbContext.LoadSessionMembersAsync(sessionId);
+            var memberList = await _dbContext.GetBodyMemberListAsync(bodyId);
+            var presentList = await _dbContext.GetSessionMemberListAsync(sessionId);
             this.VotingList = memberList.ConvertAll(item => new VotingItem(item.Deputy, presentList.Any(present => present.DeputyId == item.DeputyId) ? (int)VoteEnum.Yes : (int)VoteEnum.Missing));
             var voteList = VoteConvert.GetVoteList();
             this.VoteList = new SelectList(voteList.ConvertAll(item => new SelectListItem(item.Item2, item.Item1.ToString())), "Value", "Text");
@@ -55,7 +55,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(sessionId);
+                var session = await _dbContext.GetSessionByIdAsync(sessionId);
                 if (session == null)
                 {
                     return RedirectToPage("/Index", new { area = "" });
@@ -87,7 +87,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Topic
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(this.Item.SessionId);
+                var session = await _dbContext.GetSessionByIdAsync(this.Item.SessionId);
                 if (session == null)
                 {
                     return RedirectToPage("/Index", new { area = "" });

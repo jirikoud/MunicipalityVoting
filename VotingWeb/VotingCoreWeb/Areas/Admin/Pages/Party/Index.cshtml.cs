@@ -40,7 +40,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Party
                     return RedirectToPage("/Index", new { area = "" });
                 }
                 this.MunicipalityId = municipalityId.Value;
-                this.ItemList = await _dbContext.LoadPartiesAsync(municipalityId.Value);
+                this.ItemList = await _dbContext.GetPartyListAsync(municipalityId.Value);
                 return Page();
             }
             catch (Exception exception)

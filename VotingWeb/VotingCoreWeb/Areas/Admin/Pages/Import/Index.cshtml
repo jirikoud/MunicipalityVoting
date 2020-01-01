@@ -55,16 +55,18 @@ else
                     <th scope="col">#</th>
                     <th scope="col">@ImportAdminRes.DETAIL_TOPIC_NAME</th>
                     <th scope="col">@ImportAdminRes.DETAIL_TOPIC_TIME</th>
+                    <th scope="col">@ImportAdminRes.DETAIL_TOPIC_IS_APPROVED</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var topicModel in Model.SessionModel.TopicList)
                 {
-                    <tr>
-                        <th scope="row">@topicModel.Order</th>
-                        <td>@topicModel.Name</td>
-                        <td>@(topicModel.Time.HasValue ? topicModel.Time.Value.ToLongTimeString() : "")</td>
-                    </tr>
+                <tr>
+                    <th scope="row">@topicModel.Order</th>
+                    <td>@topicModel.Name</td>
+                    <td>@(topicModel.Time.HasValue ? topicModel.Time.Value.ToLongTimeString() : "")</td>
+                    <td>@(topicModel.IsApproved ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
+                </tr>
                 }
             </tbody>
         </table>

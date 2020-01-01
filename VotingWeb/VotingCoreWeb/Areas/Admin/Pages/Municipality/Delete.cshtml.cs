@@ -36,7 +36,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Municipality
         {
             try
             {
-                var item = await _dbContext.FindMunicipalityByIdAsync(id);
+                var item = await _dbContext.GetMunicipalityByIdAsync(id);
                 this.Id = id;
                 this.Name = item.Name;
                 return Page();

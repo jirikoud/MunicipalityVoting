@@ -64,7 +64,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
         private async Task PrepareSelectListsAsync()
         {
             this.ImporterList = new SelectList(ImporterConvert.GetImporterList(), "Item1", "Item2", null);
-            var bodyList = await _dbContext.LoadBodiesAsync(this.MunicipalityId);
+            var bodyList = await _dbContext.GetBodyListAsync(this.MunicipalityId);
             this.BodyList = new SelectList(bodyList, "Id", "Name");
         }
 

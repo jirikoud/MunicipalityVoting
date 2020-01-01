@@ -35,8 +35,8 @@ namespace VotingCoreWeb
         {
             try
             {
-                var session = await _dbContext.FindSessionByIdAsync(id);
-                var topicList = await _dbContext.LoadTopicsAsync(id);
+                var session = await _dbContext.GetSessionByIdAsync(id);
+                var topicList = await _dbContext.GetTopicListAsync(id);
 
                 this.MunicipalityId = session.Body.MunicipalityId;
                 this.MunicipalityName = session.Body.Municipality.Name;

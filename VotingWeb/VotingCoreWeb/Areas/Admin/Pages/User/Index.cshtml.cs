@@ -38,8 +38,8 @@ namespace VotingCoreWeb.Areas.Admin.Pages.User
         {
             try
             {
-                this.Municipalities = await _dbContext.LoadMunicipalitiesAsync();
-                var users = await _dbContext.LoadUsersAsync();
+                this.Municipalities = await _dbContext.GetMunicipalityListAsync();
+                var users = await _dbContext.GetUserListAsync();
                 this.ItemList = users;
                 return Page();
             }
