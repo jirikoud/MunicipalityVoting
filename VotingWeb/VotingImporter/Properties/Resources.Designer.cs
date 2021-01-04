@@ -19,7 +19,7 @@ namespace VotingImporter.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,6 +61,15 @@ namespace VotingImporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zadaný soubor neobsahuje žádná data.
+        /// </summary>
+        internal static string ERROR_FILE_EMPTY {
+            get {
+                return ResourceManager.GetString("ERROR_FILE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zadaný soubo nebyl nalezen.
         /// </summary>
         internal static string ERROR_FILE_NOT_FOUND {
@@ -81,9 +90,9 @@ namespace VotingImporter.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Chyba při zpracování souboru.
         /// </summary>
-        internal static string ERROR_XML_PARSE {
+        internal static string ERROR_PARSE {
             get {
-                return ResourceManager.GetString("ERROR_XML_PARSE", resourceCulture);
+                return ResourceManager.GetString("ERROR_PARSE", resourceCulture);
             }
         }
     }

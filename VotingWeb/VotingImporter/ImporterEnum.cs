@@ -9,5 +9,6 @@ namespace VotingImporter
     public enum ImporterEnum
     {
         BitEST,
+        OpenDataHMP,
     }
 }

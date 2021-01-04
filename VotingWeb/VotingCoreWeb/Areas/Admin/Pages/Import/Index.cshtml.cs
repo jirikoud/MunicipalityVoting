@@ -49,7 +49,7 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
         [BindProperty]
         public string Filename { get; set; }
 
-        public VotingCommon.Models.SessionModel SessionModel { get; set; }
+        public List<VotingCommon.Models.SessionModel> SessionModels { get; set; }
 
         public AlertModel Alert { get; set; }
 
@@ -111,14 +111,14 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
                     }
 
                     var importer = ImportFactory.GetImporter((ImporterEnum)this.Importer);
-                    var sessionModel = importer.ImportFromFile(path);
-                    if (sessionModel.ErrorMessage != null)
+                    var importPackage = importer.ImportFromFile(path);
+                    if (importPackage.ErrorMessage != null)
                     {
-                        ModelState.AddModelError("Importer", string.Format(ImportAdminRes.VALIDATION_FILE_INVALID_FORMAT, sessionModel.ErrorMessage));
+                        ModelState.AddModelError("Importer", string.Format(ImportAdminRes.VALIDATION_FILE_INVALID_FORMAT, importPackage.ErrorMessage));
                         await PrepareSelectListsAsync();
                         return Page();
                     }
-                    this.SessionModel = sessionModel;
+                    this.SessionModels = importPackage.Sessions;
                     this.Filename = guidName;
                 }
                 return Page();
@@ -143,11 +143,11 @@ namespace VotingCoreWeb.Areas.Admin.Pages.Import
                 }
                 var importer = ImportFactory.GetImporter((ImporterEnum)this.Importer);
                 var path = Path.Combine(_environment.ContentRootPath, "uploads", this.Filename);
-                var sessionModel = importer.ImportFromFile(path);
-                this.SessionModel = sessionModel;
-                if (sessionModel.ErrorMessage == null)
+                var importPackage = importer.ImportFromFile(path);
+                this.SessionModels = importPackage.Sessions;
+                if (importPackage.ErrorMessage == null)
                 {
-                    var isSuccess = await _dbContext.ImportSessionAsync(claimId.Value, this.BodyId, sessionModel);
+                    var isSuccess = await _dbContext.ImportSessionAsync(claimId.Value, this.BodyId, importPackage.Sessions);
                     if (isSuccess)
                     {
                         _contextUtils.CreateActionStateCookie(TempData, AlertTypeEnum.Success, ImportAdminRes.ALERT_IMPORT_SUCCESS);

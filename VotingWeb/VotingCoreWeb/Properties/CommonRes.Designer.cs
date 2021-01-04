@@ -124,6 +124,15 @@ namespace VotingCoreWeb.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OpenData HMP.
+        /// </summary>
+        public static string IMPORTER_OPEN_DATA_HMP {
+            get {
+                return ResourceManager.GetString("IMPORTER_OPEN_DATA_HMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Administrace.
         /// </summary>
         public static string MENU_ITEM_ADMIN {

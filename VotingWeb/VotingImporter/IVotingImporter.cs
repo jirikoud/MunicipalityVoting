@@ -9,6 +9,6 @@ namespace VotingImporter
 {
     public interface IVotingImporter
     {
-        SessionModel ImportFromFile(string filename);
+        ImportPackage ImportFromFile(string filename);
     }
 }

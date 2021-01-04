@@ -17,18 +17,16 @@ namespace VotingImporter.BitEST
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public SessionModel ImportFromFile(string filename)
+        public ImportPackage ImportFromFile(string filename)
         {
             var model = new SessionModel();
             if (string.IsNullOrWhiteSpace(filename))
             {
-                model.ErrorMessage = Resources.ERROR_NO_FILE;
-                return model;
+                return new ImportPackage(Resources.ERROR_NO_FILE);
             }
             if (!File.Exists(filename))
             {
-                model.ErrorMessage = Resources.ERROR_FILE_NOT_FOUND;
-                return model;
+                return new ImportPackage(Resources.ERROR_FILE_NOT_FOUND);
             }
             try
             {
@@ -78,13 +76,12 @@ namespace VotingImporter.BitEST
                     }
                 }
 
-                return model;
+                return new ImportPackage(model);
             }
             catch (Exception exception)
             {
                 logger.Error(exception);
-                model.ErrorMessage = Resources.ERROR_XML_PARSE;
-                return model;
+                return new ImportPackage(Resources.ERROR_PARSE);
             }
         }
     }

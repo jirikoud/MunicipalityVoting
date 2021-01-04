@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ERROR_FILE_EMPTY" xml:space="preserve">
+    <value>Zadaný soubor neobsahuje žádná data</value>
+  </data>
   <data name="ERROR_FILE_NOT_FOUND" xml:space="preserve">
     <value>Zadaný soubo nebyl nalezen</value>
   </data>
   <data name="ERROR_NO_FILE" xml:space="preserve">
     <value>Nebyl zadán žádný soubor ke zpracování</value>
   </data>
-  <data name="ERROR_XML_PARSE" xml:space="preserve">
+  <data name="ERROR_PARSE" xml:space="preserve">
     <value>Chyba při zpracování souboru</value>
   </data>
 </root>

@@ -767,74 +767,77 @@ namespace VotingCoreData
 
         #region Import
 
-        public async Task<bool> ImportSessionAsync(int municipalityId, int bodyId, SessionModel sessionModel)
+        public async Task<bool> ImportSessionAsync(int municipalityId, int bodyId, List<SessionModel> sessionModels)
         {
             try
             {
-                var session = new Session()
+                foreach (var sessionModel in sessionModels)
                 {
-                    Name = sessionModel.Title,
-                    Chairman = sessionModel.Chairman,
-                    StartDate = sessionModel.StartDate,
-                    EndDate = sessionModel.EndDate,
-                    BodyId = bodyId,
-                    Topics = new List<Topic>(),
-                };
-                this.Sessions.Add(session);
-
-                var deputyDictionary = await this.Deputies.Where(item => item.MunicipalityId == municipalityId && !item.IsDeleted).ToDictionaryAsync(item => item.TitlePre + ";" + item.Firstname + ";" + item.Lastname + ";" + item.TitlePost, item => item);
-                var partyDictionary = await this.Parties.Where(item => item.MunicipalityId == municipalityId && !item.IsDeleted).ToDictionaryAsync(item => item.Name, item => item);
-
-                foreach (var topicModel in sessionModel.TopicList)
-                {
-                    var topic = new Topic()
+                    var session = new Session()
                     {
-                        Name = topicModel.Name,
-                        Comment = topicModel.Comment,
-                        Order = topicModel.Order,
-                        IsProcedural = topicModel.IsProcedural,
-                        IsSecret = topicModel.IsSecret,
-                        IsApproved = topicModel.IsApproved,
+                        Name = sessionModel.Title,
+                        Chairman = sessionModel.Chairman,
+                        StartDate = sessionModel.StartDate,
+                        EndDate = sessionModel.EndDate,
+                        BodyId = bodyId,
+                        Topics = new List<Topic>(),
                     };
-                    session.Topics.Add(topic);
-                    foreach (var deputyModel in topicModel.DeputyList)
+                    this.Sessions.Add(session);
+
+                    var deputyDictionary = await this.Deputies.Where(item => item.MunicipalityId == municipalityId && !item.IsDeleted).ToDictionaryAsync(item => item.TitlePre + ";" + item.Firstname + ";" + item.Lastname + ";" + item.TitlePost, item => item);
+                    var partyDictionary = await this.Parties.Where(item => item.MunicipalityId == municipalityId && !item.IsDeleted).ToDictionaryAsync(item => item.Name, item => item);
+
+                    foreach (var topicModel in sessionModel.TopicList)
                     {
-                        if (!partyDictionary.ContainsKey(deputyModel.Party))
+                        var topic = new Topic()
                         {
-                            var newParty = new Party()
-                            {
-                                MunicipalityId = municipalityId,
-                                Name = deputyModel.Party,
-                            };
-                            this.Parties.Add(newParty);
-                            partyDictionary.Add(newParty.Name, newParty);
-                        }
-                        var party = partyDictionary[deputyModel.Party];
-
-                        var deputyKey = deputyModel.TitlePre + ";" + deputyModel.FirstName + ";" + deputyModel.Lastname + ";" + deputyModel.TitlePost;
-                        if (!deputyDictionary.ContainsKey(deputyKey))
-                        {
-                            var newDeputy = new Deputy()
-                            {
-                                MunicipalityId = municipalityId,
-                                Firstname = deputyModel.FirstName,
-                                Lastname = deputyModel.Lastname,
-                                TitlePre = deputyModel.TitlePre,
-                                TitlePost = deputyModel.TitlePost,
-                            };
-                            this.Deputies.Add(newDeputy);
-                            deputyDictionary.Add(deputyKey, newDeputy);
-                        }
-                        var deputy = deputyDictionary[deputyKey];
-
-                        var voting = new Voting()
-                        {
-                            Deputy = deputy,
-                            Party = party,
-                            Topic = topic,
-                            Vote = (int)deputyModel.Vote,
+                            Name = topicModel.Name,
+                            Comment = topicModel.Comment,
+                            Order = topicModel.Order,
+                            IsProcedural = topicModel.IsProcedural,
+                            IsSecret = topicModel.IsSecret,
+                            IsApproved = topicModel.IsApproved,
                         };
-                        this.Votings.Add(voting);
+                        session.Topics.Add(topic);
+                        foreach (var deputyModel in topicModel.DeputyList)
+                        {
+                            if (!partyDictionary.ContainsKey(deputyModel.Party))
+                            {
+                                var newParty = new Party()
+                                {
+                                    MunicipalityId = municipalityId,
+                                    Name = deputyModel.Party,
+                                };
+                                this.Parties.Add(newParty);
+                                partyDictionary.Add(newParty.Name, newParty);
+                            }
+                            var party = partyDictionary[deputyModel.Party];
+
+                            var deputyKey = deputyModel.TitlePre + ";" + deputyModel.FirstName + ";" + deputyModel.Lastname + ";" + deputyModel.TitlePost;
+                            if (!deputyDictionary.ContainsKey(deputyKey))
+                            {
+                                var newDeputy = new Deputy()
+                                {
+                                    MunicipalityId = municipalityId,
+                                    Firstname = deputyModel.FirstName,
+                                    Lastname = deputyModel.Lastname,
+                                    TitlePre = deputyModel.TitlePre,
+                                    TitlePost = deputyModel.TitlePost,
+                                };
+                                this.Deputies.Add(newDeputy);
+                                deputyDictionary.Add(deputyKey, newDeputy);
+                            }
+                            var deputy = deputyDictionary[deputyKey];
+
+                            var voting = new Voting()
+                            {
+                                Deputy = deputy,
+                                Party = party,
+                                Topic = topic,
+                                Vote = (int)deputyModel.Vote,
+                            };
+                            this.Votings.Add(voting);
+                        }
                     }
                 }
                 await SaveChangesAsync();

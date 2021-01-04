@@ -7,7 +7,7 @@
 
 @await Component.InvokeAsync("Alert", new { alert = Model.Alert })
 
-@if (Model.SessionModel == null)
+@if (Model.SessionModels == null)
 {
     <div id="content">
         <h1>@ImportAdminRes.PAGE_TITLE_FILE</h1>
@@ -41,35 +41,38 @@ else
             <a asp-page="/Import/Index" class="btn btn-info">@AdminRes.BUTTON_BACK</a>
         </div>
         <h1>@ImportAdminRes.PAGE_TITLE_DETAIL</h1>
-        <div class="row">
-            <div class="col-lg-12">
-                <div><b>@ImportAdminRes.DETAIL_TITLE </b>@Model.SessionModel.Title</div>
-                <div><b>@ImportAdminRes.DETAIL_DATE_START </b>@(Model.SessionModel.StartDate.HasValue ? Model.SessionModel.StartDate.Value.ToString("D") : ImportAdminRes.LABEL_NO_DATE)</div>
-                <div><b>@ImportAdminRes.DETAIL_DATE_END </b>@(Model.SessionModel.StartDate.HasValue ? Model.SessionModel.StartDate.Value.ToString("D") : ImportAdminRes.LABEL_NO_DATE)</div>
-                <div><b>@ImportAdminRes.DETAIL_CHAIRMAN </b>@Model.SessionModel.Chairman</div>
+        @foreach (var sessionModel in Model.SessionModels)
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div><b>@ImportAdminRes.DETAIL_TITLE </b>@sessionModel.Title</div>
+                    <div><b>@ImportAdminRes.DETAIL_DATE_START </b>@(sessionModel.StartDate.HasValue ? sessionModel.StartDate.Value.ToString("D") : ImportAdminRes.LABEL_NO_DATE)</div>
+                    <div><b>@ImportAdminRes.DETAIL_DATE_END </b>@(sessionModel.StartDate.HasValue ? sessionModel.StartDate.Value.ToString("D") : ImportAdminRes.LABEL_NO_DATE)</div>
+                    <div><b>@ImportAdminRes.DETAIL_CHAIRMAN </b>@sessionModel.Chairman</div>
+                </div>
             </div>
-        </div>
-        <table class="table table-striped">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">@ImportAdminRes.DETAIL_TOPIC_NAME</th>
-                    <th scope="col">@ImportAdminRes.DETAIL_TOPIC_TIME</th>
-                    <th scope="col">@ImportAdminRes.DETAIL_TOPIC_IS_APPROVED</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var topicModel in Model.SessionModel.TopicList)
-                {
-                <tr>
-                    <th scope="row">@topicModel.Order</th>
-                    <td>@topicModel.Name</td>
-                    <td>@(topicModel.Time.HasValue ? topicModel.Time.Value.ToLongTimeString() : "")</td>
-                    <td>@(topicModel.IsApproved ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
-                </tr>
-                }
-            </tbody>
-        </table>
+            <table class="table table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">@ImportAdminRes.DETAIL_TOPIC_NAME</th>
+                        <th scope="col">@ImportAdminRes.DETAIL_TOPIC_TIME</th>
+                        <th scope="col">@ImportAdminRes.DETAIL_TOPIC_IS_APPROVED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var topicModel in sessionModel.TopicList)
+                    {
+                    <tr>
+                        <th scope="row">@topicModel.Order</th>
+                        <td>@topicModel.Name</td>
+                        <td>@(topicModel.Time.HasValue ? topicModel.Time.Value.ToLongTimeString() : "")</td>
+                        <td>@(topicModel.IsApproved ? CommonRes.TABLE_VALUE_TRUE : CommonRes.TABLE_VALUE_FALSE)</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
 
         <form method="post">
             <input type="hidden" asp-for="Importer" />

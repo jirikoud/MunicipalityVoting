@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VotingImporter.BitEST;
+using VotingImporter.OpenDataHMP;
 
 namespace VotingImporter
 {
@@ -15,6 +16,8 @@ namespace VotingImporter
             {
                 case ImporterEnum.BitEST:
                     return new BitESTImporter();
+                case ImporterEnum.OpenDataHMP:
+                    return new OpenDataImporter();
             }
             return null;
         }

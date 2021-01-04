@@ -138,6 +138,9 @@
   <data name="IMPORTER_BITEST" xml:space="preserve">
     <value>BitEST</value>
   </data>
+  <data name="IMPORTER_OPEN_DATA_HMP" xml:space="preserve">
+    <value>OpenData HMP</value>
+  </data>
   <data name="MENU_ITEM_ADMIN" xml:space="preserve">
     <value>Administrace</value>
   </data>
