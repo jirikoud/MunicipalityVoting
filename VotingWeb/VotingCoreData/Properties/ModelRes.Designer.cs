@@ -160,6 +160,15 @@ namespace VotingCoreData.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Popis.
+        /// </summary>
+        public static string SESSION_COMMENT {
+            get {
+                return ResourceManager.GetString("SESSION_COMMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Datum konce.
         /// </summary>
         public static string SESSION_DATE_END {

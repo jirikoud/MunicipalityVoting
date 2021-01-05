@@ -77,6 +77,7 @@ else
         <form method="post">
             <input type="hidden" asp-for="Importer" />
             <input type="hidden" asp-for="MunicipalityId" />
+            <input type="hidden" asp-for="BodyId" />
             <input type="hidden" asp-for="Filename" />
             <div class="btn-group" role="group" aria-label="...">
                 <button type="submit" asp-page-handler="Import" class="btn btn-primary">@ImportAdminRes.BUTTON_IMPORT</button>

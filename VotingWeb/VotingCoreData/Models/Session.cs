@@ -27,6 +27,9 @@ namespace VotingCoreData.Models
         [Required(ErrorMessageResourceName = "VALIDATION_EMPTY", ErrorMessageResourceType = typeof(ModelRes))]
         public DateTime? EndDate { get; set; }
 
+        [Display(Name = "SESSION_COMMENT", ResourceType = typeof(ModelRes))]
+        public string Comment { get; set; }
+
         public int BodyId { get; set; }
         public bool IsDeleted { get; set; }
 
@@ -34,12 +37,14 @@ namespace VotingCoreData.Models
         public List<Topic> Topics { get; set; }
         public List<SessionMember> SessionMembers { get; set; }
 
+
         public void UpdateFrom(Session model)
         {
             this.Name = model.Name;
             this.Chairman = model.Chairman;
             this.StartDate = model.StartDate;
             this.EndDate = model.EndDate;
+            this.Comment = model.Comment;
         }
 
         public string StartDateFormat()

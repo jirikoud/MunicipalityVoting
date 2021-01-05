@@ -34,6 +34,11 @@
             <span asp-validation-for="Item.EndDate"></span>
         </div>
         <div class="form-group">
+            <label asp-for="Item.Comment"></label>
+            <input asp-for="Item.Comment" class="form-control form-control-lg" />
+            <span asp-validation-for="Item.Comment"></span>
+        </div>
+        <div class="form-group">
             <h3>@SessionAdminRes.LABEL_PRESENT_MEMBERS</h3>
             <ul class="list-unstyled row">
                 @for (int index = 0; index < Model.MemberList.Count; index++)

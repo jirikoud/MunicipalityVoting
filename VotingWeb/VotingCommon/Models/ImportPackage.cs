@@ -20,5 +20,10 @@ namespace VotingCommon.Models
         {
             this.Sessions = new List<SessionModel>() { sessionModel };
         }
+
+        public ImportPackage(List<SessionModel> sessionModel)
+        {
+            this.Sessions = sessionModel;
+        }
     }
 }

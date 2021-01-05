@@ -150,6 +150,9 @@
   <data name="SESSION_CHAIRMAN" xml:space="preserve">
     <value>Předsedající</value>
   </data>
+  <data name="SESSION_COMMENT" xml:space="preserve">
+    <value>Popis</value>
+  </data>
   <data name="SESSION_DATE_END" xml:space="preserve">
     <value>Datum konce</value>
   </data>
