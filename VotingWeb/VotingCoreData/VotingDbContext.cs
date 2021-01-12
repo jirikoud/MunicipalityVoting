@@ -37,6 +37,8 @@ namespace VotingCoreData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<UserRole>()
                 .HasKey(user => new { user.RoleId, user.UserId});
         }

@@ -61,7 +61,5 @@ namespace VotingCoreWeb.Data
                 return null;
             }
         }
-
-
     }
 }
