@@ -45,7 +45,10 @@ namespace VotingCoreWeb
                     logging.ClearProviders();
                     logging.SetMinimumLevel(LogLevel.Trace);
                 })
-                .UseNLog();  // NLog: setup NLog for Dependency injection
-
+                .UseNLog()  // NLog: setup NLog for Dependency injection
+                .ConfigureAppConfiguration((ctx, builder) =>
+                {
+                    builder.AddJsonFile($"appsettings.{Environment.MachineName}.json", true, true);
+                });
     }
 }
